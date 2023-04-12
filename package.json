@@ -1,13 +1,13 @@
 {
-  "name": "codergame_back",
-  "version": "1.0.0",
+"name": "codergame_back",
+"version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon index.js"
   },
-  "repository": {
+"repository": {
     "type": "git",
     "url": "git+https://github.com/walterporta/CoderGame_Back.git"
   },
