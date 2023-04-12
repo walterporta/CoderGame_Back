@@ -1,7 +1,11 @@
 const { Sequelize, Op } = require('sequelize');
+require('dotenv').config();
+const {
+   DB_USER, DB_PASSWORD, DB_HOST,
+ } = process.env;
 
 const db = new Sequelize(
-    'postgres://postgres:Rama1291@localhost:5432/codergame',
+   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/codergame`,
     {
        logging: false,
     }
