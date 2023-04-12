@@ -11,6 +11,9 @@ const db = new Sequelize(
     }
  );
 
+ modelVideoGames(db);
+
+
  module.exports = {
     ...db.models,
     conn: db,
