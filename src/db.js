@@ -13,7 +13,7 @@ const db = new Sequelize(
        logging: false,
     }
  );
-
+ 
  modelVideoGames(db);
  modelGenreGames(db);
  modelUsers(db);
