@@ -19,3 +19,4 @@ const db = new Sequelize(
     ...db.models,
     conn: db,
  };
+
