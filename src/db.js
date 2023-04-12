@@ -14,10 +14,10 @@ const db = new Sequelize(
        logging: false,
     }
  );
-
-modelVideoGames(db);
-modelGenreGames(db);
-modelUsers(db);
+ 
+ modelVideoGames(db);
+ modelGenreGames(db);
+ modelUsers(db);
 
 const {Videogames, Genregames} = db.models
 
