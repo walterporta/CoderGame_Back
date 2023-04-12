@@ -1,13 +1,17 @@
-
 console.log('pasando por gamehandler');
-
+const {findGameName} = require('../controllers/findGameName')
 const getVideoGamesHandler = async (req, res) => {
     const { name } = req.query
     try {
-        res.status(200).send('aqui me traigo todas los juegos')
+        const allVideoGames =await findGameName(name)
+        console.log(allVideoGames)
+        res.status(200).json(allVideoGames)
     } catch (error) {
 
+        res.status(400).json({error:error.message})
+
     }
+
 }
 
 const createVideoGamesHandler = async (req, res) => {
