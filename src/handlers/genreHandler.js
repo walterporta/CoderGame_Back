@@ -12,3 +12,4 @@ const genreHandler = async (req,res) => {
 }
 
 module.exports = {genreHandler}
+

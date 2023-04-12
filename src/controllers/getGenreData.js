@@ -9,7 +9,7 @@ const getAllGenres = async () => {
 
     const genre01 = genres.toString().split(',');
     genre01.forEach(element => {
-        Genregames.findOrCreate({
+        Genregames.findOrCreate({ 
             where: { name: element}
         })
     })
