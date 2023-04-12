@@ -1,6 +1,6 @@
-const {Genregames} = require('../db')
-
-const genreHandler = async (req,res) => {
+const { Genregames } = require('../db')
+console.log('pase por genres');
+const genreHandler = async (req, res) => {
 
     try {
         console.log('ingreso la ruta')
@@ -8,9 +8,9 @@ const genreHandler = async (req,res) => {
 
         res.status(200).json(listGenre)
     } catch (error) {
-        res.status(400).json({error: "no se encontraron dietas"})
+        res.status(400).json({ error: "no se encontraron generos" })
     }
 }
 
-module.exports = {genreHandler}
+module.exports = { genreHandler }
 
