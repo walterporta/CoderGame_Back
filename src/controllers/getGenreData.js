@@ -1,4 +1,4 @@
-const { VideoGame, GenreGame} = require('../models');
+const { Videogame, Genregames} = require('../db');
 const {API_KEY} = process.env;
 const axios = require('axios')
 
@@ -9,7 +9,7 @@ const getAllGenres = async () => {
 
     const genre01 = genres.toString().split(',');
     genre01.forEach(element => {
-        GenreGame.findOrCreate({
+        Genregames.findOrCreate({
             where: { name: element}
         })
     })
