@@ -1,11 +1,11 @@
-const {VideoGame, GenreGame} = require('../db');
+const {Videogames, Genregames} = require('../db');
 const {API_KEY} = process.env;
 const axios = require('axios');
 
 //Indo de la Api
 const searchApi = async () => {
     const arrVideogames = []
-    for(let i = 0; i < 5; i++){
+  for(let i = 1; i < 6; i++){
     const apiUrl = await axios.get (`https://api.rawg.io/api/games?key=${API_KEY}&page=${i}`);
 
         apiUrl.data.results.map((el)=> {
@@ -20,15 +20,15 @@ const searchApi = async () => {
                 genres: el.genres?.map(el => el.name).toString(),
             });
         });
-    }
+     }
     return arrVideogames;
-}
+ }
 
 //Db
 const searchDB = async () => {
-    const dataDb = await VideoGame.findAll({
+    const dataDb = await Videogames.findAll({
         include: {
-            model: GenreGame,
+            model: Genregames,
             attributes: ['name'],
             through: {
                 attributes: []
@@ -48,5 +48,5 @@ const getAllInfo = async () => {
 }
 
 module.exports = {
-    getAllInfo
+    getAllInfo, searchApi
 }
