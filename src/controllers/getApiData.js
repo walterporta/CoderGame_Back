@@ -7,7 +7,7 @@ const searchApi = async () => {
     const arrVideogames = []
   for(let i = 1; i < 6; i++){
     const apiUrl = await axios.get (`https://api.rawg.io/api/games?key=${API_KEY}&page=${i}`);
-
+    
         apiUrl.data.results.map((el)=> {
             arrVideogames.push({
                 id: el.id,
@@ -17,9 +17,9 @@ const searchApi = async () => {
                 rating: el.rating,
                 platforms: el.platforms?.map(el => el.platform.name),
                 description: el.description,
-                genres: el.genres?.map(el => el.name).toString(),
+                genres: el.genres
             });
-        });
+        }); 
      }
     return arrVideogames;
  }
