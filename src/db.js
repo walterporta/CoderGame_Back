@@ -1,18 +1,31 @@
 const { Sequelize, Op } = require('sequelize');
 require('dotenv').config();
 const {
-   DB_USER, DB_PASSWORD, DB_HOST, DB_NAME,
+   DB_USER, DB_PASSWORD, DB_HOST, DB_NAME
 } = process.env;
+const modelVideoGames = require('./models/VideoGame.js')
+const modelGenreGames = require('./models/GenreGame.js')
+const modelUsers = require('./models/User.js')
 
-console.log(DB_USER);
+console.log(DB_HOST, DB_PASSWORD)
 const db = new Sequelize(
-   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:5432/${DB_NAME}`,
+   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`,
    {
       logging: false,
    }
 );
 
+modelVideoGames(db);
+modelGenreGames(db);
+modelUsers(db);
+
+const { Videogames, Genregames } = db.models
+
+Videogames.belongsToMany(Genregames, { through: 'GameGenre' }); // muchos a muchos, tabla intermedia
+Genregames.belongsToMany(Videogames, { through: 'GameGenre' }); // tiene que tener el mismo nombre
+
 module.exports = {
    ...db.models,
    conn: db,
 };
+
