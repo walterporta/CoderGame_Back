@@ -3,9 +3,9 @@ const {findGameName} = require('../controllers/findGameName.js');
 const {findGameById} = require('../controllers/findGameById.js');
 
 const getVideoGamesHandler = async (req, res) => {
-    const { name } = req.query
+    const { name, genre } = req.query
     try {
-        const allVideoGames = await findGameName(name)
+        const allVideoGames = await findGameName(name, genre)
         res.status(200).json(allVideoGames)
     } catch (error) {
 

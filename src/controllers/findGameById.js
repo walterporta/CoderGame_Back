@@ -6,7 +6,6 @@ const findGameById = async (id) => {
   
     return videoGameId;
 };
-  
 
   module.exports = {
     findGameById

@@ -1,9 +1,10 @@
 const { Videogames, Genregames } = require('../db')
 const { Op } = require('sequelize')
+const genres = require('../routes/genresRoutes')
 
 
 
-const findGameName = async (name) => {
+const findGameName = async (name, genre) => {
 
 
     let findGame = []
@@ -33,7 +34,26 @@ const findGameName = async (name) => {
         })
     }
 
-    return findGame
+    let findGames = await Videogames.findAll({
+        where:{
+            [Op.and]:[name?{name: {[Op.iLike]: `%${name}%`}}:null ]  
+        },
+        include: [{
+            model: Genregames,
+            attributes: ['id', 'name'],
+            where: {
+                name: genre ? genre : { [Op.ne]: null 
+                }},
+            through: {
+                attributes: []
+            },
+            required: false 
+        }]
+    })
+
+     console.log(findGames)
+    
+    return findGames
 }
 
 
