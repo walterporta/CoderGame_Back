@@ -1,6 +1,6 @@
 const { createNewGame } = require('../controllers/createNewGame.js')
 const {findGameName} = require('../controllers/findGameName.js');
-
+const {findGameById} = require('../controllers/findGameById.js');
 
 const getVideoGamesHandler = async (req, res) => {
     const { name } = req.query
@@ -14,6 +14,25 @@ const getVideoGamesHandler = async (req, res) => {
     }
 
 }
+
+const getVideoGameByIdHandler = async (req, res) => {
+    const { id } = req.params;
+
+    try {
+      const videoGame = await findGameById(id);
+      if (videoGame) {
+        res.status(200).json(videoGame);  
+      } else {
+        res.status(404).json({ error: 'Game not found' });
+      }
+    } catch (error) {
+      res.status(400).json({ error: error.message });
+    }
+  };
+
+
+
+
 
 const createVideoGamesHandler = async (req, res) => {
     const { name, released, genres, rating, platforms, description, image } = req.body
@@ -33,5 +52,7 @@ const createVideoGamesHandler = async (req, res) => {
 
 module.exports = {
     getVideoGamesHandler,
-    createVideoGamesHandler
+    createVideoGamesHandler,
+    getVideoGameByIdHandler,
+  
 }
