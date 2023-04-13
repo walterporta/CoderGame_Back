@@ -7,7 +7,7 @@ const modelVideoGames = require('./models/VideoGame.js')
 const modelGenreGames = require('./models/GenreGame.js')
 const modelUsers = require('./models/User.js')
 
-
+console.log(DB_HOST, DB_PASSWORD)
 const db = new Sequelize(
    `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`,
    {
