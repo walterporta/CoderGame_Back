@@ -11,7 +11,7 @@ const modelUsers = require('./models/User.js')
 const db = new Sequelize(
    `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/codergame`,
     {
-       logging: false,
+      logging: false,
     }
  );
  

@@ -11,8 +11,8 @@ const findGameName = async (name) =>{
                 model: Genregames,
                 attributes: ['id','name'],
                 through: {
-                    attributes: []
-                } // nombre del campo que quieres recuperar
+                    attributes: [] //evita que traiga la informasion de la tabla intermedia
+                } 
              }]
          }) 
 
@@ -21,8 +21,15 @@ const findGameName = async (name) =>{
         where: {
             name: {[Op.iLike]: `%${name}%`}
         },
-        include: Genregames
+        include: [{
+            model: Genregames,
+            attributes: ['id','name'],
+            through: {
+                attributes: [] //evita que traiga la informasion de la tabla intermedia
+            } 
+         }]
     })
+
     }
    
     return findGame
