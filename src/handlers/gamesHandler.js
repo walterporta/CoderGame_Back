@@ -5,10 +5,14 @@ const { createNewGame } = require('../controllers/createNewGame.js')
 const getVideoGamesHandler = async (req, res) => {
     const { name } = req.query
     try {
-        res.status(200).send('aqui me traigo todas los juegos')
+        const allVideoGames =await findGameName(name)
+        res.status(200).json(allVideoGames)
     } catch (error) {
 
+        res.status(400).json({error:error.message})
+
     }
+
 }
 
 const createVideoGamesHandler = async (req, res) => {

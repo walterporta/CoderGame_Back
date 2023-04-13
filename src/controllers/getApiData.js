@@ -7,7 +7,7 @@ const searchApi = async () => {
     const arrVideogames = []
   for(let i = 1; i < 6; i++){
     const apiUrl = await axios.get (`https://api.rawg.io/api/games?key=${API_KEY}&page=${i}`);
-
+    
         apiUrl.data.results.map((el)=> {
             arrVideogames.push({
                 id: el.id,
@@ -17,9 +17,9 @@ const searchApi = async () => {
                 rating: el.rating,
                 platforms: el.platforms?.map(el => el.platform.name),
                 description: el.description,
-                genres: el.genres?.map(el => el.name).toString(),
+                genres: el.genres
             });
-        });
+        }); 
      }
     return arrVideogames;
  }
@@ -41,10 +41,11 @@ const searchDB = async () => {
 
 //Todo (Url y Db)
 const getAllInfo = async () => {
-    const apiInfo = await searchApi();
+    // const apiInfo = await searchApi();
     const dbInfo = await searchDB();
-    const AllInfo = apiInfo.concat(dbInfo);
-    return AllInfo;
+    // const AllInfo = apiInfo.concat(dbInfo);
+    //ya esta creada la funcion que guarda todo en la base de datos, no hace falta concatenar mas
+    return dbInfo;
 }
 
 module.exports = {
