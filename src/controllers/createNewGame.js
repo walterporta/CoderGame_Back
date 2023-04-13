@@ -19,7 +19,7 @@ const createNewGame = async ({ name, released, genres, rating, platforms, descri
 
         objGenres.push(created)
     }
-    console.log(objGenres);
+
     await newVideoGame.addGenregames(objGenres)
     return newVideoGame
 }
