@@ -6,7 +6,7 @@ const {
 
 
 const videoGames = Router()
-console.log('pase por videogamesrouter');
+
 
 videoGames.get('/', getVideoGamesHandler)
 videoGames.post('/', createVideoGamesHandler)
