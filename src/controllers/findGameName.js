@@ -3,7 +3,7 @@ const { Op } = require('sequelize')
 
 
 
-const findGameName = async (name) =>{
+const findGameName = async (name) => {
 
 
     let findGame = []
@@ -20,21 +20,24 @@ const findGameName = async (name) =>{
 
     } else {
         findGame = await Videogames.findAll({
-        where: {
-            name: {[Op.iLike]: `%${name}%`}
-        },
-        include: [{
-            model: Genregames,
-            attributes: ['id','name'],
-            through: {
-                attributes: [] //evita que traiga la informasion de la tabla intermedia
-            } 
-         }]
-    })
-
+            where: {
+                name: { [Op.iLike]: `%${name}%` }
+            },
+            include: [{
+                model: Genregames,
+                attributes: ['id', 'name'],
+                through: {
+                    attributes: []
+                } // nombre del campo que quieres recuperar
+            }]
+        })
     }
 
     return findGame
 }
 
-module.exports = {findGameName}
+
+module.exports = {
+    findGameName
+}
+
