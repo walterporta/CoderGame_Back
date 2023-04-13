@@ -35,7 +35,7 @@ const getVideoGameByIdHandler = async (req, res) => {
 
 
 const createVideoGamesHandler = async (req, res) => {
-    const { name, released, genres, rating, platforms, description, image } = req.body
+    const {name, released, genres, rating, platforms, description, image } = req.body
 
     try {
         if (!name || !released || genres.length === 0 || !platforms || !description || !image) throw new Error('Faltan parametros para crear un juego')
