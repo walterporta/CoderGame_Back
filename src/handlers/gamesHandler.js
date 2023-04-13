@@ -1,5 +1,4 @@
-console.log('pasando por gamehandler');
-const {findGameName} = require('../controllers/findGameName')
+const { createNewGame } = require('../controllers/createNewGame.js')
 
 
 
@@ -17,9 +16,19 @@ const getVideoGamesHandler = async (req, res) => {
 }
 
 const createVideoGamesHandler = async (req, res) => {
-    
-    res.status(200).send('esta es la ruta post de juegos')
-    console.log('paso por createvideo');
+    const { name, released, genres, rating, platforms, description, image } = req.body
+
+    try {
+        if (!name || !released || genres.length === 0 || !platforms || !description || !image) throw new Error('Faltan parametros para crear un juego')
+
+        const newGame = await createNewGame({ name, released, genres, rating, platforms, description, image })
+
+        return res.status(201).json(newGame)
+    } catch (error) {
+        res.status(400).send(error.message)
+
+    }
+
 }
 
 module.exports = {
