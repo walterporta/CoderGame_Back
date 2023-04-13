@@ -1,5 +1,5 @@
 const { createNewGame } = require('../controllers/createNewGame.js')
-
+const {findGameName} = require('../controllers/findGameName.js');
 
 
 const getVideoGamesHandler = async (req, res) => {
