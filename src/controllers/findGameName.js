@@ -2,7 +2,9 @@ const { Videogames, Genregames } = require('../db')
 const { Op } = require('sequelize')
 
 
-const findGameName = async (name) => {
+
+const findGameName = async (name) =>{
+
 
     let findGame = []
     if (!name) {
@@ -28,4 +30,8 @@ const findGameName = async (name) => {
     return findGame
 }
 
-module.exports = { findGameName }
+
+module.exports = {
+    findGameName
+}
+ 
