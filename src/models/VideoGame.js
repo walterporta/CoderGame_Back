@@ -28,10 +28,10 @@ module.exports = (sequelize) => {
       image: {
         type: DataTypes.STRING,
       },
-      createInDb: {
+      deleted: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
-        defaultValue: true,
+        defaultValue: false,
       },
     },
     {

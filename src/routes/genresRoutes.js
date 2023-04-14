@@ -7,7 +7,7 @@ const {
 const genres = Router()
 
 genres.get('/', genreHandler)
-//genres.post('/', creategenresHandler)
+
 
 
 
