@@ -26,10 +26,7 @@ const findGameName = async (name, genre) => {
             },
             required: true 
         }]
-    })
-
-     console.log(findGame)
-    
+    })    
     return findGame
 }
 

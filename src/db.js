@@ -6,8 +6,8 @@ const {
 const modelVideoGames = require('./models/VideoGame.js')
 const modelGenreGames = require('./models/GenreGame.js')
 const modelUsers = require('./models/User.js')
+const modelPlataforms = require('./models/Plataforms.js')
 
-console.log(DB_HOST, DB_PASSWORD)
 const db = new Sequelize(
    `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`,
    {
@@ -18,14 +18,17 @@ const db = new Sequelize(
 modelVideoGames(db);
 modelGenreGames(db);
 modelUsers(db);
+modelPlataforms(db);
 
-const { Videogames, Genregames } = db.models
+const { Videogames, Genregames, Plataforms } = db.models
 
 Videogames.belongsToMany(Genregames, { through: 'GameGenre' }); // muchos a muchos, tabla intermedia
 Genregames.belongsToMany(Videogames, { through: 'GameGenre' }); // tiene que tener el mismo nombre
+
+Videogames.belongsToMany(Plataforms, { through: 'GamePlataform' });
+Plataforms.belongsToMany(Videogames, { through: 'GamePlataform' });
 
 module.exports = {
    ...db.models,
    conn: db,
 };
-

@@ -2,7 +2,7 @@ const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
   sequelize.define(
-    'Genregames',
+    'Plataforms',
     {
       id: {
         type: DataTypes.INTEGER,
@@ -18,5 +18,4 @@ module.exports = (sequelize) => {
     }
   );
 };
-
 
