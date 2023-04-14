@@ -24,7 +24,8 @@ const findGameName = async (name, genre) => {
     } else {
         findGame = await Videogames.findAll({
             where: {
-                name: { [Op.iLike]: `%${name}%` }
+                name: { [Op.iLike]: `%${name}%` },
+                delete: false
             },
             include: [{
                 model: Genregames,
@@ -38,14 +39,18 @@ const findGameName = async (name, genre) => {
 
     let findGames = await Videogames.findAll({
         where:{
-            [Op.and]:[name?{name: {[Op.iLike]: `%${name}%`}}:null ]  
+            [Op.and]:[name?{name: {[Op.iLike]: `%${name}%`}}:null ],
+            delete: false  
         },
         include: [{
             model: Genregames,
             attributes: ['id', 'name'],
             where: {
-                name: genre ? genre : { [Op.ne]: null 
-                }},
+                name: genre ? genre : { [Op.ne]: null,
+                },
+                delete: false,
+            },
+                
             through: {
                 attributes: []
             },
