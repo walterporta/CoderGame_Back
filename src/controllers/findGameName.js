@@ -16,9 +16,9 @@ const findGameName = async (name) => {
                     attributes: []
                 } // nombre del campo que quieres recuperar
             }],
-            // where: {
-            //     deleted: false
-            // }
+            where: {
+                deleted: false
+            }
         })
 
     } else {
