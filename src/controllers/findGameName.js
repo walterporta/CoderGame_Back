@@ -1,6 +1,5 @@
 const { Videogames, Genregames } = require('../db')
-const { Op } = require('sequelize')
-const genres = require('../routes/genresRoutes')
+const { Op, where } = require('sequelize')
 
 
 
@@ -14,10 +13,13 @@ const findGameName = async (name, genre) => {
                 model: Genregames,
                 attributes: ['id', 'name'],
                 through: {
-                    attributes: [] //evita que traiga la informasion de la tabla intermedia
-                } 
-             }]
-         }) 
+                    attributes: []
+                } // nombre del campo que quieres recuperar
+            }],
+            where: {
+                deleted: false
+            }
+        })
 
     } else {
         findGame = await Videogames.findAll({
