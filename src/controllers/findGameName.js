@@ -1,5 +1,5 @@
 const { Videogames, Genregames } = require('../db')
-const { Op } = require('sequelize')
+const { Op, where } = require('sequelize')
 
 
 
@@ -15,7 +15,10 @@ const findGameName = async (name) => {
                 through: {
                     attributes: []
                 } // nombre del campo que quieres recuperar
-            }]
+            }],
+            where: {
+                deleted: false
+            }
         })
 
     } else {
