@@ -1,5 +1,4 @@
 const { Videogames, Genregames } = require('../db.js')
-console.log(Videogames);
 const createNewGame = async ({ name, released, genres, rating, platforms, description, image }) => {
 
     const newVideoGame = await Videogames.create({ name, released, genres, rating, platforms, description, image })
@@ -11,6 +10,7 @@ const createNewGame = async ({ name, released, genres, rating, platforms, descri
                 name: genre
             }
         })
+        if (genreObject.length === 0) throw new Error('debes agregar un genero que exista')
 
         const [created] = genreObject
 
