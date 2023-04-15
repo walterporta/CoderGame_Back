@@ -27,6 +27,7 @@ Videogames.belongsToMany(Genregames, { through: 'GameGenre' }); // muchos a much
 Genregames.belongsToMany(Videogames, { through: 'GameGenre' }); // tiene que tener el mismo nombre
 
 
+
 module.exports = {
    ...db.models,
    conn: db,

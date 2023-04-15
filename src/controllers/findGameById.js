@@ -1,12 +1,20 @@
-const {Videogames} = require('../db')
+const { Videogames, Genregames } = require('../db');
 
 const findGameById = async (id) => {
-
-    const videoGameId = await Videogames.findByPk(id);
-  
-    return videoGameId;
+  const videoGame = await Videogames.findByPk(id, {
+    include: [
+      {
+        model: Genregames,
+        attributes: ['id', 'name'],
+        through: {
+          attributes: [],
+        },
+      },
+    ],
+  });
+  return videoGame;
 };
 
-  module.exports = {
-    findGameById
-}
+module.exports = {
+  findGameById,
+};
