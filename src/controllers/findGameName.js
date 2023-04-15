@@ -28,7 +28,7 @@ const findGameName = async (name, genre) => {
         }]
     })
 
-     console.log(findGame)
+
     
     return findGame
 }
