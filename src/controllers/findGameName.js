@@ -3,39 +3,33 @@ const { Op, where } = require('sequelize')
 
 
 
-const findGameName = async (name) => {
-
+const findGameName = async (name, genre) => {
 
     let findGame = []
-    if (!name) {
-        findGame = await Videogames.findAll({
-            include: [{
-                model: Genregames,
-                attributes: ['id', 'name'],
-                through: {
-                    attributes: []
-                } // nombre del campo que quieres recuperar
-            }],
-            where: {
-                deleted: false
-            }
-        })
 
-    } else {
-        findGame = await Videogames.findAll({
+     findGame = await Videogames.findAll({
+        where:{
+            [Op.and]:[name?{name: {[Op.iLike]: `%${name}%`}}:null ],
+            deleted: false,
+        
+        },
+        include: [{
+            model: Genregames,
+            attributes: ['id', 'name'],
             where: {
-                name: { [Op.iLike]: `%${name}%` }
+                name: genre ? genre : { [Op.ne]: null,
+                }
             },
-            include: [{
-                model: Genregames,
-                attributes: ['id', 'name'],
-                through: {
-                    attributes: []
-                } // nombre del campo que quieres recuperar
-            }]
-        })
-    }
+                
+            through: {
+                attributes: []
+            },
+            required: true 
+        }]
+    })
 
+     console.log(findGame)
+    
     return findGame
 }
 
