@@ -6,6 +6,7 @@ const {
 const modelVideoGames = require('./models/VideoGame.js')
 const modelGenreGames = require('./models/GenreGame.js')
 const modelUsers = require('./models/User.js')
+const modelPlatforms = require('./models/Platforms.js')
 
 console.log(DB_HOST, DB_PASSWORD)
 const db = new Sequelize(
@@ -18,6 +19,7 @@ const db = new Sequelize(
 modelVideoGames(db);
 modelGenreGames(db);
 modelUsers(db);
+modelPlatforms(db);
 
 const { Videogames, Genregames } = db.models
 

@@ -1,4 +1,4 @@
-const { Videogame, Genregames} = require('../db');
+const {Genregames} = require('../db');
 const {API_KEY} = process.env;
 const axios = require('axios')
 
