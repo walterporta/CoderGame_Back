@@ -1,4 +1,4 @@
-const { Videogames } = require('../db.js')
+const { Videogames } = require('../../db.js')
 const deleteLogical = async (id) => {
 
     const response = await Videogames.findByPk(id)

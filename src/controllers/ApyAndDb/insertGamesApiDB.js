@@ -1,5 +1,5 @@
 const {searchApi} = require('./getApiData')
-const {Videogames, Genregames} = require('../db')
+const {Videogames, Genregames} = require('../../db')
 const { where } = require('sequelize')
 
 const insertGamesDb = async () =>{

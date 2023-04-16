@@ -1,4 +1,4 @@
-const {Videogames} = require('../db')
+const {Videogames} = require('../../db')
 
 const findGameById = async (id) => {
 
