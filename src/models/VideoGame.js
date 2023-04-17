@@ -7,19 +7,19 @@ module.exports = (sequelize) => {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         allowNull: false,
-        primaryKey: true, 
+        primaryKey: true,
       },
       name: {
         type: DataTypes.STRING,
         allowNull: false,
-        validate:{
-          customValidator(value){
-            if(value.length>40){
-             throw new Error("el tititulo del juego no puede superar los 40 caracteres")
+        validate: {
+          customValidator(value) {
+            if (value.length > 40) {
+              throw new Error("el tititulo del juego no puede superar los 40 caracteres")
             }
-           }
           }
-        },
+        }
+      },
       released: {
         type: DataTypes.DATEONLY,
         validate: {
@@ -35,26 +35,26 @@ module.exports = (sequelize) => {
       },
       rating: {
         type: DataTypes.FLOAT,
-        validate:{
-          customValidator(value){
-            if(value>5){
-             throw new Error("el rating no puede ser mayor a 5")
+        validate: {
+          customValidator(value) {
+            if (value > 5) {
+              throw new Error("el rating no puede ser mayor a 5")
             }
-           }
           }
+        }
       },
       platforms: {
         type: DataTypes.ARRAY(DataTypes.STRING),
       },
       description: {
         type: DataTypes.TEXT,
-        validate:{
-          customValidator(value){
-            if(value.length<1 || value.length>50){
-             throw new Error("La descripcion debe contener entre 1 y 50 caracteres")
+        validate: {
+          customValidator(value) {
+            if (value.length < 1 || value.length > 50) {
+              throw new Error("La descripcion debe contener entre 1 y 50 caracteres")
             }
-           }
           }
+        }
       },
       image: {
         type: DataTypes.STRING,
