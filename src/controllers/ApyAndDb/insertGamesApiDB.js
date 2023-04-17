@@ -4,10 +4,13 @@ const { where } = require('sequelize')
 
 const insertGamesDb = async () =>{
 
-    const arrGames = await searchApi()
+    let arrGames = await searchApi()
+   
     await Videogames.bulkCreate(arrGames)
-    arrGames.forEach(async game =>  {
-        let idGames = await Videogames.findOne({ where: { id: game.id } })
+    let gamesDB= await Videogames.findAll()
+    
+    arrGames.forEach(async (game, index) =>  {
+        let idGames = await Videogames.findOne({ where: { id: index+1 } })
         game.genres.forEach(async genre=>{
             let idGenre = await Genregames.findOne({ where: { id: genre.id } })
             idGames.addGenregames(idGenre)

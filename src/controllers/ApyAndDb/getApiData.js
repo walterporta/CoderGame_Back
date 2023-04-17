@@ -13,7 +13,6 @@ let searchApi = async () => {
       }
    arrVideogames = arrVideogames.map(el=>{
     return{
-        id: el.id,
         name: el.name? el.name: null,
          image: el.background_image? el.background_image:null,
          released: el.released?el.released:null,
