@@ -1,5 +1,5 @@
 const { Platforms } = require('../db')
-const { getAllPlatforms } = require('../controllers/getPlatforms')
+const { getAllPlatforms } = require('../controllers/ApyAndDb/getPlatforms')
 
 const allPlatforms = async (req, res) => {
     try {

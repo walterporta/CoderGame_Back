@@ -1,4 +1,4 @@
-const { Videogames, Genregames } = require('../../db.js')
+const { Videogames, Genregames } = require('../../db')
 console.log(Videogames);
 const createNewGame = async ({ name, released, genres, rating, platforms, description, image }) => {
 
