@@ -1,9 +1,9 @@
 const { Videogames, Genregames } = require('../../db')
-console.log(Videogames);
+
 const createNewGame = async ({ name, released, genres, rating, platforms, description, image }) => {
 
     if(platforms.length=0) throw new Error('Debes enviar por lo menos una plataforma')
-    if(genres.length=0) throw new Error('Debes enviar por lo menos una plataforma')
+    if(genres.length=0) throw new Error('Debes enviar por lo menos un genero')
     const newVideoGame = await Videogames.create({name, released, genres, rating, platforms, description, image })
     const objGenres = []
     for (const genre of genres) {
@@ -13,7 +13,7 @@ const createNewGame = async ({ name, released, genres, rating, platforms, descri
                 name: genre
             },
             default: {
-                name: genre
+                name: genre 
             }
         })
 
