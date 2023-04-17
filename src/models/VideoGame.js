@@ -50,8 +50,8 @@ module.exports = (sequelize) => {
         type: DataTypes.TEXT,
         validate:{
           customValidator(value){
-            if(value.length<50 || value.length>500){
-             throw new Error("La descripcion debe contener entre 50 y 500 caracteres")
+            if(value.length<1 || value.length>50){
+             throw new Error("La descripcion debe contener entre 1 y 50 caracteres")
             }
            }
           }
