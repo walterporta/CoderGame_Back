@@ -3,30 +3,37 @@ const {API_KEY} = process.env;
 const axios = require('axios');
 
 //Indo de la Api
-const searchApi = async () => {
-    const arrVideogames = []
-  for(let i = 1; i < 6; i++){
-    const apiUrl = await axios.get (`https://api.rawg.io/api/games?key=${API_KEY}&page=${i}`);
-    
-        apiUrl.data.results.map((el)=> {
-            arrVideogames.push({
-                id: el.id,
-                name: el.name,
-                image: el.background_image,
-                released: el.released,
-                rating: el.rating,
-                platforms: el.platforms?.map(el => el.platform.name),
-                description: el.description,
-                genres: el.genres,
-                price: Math.floor(Math.random() * (1000 - 500 + 1) + 500)
-            });
-        }); 
-     }
-    return arrVideogames;
+let searchApi = async () => {
+    let arrVideogames = []
+  for(let i = 1; i < 30; i++){
+    try {
+        const apiUrl = await axios.get(`https://api.rawg.io/api/games/${i}?key=${API_KEY}`);
+        arrVideogames.push(apiUrl.data);
+      } catch (error) {
+      }
+   arrVideogames = arrVideogames.map(el=>{
+    return{
+        id: el.id,
+        name: el.name? el.name: null,
+         image: el.background_image? el.background_image:null,
+         released: el.released?el.released:null,
+         rating: el.rating?el.rating:null,
+        platforms: el.platforms,
+         description: el.description?el.description:null,
+         genres: el.genres?el.genres:null,
+         price: Math.floor(Math.random() * (1000 - 500 + 1) + 500)
+    }
+   })
+    }
+    arrVideogames = arrVideogames.filter((game)=>game.description !== null)
+    console.log(arrVideogames[0].platforms)
+return arrVideogames;
+
  }
 
 //Db
 const searchDB = async () => {
+    
     const dataDb = await Videogames.findAll({
         include: {
             model: Genregames,

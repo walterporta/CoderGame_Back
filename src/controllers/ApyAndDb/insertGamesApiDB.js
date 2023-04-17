@@ -1,5 +1,5 @@
 const {searchApi} = require('./getApiData')
-const {Videogames, Genregames} = require('../../db')
+const {Videogames, Genregames, Platforms} = require('../../db')
 const { where } = require('sequelize')
 
 const insertGamesDb = async () =>{
@@ -11,6 +11,10 @@ const insertGamesDb = async () =>{
         game.genres.forEach(async genre=>{
             let idGenre = await Genregames.findOne({ where: { id: genre.id } })
             idGames.addGenregames(idGenre)
+        })
+        game.platforms.forEach(async platforms=>{
+            let idPlataform = await Platforms.findOne({where: { id : platforms.platform.id}})
+            idGames.addPlatforms(idPlataform)
         })
     });
 }

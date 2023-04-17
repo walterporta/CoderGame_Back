@@ -1,31 +1,41 @@
-const { Videogames, Genregames } = require('../../db')
+const { Videogames, Genregames, Platforms } = require('../../db')
 const { Op, where } = require('sequelize')
+const {searchApi } = require('../ApyAndDb/getApiData')
 
 
-
-const findGameName = async (name, genre) => {
-
+const findGameName = async (name, genre, platform) => {
+    searchApi()
     let findGame = []
-
      findGame = await Videogames.findAll({
         where:{
             [Op.and]:[name?{name: {[Op.iLike]: `%${name}%`}}:null ],
             deleted: false,
         
         },
-        include: [{
-            model: Genregames,
-            attributes: ['id', 'name'],
-            where: {
-                name: genre ? genre : { [Op.ne]: null,
-                }
-            },
-                
-            through: {
+         include: [
+            {
+              model: Genregames,
+              attributes: ['id', 'name'],
+              where: {
+                name: genre ? genre : { [Op.ne]: null }
+              },
+              through: {
                 attributes: []
+              },
+              required: true
             },
-            required: true 
-        }]
+            {
+              model: Platforms,
+              attributes: ['id', 'name'],
+              where: {
+                name: platform ? platform : { [Op.ne]: null }
+              },
+              through: {
+                attributes: []
+              },
+              required: true
+            }
+          ]
     })    
     return findGame
 }

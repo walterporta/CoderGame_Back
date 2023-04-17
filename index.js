@@ -7,9 +7,9 @@ const PORT = 3001;
 
 
 conn.sync({ force: true }).then(() => {
-  getAllGenres()
-  insertGamesDb()
-  getAllPlatforms()
+    getAllGenres()
+    insertGamesDb()
+    getAllPlatforms() 
   app.listen(3001, () => {
   console.log('%s listening at 3001'); // eslint-disable-line no-console
   });
