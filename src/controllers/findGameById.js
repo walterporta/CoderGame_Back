@@ -1,12 +1,32 @@
-const {Videogames} = require('../db')
+const { Videogames, Genregames } = require('../db');
 
 const findGameById = async (id) => {
+  const videoGame = await Videogames.findByPk(id, {
+    where: {
+      deleted: false // Agregar esta condición para excluir videojuegos eliminados
+    },
+    include: [
+      {
+        model: Genregames,
+        attributes: ['id', 'name'],
+        through: {
+          attributes: [],
+        },
+      },
+    ],
+  });
 
-    const videoGameId = await Videogames.findByPk(id);
-  
-    return videoGameId;
+  if (!videoGame) {
+    throw new Error('El videojuego no existe');
+  }
+
+  if (videoGame.deleted) {
+    throw new Error('El videojuego ha sido eliminado');
+  }
+
+  return videoGame;
 };
 
-  module.exports = {
-    findGameById
-}
+module.exports = {
+  findGameById,
+};
