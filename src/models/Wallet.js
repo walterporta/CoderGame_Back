@@ -1,4 +1,8 @@
-sequelize.define(
+const { DataTypes } = require("sequelize");
+
+module.exports = (sequelize) => {
+    sequelize.define(
+
     'Wallet',
     {
       id: {
@@ -14,4 +18,4 @@ sequelize.define(
       },
     },
     { timestamps: false }
-  );
+  )}
