@@ -1,4 +1,4 @@
-const { Videogames, Genregames } = require('../db')
+const { Videogames, Genregames } = require('../../db')
 const { Op, where } = require('sequelize')
 
 
@@ -26,10 +26,7 @@ const findGameName = async (name, genre) => {
             },
             required: true 
         }]
-    })
-
-
-    
+    })    
     return findGame
 }
 

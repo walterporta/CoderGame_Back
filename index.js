@@ -1,7 +1,7 @@
 const app = require('./src/app')
 const { conn } = require('./src/db.js');
-const {getAllGenres} = require('./src/controllers/getGenreData')
-const {insertGamesDb} = require('./src/controllers/insertGamesApiDB')
+const {getAllGenres} = require('./src/controllers/ApyAndDb/getGenreData')
+const {insertGamesDb} = require('./src/controllers/ApyAndDb/insertGamesApiDB')
 const PORT = 3001;
 
 

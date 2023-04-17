@@ -1,7 +1,7 @@
-const { createNewGame } = require('../controllers/createNewGame.js')
-const { findGameName } = require('../controllers/findGameName.js');
-const { findGameById } = require('../controllers/findGameById.js');
-const { deleteLogical } = require('../controllers/deleteLogical.js');
+const { createNewGame } = require('../controllers/Videogames/createNewGame.js')
+const { findGameName } = require('../controllers/Videogames/findGameName.js');
+const { findGameById } = require('../controllers/Videogames/findGameById.js');
+const { deleteLogical } = require('../controllers/Videogames/deleteLogical.js');
 
 
 const getVideoGamesHandler = async (req, res) => {
