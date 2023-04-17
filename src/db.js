@@ -17,7 +17,6 @@ const db = new Sequelize(
 
 modelVideoGames(db);
 modelGenreGames(db);
-modelUsers(db);
 modelPlatforms(db);
 
 const { Videogames, Genregames, Platforms } = db.models

@@ -1,28 +1,21 @@
-// const { DataTypes } = require('sequelize');
-// const User = require('./user');
+// const { DataTypes } = require("sequelize");
 
 // module.exports = (sequelize) => {
-// sequelize.define('Wallet', {
-//     id: {
-//       type: DataTypes.INTEGER,
-//       primaryKey: true,
-//       autoIncrement: true,
-//       allowNull: false,
-//     },
-//     balance: {
-//       type: DataTypes.INTEGER,
-//       allowNull: false,
-//       defaultValue: 0,
-//     },
-//     userId: {
-//       type: DataTypes.UUID,
-//       references: {
-//         model: User,
-//         key: 'id',
+//     sequelize.define(
+
+//     'Wallet',
+//     {
+//       id: {
+//         type: DataTypes.UUID,
+//         defaultValue: DataTypes.UUIDV4,
+//         allowNull: false,
+//         primaryKey: true,
 //       },
-//       unique: true,
+//       balance: {
+//         type: DataTypes.FLOAT,
+//         allowNull: false,
+//         defaultValue: 0,
+//       },
 //     },
-//   });
-// };
-  
-  
+//     { timestamps: false }
+//   )}
