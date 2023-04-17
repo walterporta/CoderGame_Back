@@ -5,9 +5,9 @@ const { deleteLogical } = require('../controllers/Videogames/deleteLogical.js');
 
 
 const getVideoGamesHandler = async (req, res) => {
-    const { name, genre } = req.query
+    const { name, genre, platforms } = req.query
     try {
-        const allVideoGames = await findGameName(name, genre)
+        const allVideoGames = await findGameName(name, genre, platforms)
         res.status(200).json(allVideoGames)
     } catch (error) {
 

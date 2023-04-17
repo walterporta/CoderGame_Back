@@ -2,10 +2,10 @@ const {Videogames, Genregames} = require('../../db');
 const {API_KEY} = process.env;
 const axios = require('axios');
 
-//Indo de la Api
+//Indo de la Api 
 let searchApi = async () => {
     let arrVideogames = []
-  for(let i = 1; i < 30; i++){
+  for(let i = 1; i < 30; i++){ 
     try {
         const apiUrl = await axios.get(`https://api.rawg.io/api/games/${i}?key=${API_KEY}`);
         arrVideogames.push(apiUrl.data);
@@ -26,7 +26,6 @@ let searchApi = async () => {
    })
     }
     arrVideogames = arrVideogames.filter((game)=>game.description !== null)
-    console.log(arrVideogames[0].platforms)
 return arrVideogames;
 
  }

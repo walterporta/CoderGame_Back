@@ -3,9 +3,9 @@ const { Op, where } = require('sequelize')
 const {searchApi } = require('../ApyAndDb/getApiData')
 
 
-const findGameName = async (name, genre, platform) => {
-    searchApi()
+const findGameName = async (name, genre, platforms) => {
     let findGame = []
+    
      findGame = await Videogames.findAll({
         where:{
             [Op.and]:[name?{name: {[Op.iLike]: `%${name}%`}}:null ],
@@ -28,7 +28,7 @@ const findGameName = async (name, genre, platform) => {
               model: Platforms,
               attributes: ['id', 'name'],
               where: {
-                name: platform ? platform : { [Op.ne]: null }
+                name: platforms ? platforms : { [Op.ne]: null }
               },
               through: {
                 attributes: []

@@ -6,10 +6,10 @@ const {getAllPlatforms} = require('./src/controllers/ApyAndDb/getPlatforms')
 const PORT = 3001;
 
 
-conn.sync({ force: true }).then(() => {
-    getAllGenres()
-    insertGamesDb()
-    getAllPlatforms() 
+conn.sync({ alter: true }).then(() => {
+  // getAllGenres()
+  // getAllPlatforms()
+  // insertGamesDb()
   app.listen(3001, () => {
   console.log('%s listening at 3001'); // eslint-disable-line no-console
   });
