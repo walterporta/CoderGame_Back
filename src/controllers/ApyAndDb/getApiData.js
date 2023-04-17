@@ -17,7 +17,8 @@ const searchApi = async () => {
                 rating: el.rating,
                 platforms: el.platforms?.map(el => el.platform.name),
                 description: el.description,
-                genres: el.genres
+                genres: el.genres,
+                price: Math.floor(Math.random() * (1000 - 500 + 1) + 500)
             });
         }); 
      }

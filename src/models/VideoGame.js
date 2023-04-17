@@ -64,6 +64,10 @@ module.exports = (sequelize) => {
         allowNull: false,
         defaultValue: false,
       },
+      price:{
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      }
     },
     {
       timestamps: false,
