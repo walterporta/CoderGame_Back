@@ -1,5 +1,5 @@
 const { Router } = require('express')
-const { deleteFavorite, createUserHandler, addFavorite, getFavorite } = require('../controllers/Users/deleteFavorites')
+const { deleteFavoriteHandler, createUserHandler, addFavoriteHandler, getFavoriteHandler } = require('../handlers/usersHandlers')
 
 
 const usersRoutes = Router()
@@ -7,9 +7,9 @@ const usersRoutes = Router()
 // usersRoutes.get('/', getUserHandler)
 // usersRoutes.get('/:id', getUserByIdHandler)
 usersRoutes.post('/', createUserHandler)
-usersRoutes.post('/favorites', addFavorite)
-usersRoutes.delete('/favorites', deleteFavorite) 
-usersRoutes.get('/favorites', getFavorite)
+usersRoutes.post('/favorites', addFavoriteHandler)
+usersRoutes.delete('/favorites', deleteFavoriteHandler) 
+// usersRoutes.get('/favorites', getFavoriteHandler)
 
 module.exports = usersRoutes
  
