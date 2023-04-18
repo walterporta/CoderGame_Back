@@ -42,9 +42,12 @@ module.exports = (sequelize) => {
       typeUser: {
         type: DataTypes.ENUM(['user', 'admin', 'seller']),
         allowNull: false,
-        defaultValue:'user'
-
+        defaultValue: 'user'
       },
+      address: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      }
 
     },
     {

@@ -11,12 +11,12 @@ const getUsersHandlers = async (req, res) => {
 }
 
 const createUserHandler = async (req, res) => {
-    const { name, username,lastname, email, password, gender, typerUser } = req.body
+    const { name, username, lastname, email, password, gender, typerUser, address } = req.body
 
     try {
-        if (!name || !email || !password || interests.length === 0)
+        if (!name || !email || !password || !username || !lastname || !gender)
             throw new Error('Incomplete data')
-        const newUser = await createNewUser({ name, username,lastname, email, password, gender, typerUser })
+        const newUser = await createNewUser({ name, username, lastname, email, password, gender, typerUser, address })
         return res.status(201).json(newUser)
     } catch (error) {
         res.status(400).send({ Error: error.message })
