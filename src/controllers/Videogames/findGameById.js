@@ -1,4 +1,4 @@
-const { Videogames, Genregames } = require('../../db');
+const { Videogames, Genregames, Platforms } = require('../../db');
 
 const findGameById = async (id) => {
   const videoGame = await Videogames.findByPk(id, {
@@ -13,6 +13,13 @@ const findGameById = async (id) => {
           attributes: [],
         },
       },
+      {
+        model: Platforms,
+        attributes: ['id', 'name'],
+        through: {
+          attributes: []
+        },
+      }
     ],
   });
 
