@@ -8,8 +8,8 @@ const usersRoutes = Router()
 // usersRoutes.get('/:id', getUserByIdHandler)
 usersRoutes.post('/', createUserHandler)
 usersRoutes.post('/favorites', addFavorite)
-usersRoutes.delete('/favorites', deleteFavorite)
+usersRoutes.delete('/favorites', deleteFavorite) 
 usersRoutes.get('/favorites', getFavorite)
 
 module.exports = usersRoutes
-
+ 
