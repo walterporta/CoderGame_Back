@@ -37,15 +37,17 @@ module.exports = (sequelize) => {
         allowNull: false,
         isIn: [['male', 'female', 'other']]
       },
-      isAdmin: {
-        type: DataTypes.BOOLEAN,
-        defaultValue: false
+      typeUser: {
+        type: DataTypes.ENUM,
+        values: ["admin", "user", "seller"],
+        allowNull: false,
+        defaultValue: "user"
       },
       isSuperAdmin: {
         type: DataTypes.BOOLEAN,
         defaultValue: false
       }
-      
+
     },
     {
       timestamps: false,
