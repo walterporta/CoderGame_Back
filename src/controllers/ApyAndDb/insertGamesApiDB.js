@@ -5,7 +5,7 @@ const { where } = require('sequelize')
 const insertGamesDb = async () =>{
 
     let arrGames = await searchApi()
-   
+   console.log(arrGames)
     await Videogames.bulkCreate(arrGames)
     let gamesDB= await Videogames.findAll()
     

@@ -22,6 +22,7 @@ let searchApi = async () => {
         arrVideogames.push(apiUrl.data);
       } catch (error) {}
     }
+    console.log(apiUrl)
     arrVideogames = arrVideogames
       .map((el) => {
         return {
