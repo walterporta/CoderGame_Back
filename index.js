@@ -6,7 +6,7 @@ const {getAllPlatforms} = require('./src/controllers/ApyAndDb/getPlatforms')
 const PORT = 3001;
 
 
-conn.sync({ alter: true }).then(() => {
+conn.sync({ force: true }).then(() => {
   // getAllGenres()
   // getAllPlatforms()
   // insertGamesDb()
