@@ -8,8 +8,8 @@ const {
 
 
 const videoGames = Router()
-
-
+ 
+ 
 videoGames.get('/', getVideoGamesHandler)
 videoGames.post('/', createVideoGamesHandler)
 videoGames.get('/:id', getVideoGameByIdHandler)
