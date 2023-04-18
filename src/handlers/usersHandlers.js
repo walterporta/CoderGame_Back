@@ -1,10 +1,13 @@
-const { createNewUser } = require('../controllers/Users/usersControllers.js')
+const {createNewUser} = require('../controllers/Users/usersControllers')
+const {addFavorite} = require('../controllers/Users/addFavorites')
 
-const getUserHandler = async (req, res) => {
-    res.status(200).send('traigo todos los usuarios')
-}
-const getUserByIdHandler = async (req, res) => {
-    res.status(200).send('traigo un usuario por id')
+const getUsersHandlers = async (req, res) => {
+    const { name } = req.query
+    try {
+
+    } catch (error) {
+
+    }
 }
 
 
@@ -25,8 +28,12 @@ const createUserHandler = async (req, res) => {
 
 }
 
-module.exports = {
-    createUserHandler,
-    getUserHandler,
-    getUserByIdHandler
+const addFavorite = async (req,res)=>{
+   const {idUser, idVideogame} = req.body
+
+    try {
+        res.status(200).json(addFavorite(idUser, idVideogame))
+    } catch (error) {
+        res.status(400).json({error: error.message})
+    }
 }

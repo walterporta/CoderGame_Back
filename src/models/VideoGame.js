@@ -22,19 +22,20 @@ module.exports = (sequelize) => {
       },
       released: {
         type: DataTypes.DATEONLY,
-        validate: {
-          customValidator(value) {
-            const currentDate = new Date();
-            const releaseDate = new Date(value);
-            const minDate = new Date("1958-01-01");
-            if (releaseDate < minDate || releaseDate > currentDate) {
-              throw new Error("la fecha de lanzamiento debe estar entre el año 1958 y la fecha actual");
-            }
-          },
-        },
+        // validate: {
+          // customValidator(value) {
+          //   const currentDate = new Date();
+          //   const releaseDate = new Date(value);
+          //   const minDate = new Date("1958-01-01");
+          //   if (releaseDate < minDate || releaseDate > currentDate) {
+          //     throw new Error("la fecha de lanzamiento debe estar entre el año 1958 y la fecha actual");
+          //   }
+          // },
+        // },
       },
       rating: {
         type: DataTypes.FLOAT,
+<<<<<<< HEAD
         validate: {
           customValidator(value) {
             if (value > 5) {
@@ -45,9 +46,22 @@ module.exports = (sequelize) => {
       },
       platforms: {
         type: DataTypes.ARRAY(DataTypes.STRING),
+=======
+        // validate:{
+        //   customValidator(value){
+        //     if(value>5){
+        //      throw new Error("el rating no puede ser mayor a 5")
+        //     }
+        //    }
+        //   }
+>>>>>>> ded4bae6b4d80f39cdd934f96432ab0c7d5a43fe
       },
+      // platforms: {
+      //   type: DataTypes.ARRAY(DataTypes.STRING),
+      // },
       description: {
         type: DataTypes.TEXT,
+<<<<<<< HEAD
         validate: {
           customValidator(value) {
             if (value.length < 1 || value.length > 50) {
@@ -55,6 +69,15 @@ module.exports = (sequelize) => {
             }
           }
         }
+=======
+        // validate:{
+        //   customValidator(value){
+        //     if(value.length<50 || value.length>500){
+        //     //  throw new Error("La descripcion debe contener entre 50 y 500 caracteres")
+        //     }
+        //    }
+        //   }
+>>>>>>> ded4bae6b4d80f39cdd934f96432ab0c7d5a43fe
       },
       image: {
         type: DataTypes.STRING,
@@ -64,6 +87,10 @@ module.exports = (sequelize) => {
         allowNull: false,
         defaultValue: false,
       },
+      price:{
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      }
     },
     {
       timestamps: false,

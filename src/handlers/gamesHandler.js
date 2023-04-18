@@ -5,9 +5,9 @@ const { deleteLogical } = require('../controllers/Videogames/deleteLogical.js');
 
 
 const getVideoGamesHandler = async (req, res) => {
-    const { name, genre } = req.query
+    const { name, genre, platforms } = req.query
     try {
-        const allVideoGames = await findGameName(name, genre)
+        const allVideoGames = await findGameName(name, genre, platforms)
         res.status(200).json(allVideoGames)
     } catch (error) {
 
@@ -33,16 +33,13 @@ const getVideoGameByIdHandler = async (req, res) => {
 };
 
 
-
-
-
 const createVideoGamesHandler = async (req, res) => {
-  const { name, released, genres, rating, platforms, description, image } = req.body
-
+  const { name, released, genres, rating, platforms, description, image, price } = req.body
+  console.log(req.body)
   try {
-    if (!name || !released || genres.length === 0 || !platforms || !description || !image) throw new Error('Faltan parametros para crear un juego')
+    if (!name || !released || genres.length === 0 || !platforms || !description || !image || !price) throw new Error('Faltan parametros para crear un juego')
 
-    const newGame = await createNewGame({ name, released, genres, rating, platforms, description, image })
+    const newGame = await createNewGame({ name, released, genres, rating, platforms, description, image, price })
 
     return res.status(201).json(newGame)
   } catch (error) {

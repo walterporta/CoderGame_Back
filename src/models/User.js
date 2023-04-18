@@ -33,21 +33,17 @@ module.exports = (sequelize) => {
         unique: true,
       },
       gender: {
-        type: DataTypes.ENUM,
+        type: DataTypes.STRING,
         allowNull: false,
-        values: ["male", "female", "other"],
-        defaultValue: "other"
+        isIn: [['male', 'female', 'other']]
       },
       typeUser: {
         type: DataTypes.ENUM,
         values: ["admin", "user", "seller"],
         allowNull: false,
         defaultValue: "user"
-      },
-      address: {
-        type: DataTypes.STRING,
-        allowNull: true
       }
+   
 
     },
     {
