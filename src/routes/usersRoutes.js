@@ -1,13 +1,13 @@
-// const { Router } = require('express')
+const { Router } = require('express')
 
 
 
-// const usersRoutes = Router()
+const usersRoutes = Router()
 
 // usersRoutes.get('/', getUserHandler)
 // usersRoutes.get('/:id', getUserByIdHandler)
 // usersRoutes.post('/', createUserHandler)
+usersRoutes.post('/favorites', addFavorite)
 
+module.exports = usersRoutes
 
-
-// module.exports = usersRoutes
