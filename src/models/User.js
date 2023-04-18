@@ -33,9 +33,10 @@ module.exports = (sequelize) => {
         unique: true,
       },
       gender: {
-        type: DataTypes.STRING,
+        type: DataTypes.ENUM,
         allowNull: false,
-        isIn: [['male', 'female', 'other']]
+        values: ["male", "female", "other"],
+        defaultValue: "other"
       },
       typeUser: {
         type: DataTypes.ENUM,
@@ -43,9 +44,9 @@ module.exports = (sequelize) => {
         allowNull: false,
         defaultValue: "user"
       },
-      isSuperAdmin: {
-        type: DataTypes.BOOLEAN,
-        defaultValue: false
+      address: {
+        type: DataTypes.STRING,
+        allowNull: true
       }
 
     },

@@ -1,5 +1,5 @@
 const { Genregames } = require('../db')
-console.log('pase por genres');
+
 const genreHandler = async (req, res) => {
 
     try {
