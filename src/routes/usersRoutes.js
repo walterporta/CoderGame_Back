@@ -9,6 +9,5 @@ const usersRoutes = Router()
 // usersRoutes.post('/', createUserHandler)
 usersRoutes.post('/favorites', addFavorite)
 
-
 module.exports = usersRoutes
 
