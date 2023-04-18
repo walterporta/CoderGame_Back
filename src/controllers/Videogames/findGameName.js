@@ -5,7 +5,7 @@ const {searchApi } = require('../ApyAndDb/getApiData')
 
 const findGameName = async (name, genre, platforms) => {
     let findGame = []
-    
+
      findGame = await Videogames.findAll({
         where:{
             [Op.and]:[name?{name: {[Op.iLike]: `%${name}%`}}:null ],
@@ -28,8 +28,7 @@ const findGameName = async (name, genre, platforms) => {
               model: Platforms,
               attributes: ['id', 'name'],
               where: {
-                name: platforms ? platforms : { [Op.ne]: null }
-              },
+                name: platforms ? { [Op.iLike]: `%${platforms}%` } : { [Op.ne]: null }              },
               through: {
                 attributes: []
               },
