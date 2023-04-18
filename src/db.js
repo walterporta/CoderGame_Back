@@ -37,8 +37,8 @@ Videogames.belongsToMany(Users, { through: 'Favorites' });
 Users.belongsToMany(Videogames, { through: 'Favorites' });
 
 
-Users.hasOne(Wallets); // Un usuario tiene una sola billetera
-Wallets.belongsTo(Users); // Una billetera pertenece a un solo usuario
+// Users.hasOne(Wallets); // Un usuario tiene una sola billetera
+// Wallets.belongsTo(Users); / /Una billetera pertenece a un solo usuario
 
 module.exports = {
    ...db.models,
