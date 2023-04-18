@@ -33,7 +33,6 @@ Videogames.belongsToMany(Users, { through: 'Favorites' });
 Users.belongsToMany(Videogames, { through: 'Favorites' });
 
 
-
 module.exports = {
    ...db.models,
    conn: db,

@@ -5,7 +5,7 @@ const axios = require('axios');
 //Indo de la Api 
 let searchApi = async () => {
     let arrVideogames = []
-  for(let i = 1; i < 30; i++){ 
+  for(let i = 3000; i < 3050; i++){ 
     try {
         const apiUrl = await axios.get(`https://api.rawg.io/api/games/${i}?key=${API_KEY}`);
         arrVideogames.push(apiUrl.data);
