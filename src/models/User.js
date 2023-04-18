@@ -15,11 +15,10 @@ module.exports = (sequelize) => {
         allowNull: false,
         unique: true
       },
-    // la paswword creo que al final no va. 
-    //   password: {
-    //     type: DataTypes.STRING,
-    //     allowNull: false,
-    //   },
+      password: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
       name: {
         type: DataTypes.STRING,
         allowNull: false
@@ -33,21 +32,19 @@ module.exports = (sequelize) => {
         allowNull: false,
         unique: true,
       },
+      //el genero solo esta permitido uno de esos 3
       gender: {
-        type: DataTypes.STRING,
+        type: DataTypes.ENUM(['male', 'female', 'other']),
         allowNull: false,
-        isIn: [['male', 'female', 'other']]
+
       },
-    //  Esto al final va a ser un ENUM, con 3 roles, user,empresa y admin
-    // isAdmin: {
-    //     type: DataTypes.BOOLEAN,
-    //     defaultValue: false
-    //   },
-    //   isSuperAdmin: {
-    //     type: DataTypes.BOOLEAN,
-    //     defaultValue: false
-    //   }
-      
+      // tipo de usuario podria ser cualquiera de esos
+      typeUser: {
+        type: DataTypes.ENUM(['user', 'admin', 'seller']),
+        allowNull: false,
+
+      },
+
     },
     {
       timestamps: false,

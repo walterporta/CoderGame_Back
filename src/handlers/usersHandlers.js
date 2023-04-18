@@ -1,5 +1,5 @@
-const {createNewUser} = require('../controllers/Users/usersControllers')
-const {addFavorite} = require('../controllers/Users/addFavorites')
+const { createNewUser } = require('../controllers/Users/usersControllers')
+const { addFavorite } = require('../controllers/Users/addFavorites')
 
 const getUsersHandlers = async (req, res) => {
     const { name } = req.query
@@ -23,15 +23,20 @@ const createUserHandler = async (req, res) => {
 
     }
 
+
 }
 
-const addFavorite = async (req,res)=>{
-   const {idUser, idVideogame} = req.body
+// const addFavorite = async (req, res) => {
+//     const { idUser, idVideogame } = req.body
 
-    try {
-        res.status(200).json(addFavorite(idUser, idVideogame))
-    } catch (error) {
-        res.status(400).json({error: error.message})
-    }
+//     try {
+//         res.status(200).json(addFavorite(idUser, idVideogame))
+//     } catch (error) {
+//         res.status(400).json({ error: error.message })
+//     }
+// }
+
+module.exports = {
+    createUserHandler,
+    addFavorite
 }
-
