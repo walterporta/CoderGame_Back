@@ -1,7 +1,8 @@
 const { Users } = require('../../db.js')
 
-const createNewUser= async ({name, email, phone, image})=>{
-    const newUser = await Users.create({name, email, phone, image})
+const createNewUser = async ({ name, username, lastname, email, password, gender, typerUser, address }) => {
+    const newUser = await Users.create({ name, username, lastname, email, password, gender, typerUser, address })
+    return newUser
 }
 
-module.exports= {createNewUser}
+module.exports = { createNewUser }

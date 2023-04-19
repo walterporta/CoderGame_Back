@@ -1,5 +1,5 @@
-const {createNewUser} = require('../controllers/Users/usersControllers')
-const {addFavorite} = require('../controllers/Users/addFavorites')
+const { createNewUser } = require('../controllers/Users/usersControllers')
+const { addFavorite } = require('../controllers/Users/addFavorites')
 
 const getUsersHandlers = async (req, res) => {
     const { name } = req.query
@@ -11,27 +11,32 @@ const getUsersHandlers = async (req, res) => {
 }
 
 const createUserHandler = async (req, res) => {
-    const { name, email, password, phone, image, interests } = req.body
+    const { name, username, lastname, email, password, gender, typerUser, address } = req.body
 
     try {
-        if (!name || !email || !password || interests.length === 0)
+        if (!name || !email || !password || !username || !lastname || !gender)
             throw new Error('Incomplete data')
-        const newUser = await createNewUser({ name, email, password, phone, image, interests })
+        const newUser = await createNewUser({ name, username, lastname, email, password, gender, typerUser, address })
         return res.status(201).json(newUser)
     } catch (error) {
         res.status(400).send({ Error: error.message })
 
     }
 
+
 }
 
-const addFavorite = async (req,res)=>{
-   const {idUser, idVideogame} = req.body
+// const addFavorite = async (req, res) => {
+//     const { idUser, idVideogame } = req.body
 
-    try {
-        res.status(200).json(addFavorite(idUser, idVideogame))
-    } catch (error) {
-        res.status(400).json({error: error.message})
-    }
+//     try {
+//         res.status(200).json(addFavorite(idUser, idVideogame))
+//     } catch (error) {
+//         res.status(400).json({ error: error.message })
+//     }
+// }
+
+module.exports = {
+    createUserHandler,
+    addFavorite
 }
-
