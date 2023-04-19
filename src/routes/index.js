@@ -3,6 +3,7 @@ const genresRoutes = require('./genresRoutes');
 const videoGamesRoutes = require('./videoGamesRoutes');
 const platformsRoutes = require('./platformsRoutes')
 const usersRoutes = require('./usersRoutes.js')
+const { requirseAuth } = require('express-openid-connect')
 
 const dbLoad = require('./dbLoad')
 const router = Router();

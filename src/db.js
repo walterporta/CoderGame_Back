@@ -24,7 +24,7 @@ modelUsers(db);
 modelPlatforms(db);
 modelWallets(db);
 
-const { Videogames, Genregames, Platforms, Wallets, Users} = db.models
+const { Videogames, Genregames, Platforms, Wallets, Users } = db.models
 
 
 Videogames.belongsToMany(Genregames, { through: 'GameGenre' }); // muchos a muchos, tabla intermedia
