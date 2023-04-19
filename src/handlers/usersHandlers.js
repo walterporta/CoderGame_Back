@@ -1,5 +1,7 @@
 const { createNewUser } = require('../controllers/Users/usersControllers')
 const { addFavorite } = require('../controllers/Users/addFavorites')
+const {verifyUser}= require
+
 
 const getUsersHandlers = async (req, res) => {
     const { name } = req.query
@@ -37,9 +39,16 @@ const createUserHandler = async (req, res) => {
 // }
 
 const loginHandler = async (req, res) => {
-    const { username, password } = req.body
+    const { email, password } = req.body
 
-    return res.status(200).send('holaaa')
+    try {
+        if (!email || !password) throw new Error('Faltan ingresar datos')
+        const response = await verifyUser(email, password)
+        res.status(200).json(response)
+
+    } catch (error) {
+        res.status(400).json({ error: error.message })
+    }
 }
 
 module.exports = {
