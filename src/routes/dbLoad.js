@@ -8,6 +8,7 @@ const db= Router()
 
 db.get('/', (req,res)=>{
     try {
+        console.log('estoy aca')
         getAllGenres()
         getAllPlatforms()
         insertGamesDb()

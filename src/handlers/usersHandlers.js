@@ -1,6 +1,7 @@
 const { createNewUser } = require('../controllers/Users/usersControllers')
 const { addFavorite } = require('../controllers/Users/addFavorites')
-const {verifyUser}= require
+const { deleteFavorite } = require('../controllers/Users/deleteFavorites')
+const { getAllFavorites } = require('../controllers/Users/getAllFavoritesId')
 
 
 const getUsersHandlers = async (req, res) => {
@@ -10,6 +11,7 @@ const getUsersHandlers = async (req, res) => {
     } catch (error) {
 
     }
+
 }
 
 const createUserHandler = async (req, res) => {
@@ -25,18 +27,40 @@ const createUserHandler = async (req, res) => {
 
     }
 
-
 }
 
-// const addFavorite = async (req, res) => {
-//     const { idUser, idVideogame } = req.body
+const addFavoriteHandler = async (req, res) => {
+    const { idUser, idVideogame } = req.body
 
-//     try {
-//         res.status(200).json(addFavorite(idUser, idVideogame))
-//     } catch (error) {
-//         res.status(400).json({ error: error.message })
-//     }
-// }
+    try {
+        const response = await addFavorite(idUser, idVideogame)
+        console.log(response)
+        res.status(200).json(response)
+    } catch (error) {
+        res.status(400).json({ Error: error.message })
+    }
+}
+
+const deleteFavoriteHandler = async (req, res) => {
+    const { idUser, idVideogame } = req.body
+
+    try {
+        res.status(200).json(await deleteFavorite(idUser, idVideogame))
+    } catch (error) {
+        res.status(400).json(error.message)
+    }
+}
+
+const getFavoriteHandler = async (req, res) => {
+    const { id } = req.params
+
+    try {
+        res.status(200).json(await getAllFavorites(id))
+    } catch (error) {
+        res.status(400).json({ Error: error.message })
+    }
+
+}
 
 const loginHandler = async (req, res) => {
     const { email, password } = req.body
@@ -52,7 +76,5 @@ const loginHandler = async (req, res) => {
 }
 
 module.exports = {
-    createUserHandler,
-    addFavorite,
-    loginHandler
+    addFavoriteHandler, createUserHandler, getUsersHandlers, deleteFavoriteHandler, getFavoriteHandler
 }
