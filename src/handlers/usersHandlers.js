@@ -9,7 +9,7 @@ const getUsersHandlers = async (req, res) => {
     } catch (error) {
 
     }
-
+ 
 }
 
 const createUserHandler = async (req, res) => {
