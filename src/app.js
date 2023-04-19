@@ -7,6 +7,10 @@ const app = express()
 const errorHandler = (err, req, res, next) => {
     res.status(500).send(`tienes un error en${err.message}`)
 }
+const bodyParser = require('body-parser');
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 app.use(cors());
 app.use(express.json());
