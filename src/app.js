@@ -6,11 +6,15 @@ const router = require('./routes/index')
 const app = express()
 const errorHandler = (err, req, res, next) => {
     res.status(500).send(`tienes un error en${err.message}`)
+<<<<<<< HEAD
 }
 const bodyParser = require('body-parser');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+=======
+}  
+>>>>>>> 20d690b8e915d8297e82912f4fb1089bf51d1a6b
 
 app.use(cors());
 app.use(express.json());
