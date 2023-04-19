@@ -2,6 +2,7 @@ const{Users, Videogames} = require('../../db')
 
 const addFavorite= async (idUser, idVideogames)=>{
     const existe = await Users.findOne({
+        where:{id:idUser},
         include: {
               model: Videogames,
               attributes: ['id'],
