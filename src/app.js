@@ -6,7 +6,7 @@ const router = require('./routes/index')
 const app = express()
 const errorHandler = (err, req, res, next) => {
     res.status(500).send(`tienes un error en${err.message}`)
-}
+}  
 
 app.use(cors());
 app.use(express.json());

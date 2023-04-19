@@ -1,5 +1,6 @@
-const { createNewUser } = require('../controllers/Users/usersControllers')
-const { addFavorite } = require('../controllers/Users/addFavorites')
+const {createNewUser} = require('../controllers/Users/usersControllers')
+const {addFavorite} = require('../controllers/Users/addFavorites')
+const {deleteFavorite} = require('../controllers/Users/deleteFavorites')
 
 const getUsersHandlers = async (req, res) => {
     const { name } = req.query
@@ -8,6 +9,7 @@ const getUsersHandlers = async (req, res) => {
     } catch (error) {
 
     }
+ 
 }
 
 const createUserHandler = async (req, res) => {
@@ -23,20 +25,30 @@ const createUserHandler = async (req, res) => {
 
     }
 
+} 
 
+const addFavoriteHandler = async (req,res)=>{
+   const {idUser, idVideogame} = req.body
+
+    try {
+        const response = await addFavorite(idUser, idVideogame)
+        console.log(response)
+        res.status(200).json(response)
+    } catch (error) {
+        res.status(400).json({Error: error.message})
+    }
 }
 
-// const addFavorite = async (req, res) => {
-//     const { idUser, idVideogame } = req.body
+const deleteFavoriteHandler = async (req,res)=>{
+    const {idUser, idVideogame} = req.body
 
-//     try {
-//         res.status(200).json(addFavorite(idUser, idVideogame))
-//     } catch (error) {
-//         res.status(400).json({ error: error.message })
-//     }
-// }
+    try {
+        res.status(200).json(deleteFavorite(idUser,idVideogame))    
+    } catch (error) {
+        res.status(400).json('no se pudo eliminar el videojuego')
+    }
+}
 
 module.exports = {
-    createUserHandler,
-    addFavorite
+    addFavoriteHandler, createUserHandler, getUsersHandlers, deleteFavoriteHandler
 }

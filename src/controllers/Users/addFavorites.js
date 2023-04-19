@@ -13,14 +13,16 @@ const addFavorite= async (idUser, idVideogames)=>{
               }
             }
         })
-    if(existe.length !== 0) throw new Error('ya tienes este videogame en favorites')
+        console.log(existe) 
+    if (existe) throw new Error(`ya agrego el juego con id ${idVideogames}` )
+
     const user = await Users.findOne({where: {id: idUser}})
 
     const videoGame = await Videogames.findOne({where:{id: idVideogames}})
 
     await user.addVideogames(videoGame)
 
-    return `se agrego a la lista de favoritos el videogame ${videoGame.id}`
+    return 'el juego se creo'
 }
 
 module.exports= {addFavorite}

@@ -9,7 +9,7 @@ const modelGenreGames = require('./models/GenreGame.js')
 const modelUsers = require('./models/User.js');
 const modelPlatforms = require('./models/platforms.js')
 const modelWallets = require('./models/Wallet');
-
+ 
 
 const db = new Sequelize(
    `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`,
