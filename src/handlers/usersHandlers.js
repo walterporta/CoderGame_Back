@@ -36,7 +36,14 @@ const createUserHandler = async (req, res) => {
 //     }
 // }
 
+const loginHandler = async (req, res) => {
+    const { username, password } = req.body
+
+    return res.status(200).send('holaaa')
+}
+
 module.exports = {
     createUserHandler,
-    addFavorite
+    addFavorite,
+    loginHandler
 }
