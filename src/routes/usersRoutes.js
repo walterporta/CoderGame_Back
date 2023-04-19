@@ -10,7 +10,7 @@ usersRoutes.post('/', createUserHandler)
 usersRoutes.post('/favorites', addFavoriteHandler)
 usersRoutes.delete('/favorites', deleteFavoriteHandler) 
 usersRoutes.get('/favorites/:id', getFavoriteHandler)
-usersRoutes.get('/login', loginHandler)
+// usersRoutes.get('/login', loginHandler)
 usersRoutes.post('/register', createUserHandler)
 
 
