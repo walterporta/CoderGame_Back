@@ -5,4 +5,4 @@ const platforms = Router()
 
 platforms.get('/', allPlatforms)
 
-module.exports = platforms;
+module.exports = platforms; 
