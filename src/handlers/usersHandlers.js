@@ -62,6 +62,12 @@ const getFavoriteHandler = async (req, res) => {
  
 }
 
+const loginHandler = async (req, res) => {
+    const { username, password } = req.body
+
+    return res.status(200).send('holaaa')
+}
+
 module.exports = {
     addFavoriteHandler, createUserHandler, getUsersHandlers, deleteFavoriteHandler, getFavoriteHandler
 }
