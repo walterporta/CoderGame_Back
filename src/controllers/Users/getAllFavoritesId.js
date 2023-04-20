@@ -1,18 +1,19 @@
-const{Users, Videogames} = require('../../db')
+const{Users, Videogames, Favorites} = require('../../db')
 
 
 const getAllFavorites = async (id)=>{
-    const listFavorites = await Users.findAll({
-        where: {id: id},
+    let listFavorites = await Favorites.findAll({
+        where:{UserId: id},
         include:{
             model: Videogames,
             attributes: ['id', 'name'],
-            through: {
-              attributes: [],
-            },
         }
     })
+    console.log(listFavorites)
     if(!listFavorites) throw new Error('No tiene juegos en favoritos')
+    listFavorites = listFavorites.map(fav=> {
+        return fav.Videogame
+    })
     return listFavorites
 }
 

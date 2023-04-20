@@ -57,7 +57,7 @@ module.exports = (sequelize) => {
         //   }
       },
       image: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
       },
       deleted: {
         type: DataTypes.BOOLEAN,
@@ -67,6 +67,10 @@ module.exports = (sequelize) => {
       price:{
         type: DataTypes.INTEGER,
         allowNull: false,
+      },
+      gameLink:{
+        type: DataTypes.INTEGER,
+
       }
     },
     {
