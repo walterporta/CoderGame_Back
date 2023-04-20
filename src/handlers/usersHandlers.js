@@ -5,9 +5,9 @@ const {getAllFavorites} = require('../controllers/Users/getAllFavoritesId')
 
 
 const getUsersHandlers = async (req, res) => {
-    const { name } = req.query
+    const { emal, nickName } = req.query
     try {
-
+        
     } catch (error) {
 
     }
@@ -62,11 +62,11 @@ const getFavoriteHandler = async (req, res) => {
  
 }
 
-const loginHandler = async (req, res) => {
-    const { username, password } = req.body
+// const loginHandler = async (req, res) => {
+//     const { username, password } = req.body
 
-    return res.status(200).send('holaaa')
-}
+//     return res.status(200).send('holaaa')
+// }
 
 module.exports = {
     addFavoriteHandler, createUserHandler, getUsersHandlers, deleteFavoriteHandler, getFavoriteHandler
