@@ -1,6 +1,7 @@
 const {createNewUser} = require('../controllers/Users/usersControllers')
 const {addFavorite} = require('../controllers/Users/addFavorites')
 const {deleteFavorite} = require('../controllers/Users/deleteFavorites')
+const { getAllFavorites } = require('../controllers/Users/getAllFavoritesId')
 
 const getUsersHandlers = async (req, res) => {
     const { name } = req.query
@@ -49,6 +50,16 @@ const deleteFavoriteHandler = async (req,res)=>{
     }
 }
 
+const getFavoriteHandler = async (req, res) => {
+    const { id } = req.params
+    console.log(id)
+    try {
+        res.status(200).json(await getAllFavorites(id))
+    } catch (error) {
+        res.status(400).json({ Error: error.message })
+    }
+
+}
 module.exports = {
-    addFavoriteHandler, createUserHandler, getUsersHandlers, deleteFavoriteHandler
+    addFavoriteHandler, createUserHandler, getUsersHandlers, deleteFavoriteHandler, getFavoriteHandler
 }
