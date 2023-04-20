@@ -1,4 +1,4 @@
-const {Transactions, Wallets, Videogames, Users} = require('../../db')
+const {Transactions, Wallets, Videogames, Users, Favorites} = require('../../db')
 
 
 const buyVideogames = async (idVideogame, idUser) =>{
@@ -16,8 +16,11 @@ const buyVideogames = async (idVideogame, idUser) =>{
     const buy = await Transactions.create({VideogameId:idVideogame, WalletId : saldo.id, amount: saldo.balance })
 
     await Wallets.update({ balance: saldo.balance - videogames.price }, { where: { id: saldo.id } })
-
     
+    const favoriteBuy = Favorites.findOne({where:{UserId:idUser, VideogameId: idVideogame}})
+    if(favoriteBuy && favoriteBuy.buy===true) throw new Error('Este juego ya se compro')
+
+    await Favorites.update({buy: true}, {where: {UserId:idUser, VideogameId: idVideogame}})
 
     return `el juego ${videogames.name} ha sido añadido a su lista de adquiridos`
 

@@ -3,7 +3,6 @@ const genresRoutes = require('./genresRoutes');
 const videoGamesRoutes = require('./videoGamesRoutes');
 const platformsRoutes = require('./platformsRoutes')
 const usersRoutes = require('./usersRoutes.js')
-
 const dbLoad = require('./dbLoad')
 const pagoRoute = require('./pagoRoute')
 
