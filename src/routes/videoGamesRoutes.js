@@ -21,9 +21,9 @@ const isAdmin = (req, res, next) => {
 
 //Saque requiresAuth() getvideomaesy por id
 videoGames.get('/', getVideoGamesHandler);
-videoGames.post('/', requiresAuth(), isAdmin, createVideoGamesHandler);
+videoGames.post('/',   createVideoGamesHandler);
 videoGames.get('/:id',  getVideoGameByIdHandler);
-videoGames.put('/:id', requiresAuth(), isAdmin, deleteVideoGameLogicallyHandler);
+videoGames.put('/:id', deleteVideoGameLogicallyHandler);
 
 module.exports = videoGames;
 
