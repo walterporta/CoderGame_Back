@@ -24,6 +24,7 @@ let searchApi = async () => {
   }
   arrVideogames = arrVideogames
     .map((el) => {
+      let link = el.website || 'https://drive.google.com/drive/folders/1oTcYRmIzThDTvHfCfzEsdiRn53BeZ7XM?usp=share_link'; // Enlace de descarga predeterminado si "website" es nulo
       return {
         name: el.name ? el.name : null,
         image: el.background_image ? el.background_image : null,
@@ -33,6 +34,7 @@ let searchApi = async () => {
         description: el.description ? stripHtmlTags(el.description) : null, // llamamos la función aquí para eliminar los tags
         genres: el.genres ? el.genres : null,
         price: Math.floor(Math.random() * (1000 - 500 + 1) + 500),
+        link: link,
       };
     })
     .filter((game) => game.description !== null && game.image !== null);
