@@ -9,7 +9,7 @@ const usersRoutes = Router()
 usersRoutes.post('/', createUserHandler)
 usersRoutes.post('/favorites', addFavoriteHandler)
 usersRoutes.delete('/favorites', deleteFavoriteHandler) 
-// usersRoutes.get('/favorites', getFavoriteHandler)
+usersRoutes.get('/favorites/:id', getFavoriteHandler)
 
 module.exports = usersRoutes
  

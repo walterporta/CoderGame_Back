@@ -67,6 +67,10 @@ module.exports = (sequelize) => {
       price:{
         type: DataTypes.INTEGER,
         allowNull: false,
+      },
+      gameLink:{
+        type: DataTypes.INTEGER,
+
       }
     },
     {
