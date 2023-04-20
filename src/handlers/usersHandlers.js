@@ -1,7 +1,7 @@
-const {createNewUser} = require('../controllers/Users/usersControllers')
-const {addFavorite} = require('../controllers/Users/addFavorites')
-const {deleteFavorite} = require('../controllers/Users/deleteFavorites')
-const {getAllFavorites} = require('../controllers/Users/getAllFavoritesId')
+const { createNewUser } = require('../controllers/Users/usersControllers')
+const { addFavorite } = require('../controllers/Users/addFavorites')
+const { deleteFavorite } = require('../controllers/Users/deleteFavorites')
+const { getAllFavorites } = require('../controllers/Users/getAllFavoritesId')
 
 
 const getUsersHandlers = async (req, res) => {
@@ -11,7 +11,7 @@ const getUsersHandlers = async (req, res) => {
     } catch (error) {
 
     }
- 
+
 }
 
 const createUserHandler = async (req, res) => {
@@ -27,25 +27,25 @@ const createUserHandler = async (req, res) => {
 
     }
 
-} 
+}
 
-const addFavoriteHandler = async (req,res)=>{
-   const {idUser, idVideogame} = req.body
+const addFavoriteHandler = async (req, res) => {
+    const { idUser, idVideogame } = req.body
 
     try {
         const response = await addFavorite(idUser, idVideogame)
         console.log(response)
         res.status(200).json(response)
     } catch (error) {
-        res.status(400).json({Error: error.message})
+        res.status(400).json({ Error: error.message })
     }
 }
 
-const deleteFavoriteHandler = async (req,res)=>{
-    const {idUser, idVideogame} = req.body
+const deleteFavoriteHandler = async (req, res) => {
+    const { idUser, idVideogame } = req.body
 
     try {
-        res.status(200).json(await deleteFavorite(idUser,idVideogame))    
+        res.status(200).json(await deleteFavorite(idUser, idVideogame))
     } catch (error) {
         res.status(400).json(error.message)
     }
@@ -57,15 +57,22 @@ const getFavoriteHandler = async (req, res) => {
     try {
         res.status(200).json(await getAllFavorites(id))
     } catch (error) {
-        res.status(400).json({Error: error.message})
+        res.status(400).json({ Error: error.message })
     }
- 
+
 }
 
 const loginHandler = async (req, res) => {
-    const { username, password } = req.body
+    const { email, password } = req.body
 
-    return res.status(200).send('holaaa')
+    try {
+        if (!email || !password) throw new Error('Faltan ingresar datos')
+        const response = await verifyUser(email, password)
+        res.status(200).json(response)
+
+    } catch (error) {
+        res.status(400).json({ error: error.message })
+    }
 }
 
 module.exports = {
