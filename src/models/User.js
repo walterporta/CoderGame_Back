@@ -7,34 +7,34 @@ module.exports = (sequelize) => {
       id: {
         type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV4,
-        allowNull: false,
+        // allowNull: false,
         primaryKey: true,
       },
       username: {
         type: DataTypes.STRING,
-        allowNull: false,
+        // allowNull: false,
         unique: true
       },
       password: {
         type: DataTypes.STRING,
-        allowNull: false
+        // allowNull: false
       },
       name: {
         type: DataTypes.STRING,
-        allowNull: false
+        // allowNull: false
       },
       lastname: {
         type: DataTypes.STRING,
-        allowNull: false
+        // allowNull: false
       },
       email: {
         type: DataTypes.STRING,
-        allowNull: false,
+        // allowNull: false,
         unique: true,
       },
       gender: {
         type: DataTypes.STRING,
-        allowNull: false,
+        // allowNull: false,
         isIn: [['male', 'female', 'other']]
       },
     //  Esto al final va a ser un ENUM, con 3 roles, user,empresa y admin
