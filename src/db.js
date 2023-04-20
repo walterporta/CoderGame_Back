@@ -7,7 +7,7 @@ const {
 const modelVideoGames = require('./models/VideoGame.js')
 const modelGenreGames = require('./models/GenreGame.js')
 const modelUsers = require('./models/User.js');
-const modelPlatforms = require('./models/platforms.js')
+const modelPlatforms = require('./models/Platforms')
 const modelWallets = require('./models/Wallet');
  
 
