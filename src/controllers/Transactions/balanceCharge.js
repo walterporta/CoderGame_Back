@@ -1,6 +1,15 @@
 const {Transactions, Wallets, Videogames, Users} = require('../../db')
 
-const balanceCharge = async (idUser, input) => {
+const balanceCharge= async (idUser, amount) => {
 
-        const saldo = await Wallets.findOne({where:{Userid:UserId}})
+    const walletUser = await Wallets.findOne({where:{UserId:idUser}})
+    
+    if(walletUser){
+        await Wallets.update({ balance:walletUser.balance+amount },{where:{id:walletUser.id}})
+    }
+    
+
+    return 'se cargo saldo correctamente'
 }
+
+module.exports = {balanceCharge}
