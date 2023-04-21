@@ -29,3 +29,5 @@ videoGames.put('/:id', deleteVideoGameLogicallyHandler);
 // videoGames.put('/:id', requiresAuth(), isAdmin, deleteVideoGameLogicallyHandler);
 
 module.exports = videoGames;
+
+
