@@ -24,9 +24,9 @@ app.use(auth(config));
 
 
 
-const errorHandler = (err, req, res, next) => {
-  res.status(500).send(`tienes un error en${err.message}`)
-}
+// const errorHandler = (err, req, res, next) => {
+//   res.status(500).send(`tienes un error en${err.message}`)
+// }
 
 
 app.use(cors());
@@ -34,6 +34,6 @@ app.use(express.json());
 app.use(morgan('dev'));
 
 app.use('/', router);
-app.use(errorHandler)
-
+// app.use(errorHandler)
+ 
 module.exports = app;
