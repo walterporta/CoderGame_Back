@@ -15,12 +15,12 @@ const getUsersHandlers = async (req, res) => {
 }
 
 const createUserHandler = async (req, res) => {
-    const { name, username, lastname, email, password, gender, typerUser, address } = req.body
+    const { name, nickname, email,  id } = req.body
 
     try {
-        if (!name || !email || !password || !username || !lastname || !gender)
-            throw new Error('Incomplete data')
-        const newUser = await createNewUser({ name, username, lastname, email, password, gender, typerUser, address })
+        // if (!name || !email || !password || !username || !lastname || !gender)
+        //     throw new Error('Incomplete data')
+        const newUser = await createNewUser({ name, nickname, email, id })
         return res.status(201).json(newUser)
     } catch (error) {
         res.status(400).send({ Error: error.message })
@@ -69,8 +69,7 @@ const loginHandler = async (req, res) => {
         if (!email || !password) throw new Error('Faltan ingresar datos')
         const response = await verifyUser(email, password)
         res.status(200).json(response)
-// const loginHandler = async (req, res) => {
-//     const { username, password } = req.body
+
 
     } catch (error) {
         res.status(400).json({ error: error.message })

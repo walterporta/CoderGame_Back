@@ -5,12 +5,12 @@ module.exports = (sequelize) => {
     'Users',
     {
       id: { 
-        type: DataTypes.UUID,
-        defaultValue: DataTypes.UUIDV4,
+        type: DataTypes.STRING,
+        // defaultValue: DataTypes.UUIDV4,
         // allowNull: false,
         primaryKey: true,
       },
-      username: {
+      nickname: {
         type: DataTypes.STRING,
         // allowNull: false,
         unique: true
@@ -32,11 +32,11 @@ module.exports = (sequelize) => {
         // allowNull: false,
         unique: true,
       },
-      gender: {
-        type: DataTypes.STRING,
-        // allowNull: false,
-        isIn: [['male', 'female', 'other']]
-      },
+      // gender: {
+      //   type: DataTypes.STRING,
+      //   // allowNull: false,
+      //   isIn: [['male', 'female', 'other']]
+      // },
     //  Esto al final va a ser un ENUM, con 3 roles, user,empresa y admin
     // isAdmin: {
     //     type: DataTypes.BOOLEAN,
