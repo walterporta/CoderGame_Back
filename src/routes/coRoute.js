@@ -11,16 +11,16 @@ checkout.post('/', async (req, res) => {
   const { id, amount, idUser } = req.body;
   console.log(amount, idUser)
   try {
-    // const payment = await stripe.paymentIntents.create({
-    //   amount,
-    //   currency: 'USD',
-    //   description: 'Coins',
-    //   payment_method: id,
-    //   confirm: true
-    //   })
-    // if(payment.status === "succeeded"){
+    const payment = await stripe.paymentIntents.create({
+      amount,
+      currency: 'USD',
+      description: 'Coins',
+      payment_method: id,
+      confirm: true
+      })
+    if(payment.status === "succeeded"){
       await balanceCharge(idUser, amount)
-      // } 
+      } 
       res.status(200).json()
 
   } catch (error) {

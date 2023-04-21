@@ -4,9 +4,9 @@ module.exports = (sequelize) => {
   sequelize.define(
     'Users',
     {
-      sub: {
+      sub: { 
         type: DataTypes.TEXT,
-
+        primaryKey: true,
       },
       name: {
         type: DataTypes.STRING,

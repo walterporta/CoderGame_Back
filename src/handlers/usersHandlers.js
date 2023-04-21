@@ -17,9 +17,8 @@ const getUsersHandlers = async (req, res) => {
 
 const createUserHandler = async (req, res) => {
     const { sub, name, email } = req.body
-    console.log(req.body);
-    try {
 
+    try {
         const newUser = await createNewUser({ sub, name, email })
         return res.status(201).json(newUser)
     } catch (error) {
