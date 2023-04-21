@@ -6,10 +6,12 @@ const balanceCharge= async (idUser, amount) => {
     
     if(walletUser){
         await Wallets.update({ balance:walletUser.balance+amount },{where:{id:walletUser.id}})
+        return 'se cargo saldo correctamente'
+        }
+    throw new Error('no se pudo cargar el saldo')
     }
     
 
-    return 'se cargo saldo correctamente'
-}
+    
 
 module.exports = {balanceCharge}
