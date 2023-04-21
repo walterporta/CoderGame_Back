@@ -1,7 +1,7 @@
 const { Sequelize, Op, DataTypes } = require('sequelize');
 require('dotenv').config();
 const {
-   DB_USER, DB_PASSWORD, DB_HOST, DB_NAME, PORT
+   DB_USER, DB_PASSWORD, DB_HOST, DB_NAME, PORT_DB
 } = process.env;
 
 const modelVideoGames = require('./models/VideoGame.js')
@@ -13,13 +13,13 @@ const modelTransactions = require('./models/Transactions.js');
 const modelFavorites = require('./models/Favorites.js')
 
 const db = new Sequelize(
-   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${PORT}/${DB_NAME}`,
+   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${PORT_DB}/${DB_NAME}`,
    {
       logging: false,
    }
 );
 
-modelVideoGames(db);
+modelVideoGames(db); 
 modelGenreGames(db);
 modelUsers(db);
 modelPlatforms(db);
@@ -38,7 +38,7 @@ Platforms.belongsToMany(Videogames, { through: 'GamePlatform' });
 
 Users.hasOne(Wallets); // Un usuario tiene una sola billetera
 Wallets.belongsTo(Users); // Una billetera pertenece a un solo usuario
-
+ 
 Wallets.hasMany(Transactions)
 Transactions.belongsTo(Wallets)
 
@@ -54,3 +54,4 @@ module.exports = {
 };
 
 
+ 
