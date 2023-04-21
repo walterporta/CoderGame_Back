@@ -16,7 +16,9 @@ const createNewUser = async ({ sub, name, email }) => {
     })
     if (created) console.log('creado');
     else console.log('ya existe');
-    Wallets.create({UserSub: sub})
+    const findWallets = Wallets.findOne({where:{UserSub:sub}})
+    if(!findWallets) Wallets.create({UserSub: sub})
+    
     return newUser
 }
 
