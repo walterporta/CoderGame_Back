@@ -16,15 +16,14 @@ const getUsersHandlers = async (req, res) => {
 
 
 const createUserHandler = async (req, res) => {
+    console.log(req.body)
     const { sub, name, email } = req.body
-    console.log(req.body);
     try {
 
         const newUser = await createNewUser({ sub, name, email })
         return res.status(201).json(newUser)
     } catch (error) {
         res.status(400).send({ Error: error.message })
-
     }
 
 }

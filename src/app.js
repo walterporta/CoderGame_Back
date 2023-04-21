@@ -19,6 +19,8 @@ const config = {
   issuerBaseURL: DOMAIN,
   secret: CLIENT_SECRET,
 };
+
+
 app.use(auth(config));
 
 
