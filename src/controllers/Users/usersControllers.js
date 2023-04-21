@@ -1,9 +1,24 @@
 const { Users } = require('../../db.js')
-const bcrypt = require('bcryptjs')
+//const bcrypt = require('bcryptjs')
 
-const createNewUser = async ({ name, username, lastname, email, password, gender, typerUser, address }) => {
-    const hashpassword = bcrypt.hashSync(password, 10)
-    const newUser = await Users.create({ name, username, lastname, email, password: hashpassword, gender, typerUser, address })
+const createNewUser = async ({ sub, name, email }) => {
+    // if (!sub) {
+    //     throw new Error('El valor de sub es inválido')
+    // }
+
+    const objuser = {
+        sub,
+        name,
+        email
+    }
+    const [newUser, created] = await Users.findOrCreate({
+        where: {
+            sub: sub
+        },
+        defaults: objuser
+    })
+    if (created) console.log('creado');
+    else console.log('ya existe');
     return newUser
 }
 
