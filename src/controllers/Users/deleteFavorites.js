@@ -1,10 +1,10 @@
 const{Users, Videogames, Favorites} = require('../../db')
 
 const deleteFavorite= async (idUser, idVideogames)=>{
-      const gameFav = await Favorites.findOne({where:{VideogameId: idVideogames, UserId: idUser}})
+      const gameFav = await Favorites.findOne({where:{VideogameId: idVideogames, UserSub: idUser}})
   if(gameFav.buy ===true) throw new Error('este juego esta comprado, no se puede eliminar')
       const result = await Favorites.destroy({
-        where: { VideogameId: idVideogames, UserId: idUser }
+        where: { VideogameId: idVideogames, UserSub: idUser }
       });
 
       if (result === 1) {
