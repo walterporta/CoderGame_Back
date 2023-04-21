@@ -17,4 +17,5 @@ router.use('/cargadb', dbLoad)
 router.use('/user', usersRoutes);
 router.use('/checkout', checkout)
 
+
 module.exports = router;

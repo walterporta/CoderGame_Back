@@ -19,11 +19,14 @@ const isAdmin = (req, res, next) => {
     }
 };
 
-//Saque requiresAuth() getvideomaesy por id
 videoGames.get('/', getVideoGamesHandler);
-videoGames.post('/',   createVideoGamesHandler);
-videoGames.get('/:id',  getVideoGameByIdHandler);
+videoGames.post('/', createVideoGamesHandler);
+videoGames.get('/:id', getVideoGameByIdHandler);
 videoGames.put('/:id', deleteVideoGameLogicallyHandler);
+// videoGames.get('/', requiresAuth(), getVideoGamesHandler);
+// videoGames.post('/', requiresAuth(), isAdmin, createVideoGamesHandler);
+// videoGames.get('/:id', requiresAuth(), getVideoGameByIdHandler);
+// videoGames.put('/:id', requiresAuth(), isAdmin, deleteVideoGameLogicallyHandler);
 
 module.exports = videoGames;
 

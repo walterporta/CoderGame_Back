@@ -32,8 +32,10 @@ let searchApi = async () => {
         platforms: el.platforms,
         description: el.description ? stripHtmlTags(el.description) : null, // llamamos la función aquí para eliminar los tags
         genres: el.genres ? el.genres : null,
+
         price: Math.floor(Math.random() * (1000 - 500 + 1) + 500),
         gameLink: 'https://bit.ly/3LgV1ZL', 
+
       };
     })
     .filter((game) => game.description !== null && game.image !== null);
