@@ -15,16 +15,16 @@ const getUsersHandlers = async (req, res) => {
 }
 
 const createUserHandler = async (req, res) => {
-    const { name, nickname, email,  id } = req.body
-
+    const { name, email,  auth0Id } = req.body
+    console.log(email)
     try {
         // if (!name || !email || !password || !username || !lastname || !gender)
         //     throw new Error('Incomplete data')
-        const newUser = await createNewUser({ name, nickname, email, id })
+        const newUser = await createNewUser({ name, email, auth0Id })
         return res.status(201).json(newUser)
     } catch (error) {
         res.status(400).send({ Error: error.message })
-
+ 
     }
 
 }
