@@ -69,7 +69,7 @@ module.exports = (sequelize) => {
         allowNull: false,
       },
       gameLink:{
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
 
       }
     },

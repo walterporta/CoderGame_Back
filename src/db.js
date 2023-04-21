@@ -1,7 +1,7 @@
 const { Sequelize, Op, DataTypes } = require('sequelize');
 require('dotenv').config();
 const {
-   DB_USER, DB_PASSWORD, DB_HOST, DB_NAME
+   DB_USER, DB_PASSWORD, DB_HOST, DB_NAME, PORT_DB
 } = process.env;
 
 const modelVideoGames = require('./models/VideoGame.js')
@@ -13,7 +13,7 @@ const modelTransactions = require('./models/Transactions.js');
 const modelFavorites = require('./models/Favorites.js')
 
 const db = new Sequelize(
-   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`,
+   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${PORT_DB}/${DB_NAME}`,
    {
       logging: false,
    }
