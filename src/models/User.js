@@ -4,7 +4,7 @@ module.exports = (sequelize) => {
   sequelize.define(
     'Users',
     {
-      auth0Id: {
+      sub: {
         type: DataTypes.TEXT,
         allowNull: false,
         primaryKey: true,
