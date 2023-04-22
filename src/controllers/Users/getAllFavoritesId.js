@@ -3,7 +3,7 @@ const{Users, Videogames, Favorites} = require('../../db')
 
 const getAllFavorites = async (id)=>{
     let listFavorites = await Favorites.findAll({
-        where:{UserId: id},
+        where:{UserSub: id},
         include:{
             model: Videogames,
             attributes: ['id', 'name'],

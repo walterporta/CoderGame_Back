@@ -5,25 +5,36 @@ const buyVideogames = async (idVideogame, idUser) =>{
     const saldo = await Wallets.findOne({
         include: {
             model: Users,
-            where: {id:idUser}
+            where: {sub:idUser} 
         }
     })
+    let total = 0
 
-    const videogames = await  Videogames.findOne({where:{id:idVideogame}})
-    const addFavorites = await Favorites.findOne({where:{VideogameId:idVideogame, UserId: idUser}})
-    if(saldo.balance < videogames.price) throw new Error('no hay saldo suficiente')
-    if(!addFavorites) await Favorites.create({VideogameId:idVideogame, UserId: idUser})
-    if(addFavorites.buy) throw new Error('el juego ya fue comprado por este usuario')
-    const buy = await Transactions.create({VideogameId:idVideogame, WalletId : saldo.id, amount: videogames.price })
+    for(const game of idVideogame){
+        const videogames = await Videogames.findOne({where:{id:game}});
+        console.log(videogames.price)
+        let addFavorites = await Favorites.findOne({where:{VideogameId:game, UserSub: idUser}});
 
-    await Wallets.update({ balance: saldo.balance - videogames.price }, { where: { id: saldo.id } })
-    
-    const favoriteBuy = Favorites.findOne({where:{UserId:idUser, VideogameId: idVideogame}})
-    if(favoriteBuy && favoriteBuy.buy===true) throw new Error('Este juego ya se compro')
+         if(!addFavorites) addFavorites = await Favorites.create({VideogameId:game, UserSub: idUser});
 
-    await Favorites.update({buy: true}, {where:{VideogameId:idVideogame, UserId: idUser}})
+         if(!addFavorites) addFavorites= await Favorites.create({VideogameId:game, UserSub: idUser});
+         
+         if(addFavorites.buy) throw new Error(`el juego ${videogames.name} ya fue comprado por este usuario`);
+        total = total + videogames.price;
+      }
+      
+      if(saldo.balance-total<0) throw new Error('el saldo es insuficiente')
 
-    return `el juego ${videogames.name} ha sido añadido a su lista de adquiridos`
+      for (const game of idVideogame) {
+        const videogame = await Videogames.findOne({where: {id: game}});
+        const buy = await Transactions.create({VideogameId: game, WalletId: saldo.id, amount: videogame.price, VideogameId:game});
+        await Favorites.update({buy: true}, {where: {VideogameId: game, UserSub: idUser}});
+      }
+
+    await Wallets.update({ balance: saldo.balance - total}, { where: { id: saldo.id } })
+
+
+    return `Se realizo la compra de forma exitosa`
 
 }
 
