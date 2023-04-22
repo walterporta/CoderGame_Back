@@ -19,7 +19,7 @@ const balanceCharge= async (idUser, amount) => {
     
 //     if(walletUser){
 //         await Wallets.update({ balance: walletUser.balance + amount },{where:{id: walletUser.id}})
-//         return 'se cargó saldo correctamente'
+//         return 'se cargó saldo correctgitamente'
 //     }
     
 //     throw new Error('no se pudo cargar el saldo')
