@@ -13,8 +13,8 @@ const buyVideogames = async (idVideogame, idUser) =>{
     for(const game of idVideogame){
         const videogames = await Videogames.findOne({where:{id:game}});
         console.log(videogames.price)
-        const addFavorites = await Favorites.findOne({where:{VideogameId:game, UserSub: idUser}});
-         if(!addFavorites) await Favorites.create({VideogameId:game, UserSub: idUser});
+        let addFavorites = await Favorites.findOne({where:{VideogameId:game, UserSub: idUser}});
+         if(!addFavorites) addFavorites = await Favorites.create({VideogameId:game, UserSub: idUser});
          if(addFavorites.buy) throw new Error(`el juego ${videogames.name} ya fue comprado por este usuario`);
         total = total + videogames.price;
       }
