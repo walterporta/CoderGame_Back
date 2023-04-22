@@ -42,6 +42,9 @@ Wallets.belongsTo(Users); // Una billetera pertenece a un solo usuario
 Wallets.hasMany(Transactions)
 Transactions.belongsTo(Wallets)
 
+Videogames.hasMany(Transactions)
+Transactions.belongsTo(Videogames)
+
 Videogames.hasMany(Favorites);
 Favorites.belongsTo(Videogames);
 
