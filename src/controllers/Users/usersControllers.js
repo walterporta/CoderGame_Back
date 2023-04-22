@@ -1,5 +1,11 @@
-const { Users, Wallets } = require('../../db.js')
+const { Users } = require('../../db.js')
+//const bcrypt = require('bcryptjs')
 
+<<<<<<< HEAD
+const createNewUser = async ({id, name, nickname, email }) => {
+   
+    const newUser = await Users.create({ id, name, nickname, email })
+=======
 const createNewUser = async ({ sub, name, email }) => {
 
 
@@ -16,10 +22,7 @@ const createNewUser = async ({ sub, name, email }) => {
     })
     if (created) console.log('creado');
     else console.log('ya existe');
-    const findWallets = await Wallets.findOne({where:{UserSub:sub}})
-    console.log(findWallets)
-    if(!findWallets) await Wallets.create({UserSub: sub})
-    
+>>>>>>> edbe74cadc5f51ce1c086718542a735f2cbb12f0
     return newUser
 }
 
