@@ -8,19 +8,19 @@ const stripe = new Stripe(S_KEY);
 
 checkout.post('/', async (req, res) => {
   console.log('toy aca')
-  const { id, amount, idUser } = req.body;
-  console.log(amount, idUser)
+  const { id, amount, user } = req.body;
+  console.log(amount, user)
   try {
-    // const payment = await stripe.paymentIntents.create({
-    //   amount,
-    //   currency: 'USD',
-    //   description: 'Coins',
-    //   payment_method: id,
-    //   confirm: true
-    //   })
-    // if(payment.status === "succeeded"){
+    const payment = await stripe.paymentIntents.create({
+      amount,
+      currency: 'USD',
+      description: 'Coins',
+      payment_method: id,
+      confirm: true
+      })
+    if(payment.status === "succeeded"){
       await balanceCharge(idUser, amount)
-      // } 
+      } 
       res.status(200).json()
 
   } catch (error) {

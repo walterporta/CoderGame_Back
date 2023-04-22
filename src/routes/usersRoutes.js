@@ -4,7 +4,7 @@ const { deleteFavoriteHandler, createUserHandler, addFavoriteHandler, getFavorit
 
 const usersRoutes = Router()
 
-// usersRoutes.get('/', getUserHandler)
+// usersRoutes.get('/', getUserHandler) 
 // usersRoutes.get('/:id', getUserByIdHandler)
 usersRoutes.post('/register', createUserHandler)
 usersRoutes.post('/favorites', addFavoriteHandler)

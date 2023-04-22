@@ -10,7 +10,7 @@ const port = process.env.PORT || 3001;
 
 conn.sync({ alter: true }).then(() => {
   // getAllGenres()
-  // getAllPlatforms()
+  // getAllPlatforms() 
   // insertGamesDb()
   app.listen(port, () => {
     console.log(`%s listening at ${port}`); // eslint-disable-line no-console

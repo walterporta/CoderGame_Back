@@ -12,7 +12,7 @@ module.exports = (sequelize) => {
       },
       balance: {
         type: DataTypes.FLOAT,
-        defaultValue: 0,
+        defaultValue: 0, 
         allowNull: false,
       },
     },
