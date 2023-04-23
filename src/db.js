@@ -19,7 +19,7 @@ const db = new Sequelize(
    }
 );
 
-modelVideoGames(db);
+modelVideoGames(db); 
 modelGenreGames(db);
 modelUsers(db);
 modelPlatforms(db);
@@ -38,9 +38,12 @@ Platforms.belongsToMany(Videogames, { through: 'GamePlatform' });
 
 Users.hasOne(Wallets); // Un usuario tiene una sola billetera
 Wallets.belongsTo(Users); // Una billetera pertenece a un solo usuario
-
+ 
 Wallets.hasMany(Transactions)
 Transactions.belongsTo(Wallets)
+
+Videogames.hasMany(Transactions)
+Transactions.belongsTo(Videogames)
 
 Videogames.hasMany(Favorites);
 Favorites.belongsTo(Videogames);
@@ -54,3 +57,4 @@ module.exports = {
 };
 
 
+ 

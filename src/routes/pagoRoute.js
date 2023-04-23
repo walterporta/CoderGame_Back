@@ -4,7 +4,7 @@ const { Client } = require('pg');
 
 const { User, Wallet } = require('../db')
 
-const pagos = Router();
+const pagos = Router(); 
 const client = new Client({
     user: 'postgres',
     host: 'localhost',

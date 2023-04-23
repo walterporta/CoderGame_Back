@@ -6,7 +6,7 @@ const {
     deleteVideoGameLogicallyHandler
 } = require('../handlers/gamesHandler.js');
 const { requiresAuth } = require('express-openid-connect');
-const videoGames = Router();
+const videoGames = Router(); 
 
 const isAdmin = (req, res, next) => {
     try {

@@ -30,6 +30,10 @@ const config = {
 
 app.use(auth(config));
 
+// const errorHandler = (err, req, res, next) => {
+//   res.status(500).send(`tienes un error en${err.message}`)
+// }
+
 const errorHandler = (err, req, res, next) => {
   res.status(500).send(`tienes un error en${err.message}`)
 }

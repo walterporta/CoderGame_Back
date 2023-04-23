@@ -5,7 +5,7 @@ const { getAllFavorites } = require('../controllers/Users/getAllFavoritesId')
 
 
 const getUsersHandlers = async (req, res) => {
-    const { name } = req.query
+    const { emal, nickName } = req.query
     try {
 
     } catch (error) {
@@ -14,16 +14,20 @@ const getUsersHandlers = async (req, res) => {
 
 }
 
-
 const createUserHandler = async (req, res) => {
     console.log(req.body)
     const { sub, name, email } = req.body
+
     try {
+        // if (!name || !email || !password || !username || !lastname || !gender)
+        //     throw new Error('Incomplete data')
+
 
         const newUser = await createNewUser({ sub, name, email })
         return res.status(201).json(newUser)
     } catch (error) {
         res.status(400).send({ Error: error.message })
+ 
     }
 
 }
@@ -54,7 +58,7 @@ const getFavoriteHandler = async (req, res) => {
     const { id } = req.params
 
     try {
-        res.status(200).json(await getAllFavorites(id))
+        res.status(200).json(await getAllFavorites(id, false))
     } catch (error) {
         res.status(400).json({ Error: error.message })
     }
@@ -69,11 +73,22 @@ const loginHandler = async (req, res) => {
         const response = await verifyUser(email, password)
         res.status(200).json(response)
 
+
     } catch (error) {
         res.status(400).json({ error: error.message })
     }
 }
 
+const getVideogamesBuy = async (req, res) => {
+    const { id } = req.params
+
+    try {
+        res.status(200).json(await getAllFavorites(id, true))
+    } catch (error) {
+        res.status(400).json({ Error: error.message })
+    }
+}
+
 module.exports = {
-    addFavoriteHandler, createUserHandler, getUsersHandlers, deleteFavoriteHandler, getFavoriteHandler
+    addFavoriteHandler, createUserHandler, getUsersHandlers, deleteFavoriteHandler, getFavoriteHandler, getVideogamesBuy
 }
