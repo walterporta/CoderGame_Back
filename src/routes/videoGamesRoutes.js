@@ -13,7 +13,7 @@ const isAdmin = (req, res, next) => {
         const { sub } = req.oidc.user;
         const { roles } = req.oidc.idToken.payload;
         console.log(`User ${sub} has roles ${roles}`);
-        if (roles.includes('admin')) {
+        if (roles.includes('administrators')) {
             next();
         } else {
             res.status(403).send('Forbidden');
@@ -24,9 +24,14 @@ const isAdmin = (req, res, next) => {
     }
 };
 
-videoGames.get('/', requiresAuth(), getVideoGamesHandler);
-videoGames.post('/', requiresAuth(), createVideoGamesHandler);
+videoGames.get('/', getVideoGamesHandler);
+videoGames.post('/', requiresAuth(), isAdmin, createVideoGamesHandler);
 videoGames.get('/:id', requiresAuth(), getVideoGameByIdHandler);
-videoGames.put('/:id', requiresAuth(), isAdmin, deleteVideoGameLogicallyHandler);
+videoGames.put('/:id', deleteVideoGameLogicallyHandler);
+// videoGames.get('/', getVideoGamesHandler);
+// videoGames.post('/', createVideoGamesHandler);
+// videoGames.get('/:id', getVideoGameByIdHandler);
+// videoGames.put('/:id',  deleteVideoGameLogicallyHandler);
+
 
 module.exports = videoGames;
