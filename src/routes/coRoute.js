@@ -19,6 +19,7 @@ checkout.post('/', async (req, res) => {
       confirm: true
       })
     if(payment.status === "succeeded"){
+      console.log(payment)
       await balanceCharge(user.sub, amount)
       } 
       res.status(200).json(payment)
