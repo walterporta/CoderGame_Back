@@ -26,7 +26,7 @@ checkout.post('/', async (req, res) => {
 
   } catch (error) {
       console.log(error,'soy el error');
-      res.json({message: error});
+      res.status(400).json({message: error});
     }
   });
 

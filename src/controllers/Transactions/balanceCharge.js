@@ -7,7 +7,7 @@ const balanceCharge= async (idUser, amount) => {
     if(walletUser){
         await Wallets.update({ balance:walletUser.balance+amount },{where:{id:walletUser.id}})
 
-        await Transactions.create({VideogameId: game, WalletId: walletUser.id, amount: amount});
+        await Transactions.create({WalletId: walletUser.id, amount: amount});
 
         return 'se cargo saldo correctamente'
         }
