@@ -1,20 +1,30 @@
-const{Users, Videogames, Favorites} = require('../../db')
+const{Wallets, Videogames, Favorites} = require('../../db')
 
 
-const getAllFavorites = async (id)=>{
+const getAllFavorites = async (id, buy)=>{
     let listFavorites = await Favorites.findAll({
-        where:{UserSub: id},
+        where:{UserSub: id, buy:buy},
         include:{
             model: Videogames,
-            attributes: ['id', 'name'],
+            attributes: ['id', 'name','image','description','released','price'],
         }
     })
-    console.log(listFavorites)
+    
+    let total = 0
+    listFavorites?.forEach((fav)=> {
+        total=total+fav.dataValues.Videogame.dataValues.price
+    })
+
+    const balance = await Wallets.findOne( {
+        attributes:['balance'],
+        where:{UserSub:id}
+    })
+
     if(!listFavorites) throw new Error('No tiene juegos en favoritos')
     listFavorites = listFavorites.map(fav=> {
         return fav.Videogame
     })
-    return listFavorites
+    return {listFavorites, balance:balance, total:total}
 }
 
 module.exports = {getAllFavorites}
