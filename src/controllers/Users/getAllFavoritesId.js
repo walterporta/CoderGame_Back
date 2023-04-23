@@ -1,7 +1,7 @@
 const{Users, Videogames, Favorites} = require('../../db')
 
 
-const getAllFavorites = async (id)=>{
+const getAllFavorites = async (id, buy)=>{
     let listFavorites = await Favorites.findAll({
         where:{UserSub: id},
         include:{

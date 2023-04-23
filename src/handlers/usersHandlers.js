@@ -59,7 +59,7 @@ const getFavoriteHandler = async (req, res) => {
     const { id } = req.params
 
     try {
-        res.status(200).json(await getAllFavorites(id))
+        res.status(200).json(await getAllFavorites(id, false))
     } catch (error) {
         res.status(400).json({ Error: error.message })
     }
@@ -80,6 +80,16 @@ const loginHandler = async (req, res) => {
     }
 }
 
+const getVideogamesBuy = async (req,res)=>{
+    const { id } = req.params
+
+    try {
+        res.status(200).json(await getAllFavorites(id, true))
+    } catch (error) {
+        res.status(400).json({ Error: error.message })
+    }
+}
+
 module.exports = {
-    addFavoriteHandler, createUserHandler, getUsersHandlers, deleteFavoriteHandler, getFavoriteHandler
+    addFavoriteHandler, createUserHandler, getUsersHandlers, deleteFavoriteHandler, getFavoriteHandler, getVideogamesBuy
 }
