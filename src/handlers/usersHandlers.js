@@ -15,7 +15,6 @@ const getUsersHandlers = async (req, res) => {
 }
 
 
-
 const createUserHandler = async (req, res) => {
     const { sub, name, email } = req.body
 
