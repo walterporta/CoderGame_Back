@@ -7,7 +7,7 @@ const { getAllFavorites } = require('../controllers/Users/getAllFavoritesId')
 const getUsersHandlers = async (req, res) => {
     const { emal, nickName } = req.query
     try {
-        
+
     } catch (error) {
 
     }
@@ -21,13 +21,13 @@ const createUserHandler = async (req, res) => {
     try {
         // if (!name || !email || !password || !username || !lastname || !gender)
         //     throw new Error('Incomplete data')
-       
+
 
         const newUser = await createNewUser({ sub, name, email })
         return res.status(201).json(newUser)
     } catch (error) {
         res.status(400).send({ Error: error.message })
- 
+
     }
 
 }
@@ -79,7 +79,7 @@ const loginHandler = async (req, res) => {
     }
 }
 
-const getVideogamesBuy = async (req,res)=>{
+const getVideogamesBuy = async (req, res) => {
     const { id } = req.params
 
     try {
