@@ -51,6 +51,9 @@ Favorites.belongsTo(Videogames);
 Users.hasMany(Favorites);
 Favorites.belongsTo(Users);
 
+Users.hasMany(Videogames);
+Videogames.belongsTo(Users);
+
 module.exports = {
    ...db.models,
    conn: db,

@@ -34,12 +34,12 @@ const getVideoGameByIdHandler = async (req, res) => {
 
 
 const createVideoGamesHandler = async (req, res) => {
-  const { name, released, genres, rating, platforms, description, image, price, gameLink} = req.body
+  const { sub, name, released, genres, rating, platforms, description, image, price, gameLink} = req.body
   
   try {
-    if (!name || !released || genres.length === 0 || !platforms || !description || !image || !price || !gameLink) throw new Error('Faltan parametros para crear un juego')
+    if (!sub || !name || !released || genres.length === 0 || !platforms || !description || !image || !price || !gameLink) throw new Error('Faltan parametros para crear un juego')
 
-    const newGame = await createNewGame({ name, released, genres, rating, platforms, description, image, price, gameLink })
+    const newGame = await createNewGame({ sub, name, released, genres, rating, platforms, description, image, price, gameLink })
 
     return res.status(201).json(newGame)
   } catch (error) {
