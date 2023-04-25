@@ -3,7 +3,6 @@ const { addFavorite } = require('../controllers/Users/addFavorites')
 const { deleteFavorite } = require('../controllers/Users/deleteFavorites')
 const { getAllFavorites } = require('../controllers/Users/getAllFavoritesId')
 
-
 const getUsersHandlers = async (req, res) => {
     const { emal, nickName } = req.query
     try {
@@ -22,7 +21,6 @@ const createUserHandler = async (req, res) => {
         // if (!name || !email || !password || !username || !lastname || !gender)
         //     throw new Error('Incomplete data')
        
-
         const newUser = await createNewUser({ sub, name, email })
         return res.status(201).json(newUser)
     } catch (error) {
@@ -88,6 +86,7 @@ const getVideogamesBuy = async (req,res)=>{
         res.status(400).json({ Error: error.message })
     }
 }
+
 
 module.exports = {
     addFavoriteHandler, createUserHandler, getUsersHandlers, deleteFavoriteHandler, getFavoriteHandler, getVideogamesBuy

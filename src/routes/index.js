@@ -19,4 +19,6 @@ router.use('/user', usersRoutes);
 router.use('/checkout', checkout)
 router.use('/empresa', empresaRoutes)
 
+
+
 module.exports = router;

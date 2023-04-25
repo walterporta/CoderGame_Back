@@ -2,6 +2,7 @@ const { createNewGame } = require('../controllers/Videogames/createNewGame.js')
 const { findGameName } = require('../controllers/Videogames/findGameName.js');
 const { findGameById } = require('../controllers/Videogames/findGameById.js');
 const { deleteLogical } = require('../controllers/Videogames/deleteLogical.js');
+const { insertComentarioV } =require('../controllers/Videogames/InsertComentariosVideogames')
 
 
 const getVideoGamesHandler = async (req, res) => {
@@ -19,7 +20,7 @@ const getVideoGamesHandler = async (req, res) => {
 
 const getVideoGameByIdHandler = async (req, res) => {
   const { id } = req.params;
-
+  console.log('handler id')
   try {
     const videoGame = await findGameById(id);
     if (videoGame) {
@@ -61,10 +62,22 @@ const deleteVideoGameLogicallyHandler = async (req, res) => {
 
 }
 
+const addComentarioVideogame = async (req,res) =>{
+  const {sub, idVideogame, comentario} = req.body
+  try {
+    const response = await insertComentarioV(sub, idVideogame, comentario)
+    res.status(200).json(response)
+  } catch (error) {
+    res.status(400).json({Error:error.message})
+  }
+}
+
+
 module.exports = {
   getVideoGamesHandler,
   createVideoGamesHandler,
   getVideoGameByIdHandler,
-  deleteVideoGameLogicallyHandler
+  deleteVideoGameLogicallyHandler,
+  addComentarioVideogame
 
 }
