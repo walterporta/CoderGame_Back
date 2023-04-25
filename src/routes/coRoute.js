@@ -12,14 +12,12 @@ checkout.post('/', async (req, res) => {
     const paymentIntent = await stripe.paymentIntents.create({
       currency: "USD",
       amount:  input * 100,
-      //payment_method: 'card',
     });
     // Send publishable key and PaymentIntent details to client
     res.send({
       clientSecret: paymentIntent.client_secret,
     });
   } catch (e) {
-    console.log(e)
     return res.status(400).send({
       error: {
         message: e.message,
@@ -28,10 +26,11 @@ checkout.post('/', async (req, res) => {
   }
 });
 
-checkout.post('/cargaCoins', async (req, res) =>{
+checkout.post('/cargacoins', async (req, res) =>{
   const { user, input } = req.body;
   try {
     await balanceCharge(user.sub, input)
+    console.log('exito')
   } catch (error) {
     res.status(400).json(error.message)
   }
