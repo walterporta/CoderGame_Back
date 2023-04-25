@@ -2,10 +2,10 @@ const { Users, Wallets } = require('../../db.js')
 const { message } = require('../message/message.js')
 
 const createNewUser = async ({ sub, name, email }) => {
-
+    console.log('acatoy')
     const user = await Users.findOne({ where: { sub: sub } })
     if (!user) message(email, name)
-    //const count = await Users.count()
+    
 
     let objuser = {
         sub,

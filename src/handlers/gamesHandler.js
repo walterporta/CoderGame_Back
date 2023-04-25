@@ -3,7 +3,7 @@ const { findGameName } = require('../controllers/Videogames/findGameName.js');
 const { findGameById } = require('../controllers/Videogames/findGameById.js');
 const { deleteLogical } = require('../controllers/Videogames/deleteLogical.js');
 const { insertComentarioV } =require('../controllers/Videogames/InsertComentariosVideogames')
-
+const { deleteComentarioV } = require('../controllers/Videogames/deleteComentariosVideogames.js')
 
 const getVideoGamesHandler = async (req, res) => {
     const { name, genre, platforms } = req.query
@@ -72,8 +72,13 @@ const addComentarioVideogame = async (req,res) =>{
   }
 }
 
-const deleteComentario = async () =>{
-  
+const deleteComentario = async (req,res) =>{
+  const {id} = req.body
+  try {
+    res.status(200).json(deleteComentarioV(id))
+  } catch (error) {
+    res.status(200).json('no se pudo eliminar el comentario')
+  }
 }
 
 module.exports = {
@@ -81,6 +86,6 @@ module.exports = {
   createVideoGamesHandler,
   getVideoGameByIdHandler,
   deleteVideoGameLogicallyHandler,
-  addComentarioVideogame
-
+  addComentarioVideogame,
+  deleteComentario
 }

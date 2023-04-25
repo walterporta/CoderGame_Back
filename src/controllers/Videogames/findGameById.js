@@ -23,10 +23,11 @@ const findGameById = async (id) => {
         {
           model: ComentariosV,
           attributes: ['id', 'message', 'date'],
+          where:{eliminate:false},
           include: [
             {
               model: Users,
-              attributes: ['sub', 'name']
+              attributes: ['sub', 'name'],
             }
           ],
           order: [
