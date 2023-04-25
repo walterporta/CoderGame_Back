@@ -1,8 +1,8 @@
 const { Router } = require('express')
-const { allPlatforms } = require('../handlers/platformsHandler')
+const { allPlatforms, platformsFilterHandler } = require('../handlers/platformsHandler')
 
 const platforms = Router()
 
 platforms.get('/', allPlatforms)
-
+platforms.get('/filter', platformsFilterHandler)
 module.exports = platforms; 

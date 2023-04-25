@@ -12,6 +12,8 @@ const modelWallets = require('./models/Wallet');
 const modelTransactions = require('./models/Transactions.js');
 const modelFavorites = require('./models/Favorites.js')
 const modelComentariosV = require('./models/ComentariosV.js')
+const modelProfile = require('./models/Profile.js')
+
 
 const db = new Sequelize(
    `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${PORT_DB}/${DB_NAME}`,
@@ -28,9 +30,9 @@ modelWallets(db);
 modelTransactions(db)
 modelFavorites(db)
 modelComentariosV(db)
+modelProfile(db)
 
-
-const { Videogames, Genregames, Platforms, Wallets, Users, Transactions, Favorites, ComentariosV } = db.models
+const { Videogames, Genregames, Platforms, Wallets, Users, Transactions, Favorites, ComentariosV, Profile } = db.models
 
 
 Videogames.belongsToMany(Genregames, { through: 'GameGenre' }); // muchos a muchos, tabla intermedia
@@ -63,10 +65,11 @@ ComentariosV.belongsTo(Users)
 Videogames.hasMany(ComentariosV)
 ComentariosV.belongsTo(Videogames)
 
+Users.hasOne(Profile); 
+Profile.belongsTo(Users); 
+
 module.exports = {
    ...db.models,
    conn: db,
 };
-
-
  

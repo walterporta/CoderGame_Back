@@ -12,7 +12,7 @@ const genreHandler = async (req, res) => {
 
 const genreFilterHandler = async(req, res)=>{
     try {
-        const listGenre = await genrePlatformsFilter(Genregames)
+        const listGenre = await genrePlatformsFilter('Genregames')
         res.status(200).json(listGenre)
     } catch (error) {
         res.status(400).json({ error: "no se encontraron generos" })

@@ -12,11 +12,14 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
 
     },
-    date:{
-        type: DataTypes.DATE,
+    date:{ 
         type: DataTypes.DATE,
         defaultValue: ()=>new Date,
         allowNull: false,
+    },
+    eliminate:{
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
     }
 
   }, {
