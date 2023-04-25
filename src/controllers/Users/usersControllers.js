@@ -1,15 +1,19 @@
 const { Users, Wallets } = require('../../db.js')
-const {message} = require('../message/message.js')
+const { message } = require('../message/message.js')
 
 const createNewUser = async ({ sub, name, email }) => {
 
-     const user = await Users.findOne({where:{sub:sub}})
-    if(!user) message(email, name)
-    const objuser = {
+    const user = await Users.findOne({ where: { sub: sub } })
+    if (!user) message(email, name)
+    const count = await Users.count()
+
+    let objuser = {
         sub,
         name,
         email
     }
+    count === 0 ? objuser.rol = 'admin' : objuser.rol = 'client'
+    console.log(objuser);
     const [newUser, created] = await Users.findOrCreate({
         where: {
             sub: sub
@@ -19,10 +23,10 @@ const createNewUser = async ({ sub, name, email }) => {
     if (created) console.log('creado');
     else console.log('ya existe');
 
-    const findWallets = await Wallets.findOne({where:{UserSub:sub}})
-    
-    if(!findWallets) await Wallets.create({UserSub: sub})
-    
+    const findWallets = await Wallets.findOne({ where: { UserSub: sub } })
+
+    if (!findWallets) await Wallets.create({ UserSub: sub })
+
     return newUser
 }
 
