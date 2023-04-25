@@ -4,7 +4,8 @@ const {
     createVideoGamesHandler,
     getVideoGameByIdHandler,
     deleteVideoGameLogicallyHandler,
-    addComentarioVideogame
+    addComentarioVideogame,
+    deleteComentarioVideogame
 } = require('../handlers/gamesHandler.js');
 const { requiresAuth } = require('express-openid-connect');
 const videoGames = Router(); 
@@ -25,6 +26,7 @@ videoGames.post('/', createVideoGamesHandler);
 videoGames.get('/:id', getVideoGameByIdHandler);
 videoGames.put('/:id', deleteVideoGameLogicallyHandler);
 videoGames.post('/comentario', addComentarioVideogame)
+// videoGames.delete('/comentario', deleteComentarioVideogame)
 // videoGames.get('/', requiresAuth(), getVideoGamesHandler);
 // videoGames.post('/', requiresAuth(), isAdmin, createVideoGamesHandler);
 // videoGames.get('/:id', requiresAuth(), getVideoGameByIdHandler);
