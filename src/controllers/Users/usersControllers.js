@@ -5,15 +5,18 @@ const createNewUser = async ({ sub, name, email }) => {
 
     const user = await Users.findOne({ where: { sub: sub } })
     if (!user) message(email, name)
-    const count = await Users.count()
+    //const count = await Users.count()
 
     let objuser = {
         sub,
         name,
         email
     }
-    count === 0 ? objuser.rol = 'admin' : objuser.rol = 'client'
-    console.log(objuser);
+    if (objuser.email === 'roderickrodriguez706@gmail.com') {
+        objuser.rol = 'admin'
+    }
+
+
     const [newUser, created] = await Users.findOrCreate({
         where: {
             sub: sub
