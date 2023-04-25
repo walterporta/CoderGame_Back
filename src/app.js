@@ -8,15 +8,15 @@ const { CLIENT_ID, DOMAIN, CLIENT_SECRET, BASE_URL } = process.env;
 const app = express();
 const { auth } = require("express-openid-connect");
 
-const config = {
-  authRequired: false,
-  auth0Logout: true,
-  baseURL: BASE_URL,
-  clientID: CLIENT_ID,
-  issuerBaseURL: DOMAIN,
-  secret: CLIENT_SECRET,
-};
-app.use(auth(config));
+// const config = {
+//   authRequired: false, 
+//   auth0Logout: true,
+//   baseURL: BASE_URL,
+//   clientID: CLIENT_ID,
+//   issuerBaseURL: DOMAIN,
+//   secret: CLIENT_SECRET,
+// };
+// app.use(auth(config));
 
 const errorHandler = (err, req, res, next) => {
   res.status(500).send(`tienes un error en${err.message}`);

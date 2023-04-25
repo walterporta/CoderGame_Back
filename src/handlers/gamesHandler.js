@@ -72,7 +72,9 @@ const addComentarioVideogame = async (req,res) =>{
   }
 }
 
-const deleteComentario = async ()
+const deleteComentario = async () =>{
+  
+}
 
 module.exports = {
   getVideoGamesHandler,
