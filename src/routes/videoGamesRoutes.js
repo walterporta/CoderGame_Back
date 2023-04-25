@@ -7,19 +7,10 @@ const {
     addComentarioVideogame,
     deleteComentarioVideogame
 } = require('../handlers/gamesHandler.js');
-const { requiresAuth } = require('express-openid-connect');
-const videoGames = Router(); 
 
-const isAdmin = (req, res, next) => {
-    const { sub } = req.oidc.user;
-    const { roles } = req.oidc.idToken.payload;
-    console.log(`User ${sub} has roles ${roles}`);
-    if (roles.includes('admin')) {
-        next();
-    } else {
-        res.status(403).send('Forbidden');
-    }
-};
+const videoGames = Router();
+
+
 
 videoGames.get('/', getVideoGamesHandler);
 videoGames.post('/', createVideoGamesHandler);
