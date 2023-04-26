@@ -4,14 +4,25 @@ const { deleteFavorite } = require('../controllers/Users/deleteFavorites')
 const { getAllFavorites } = require('../controllers/Users/getAllFavoritesId')
 const { upditeProfile } = require('../controllers/Users/upditeProfile')
 
-const getUsersHandlers = async (req, res) => {
-    const { emal, nickName } = req.query
-    try {
 
+
+const getUsersHandlers = async (req, res) => {
+    const {sub} = req.query
+    try {
+        
     } catch (error) {
 
     }
 
+}
+
+const getProfileUsers = async (req,res)=>{
+
+    try {
+        
+    } catch (error) {
+        
+    }
 }
 
 const upditeProfilehandler = async (req,res) =>{
