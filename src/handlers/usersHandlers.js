@@ -7,7 +7,7 @@ const { upditeProfile } = require('../controllers/Users/upditeProfile')
 
 
 const getUsersHandlers = async (req, res) => {
-    const {sub} = req.query
+    
     try {
         
     } catch (error) {
@@ -17,7 +17,7 @@ const getUsersHandlers = async (req, res) => {
 }
 
 const getProfileUsers = async (req,res)=>{
-
+    const {sub} = req.params
     try {
         
     } catch (error) {
