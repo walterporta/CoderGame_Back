@@ -3,13 +3,32 @@ Crear una bas de datos en PostgreSQL llamada codergame
 
 rutas:
 
-get /genres (lista de generos)
-get /genres/filter (generos sin videojuegos asociados)
+get */genres* (lista de generos)
+get */genres/filter* (generos sin videojuegos asociados)
 
-get /platforms (lista de plataformas)
-get /platforms (plataformas sin videojuegos asociados)
+get */platforms* (lista de plataformas)
+get */platforms* (plataformas sin videojuegos asociados)
 
-get /videogames (trae todos los videojuegos, filtro convinado por query name, genres, platforms)
- 
+get */videogames* (trae todos los videojuegos, filtro convinado por query name, genres, platforms)
+post */videogames* (crea un juego, enviar sub para asociarlo)
+get */videogames/:id* (detalle del juego)
+put */videogames/:id* (modificaciones del videojuego)
+post */videogames/comentario* (agrega comentario al videojuego, hay que enviar idVidoegame, sub, comentaro)
+delete */videogames/comentario* (borrado logico del comentario, mandar id comentario)
 
-/videogames/
+post */user/register* (loguin y creacion de usuario, con billetera y perfil)
+post */user/favorites* (agrega a la lista de favoritos)
+delete */user/favorites* (saca del favorites el videojuego asociado)
+get */user/favorites/:id* ( trae los videogames de la lista de favoritos, mandar en params el sub del usuario)
+get */user/videogames/:id* (trae los videogames comprados por el usuario, mandar por params el sub del usuario)
+put */user/profile* (modidficaciones del profile del usuario, mandar sub del usuario y modificaciones)
+
+post */checkout* (compra)
+post */checkout/cargacoins* (insert del saldo en la wallets,mandar user, input)
+post */checkout/buy* (compra de videojuegos, mandar sub y idVidoegame)
+
+get */empresa/videogames* (juegos creados por la empresa, enviar sub de empresa)
+
+
+
+
