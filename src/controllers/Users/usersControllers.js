@@ -1,5 +1,9 @@
 const { Users, Wallets } = require('../../db.js')
 const { message } = require('../message/message.js')
+require('dotenv').config();
+
+const { USER_ADMIN } = process.env
+
 
 const createNewUser = async ({ sub, name, email }) => {
 
@@ -12,7 +16,7 @@ const createNewUser = async ({ sub, name, email }) => {
         name,
         email
     }
-    if (objuser.email === 'roderickrodriguez706@gmail.com') {
+    if (objuser.email === USER_ADMIN) {
         objuser.rol = 'admin'
     }
 
@@ -23,8 +27,6 @@ const createNewUser = async ({ sub, name, email }) => {
         },
         defaults: objuser
     })
-    if (created) console.log('creado');
-    else console.log('ya existe');
 
     const findWallets = await Wallets.findOne({ where: { UserSub: sub } })
 
