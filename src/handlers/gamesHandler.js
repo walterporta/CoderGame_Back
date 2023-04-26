@@ -2,12 +2,15 @@ const { createNewGame } = require('../controllers/Videogames/createNewGame.js')
 const { findGameName } = require('../controllers/Videogames/findGameName.js');
 const { findGameById } = require('../controllers/Videogames/findGameById.js');
 const { deleteLogical } = require('../controllers/Videogames/deleteLogical.js');
-const verifyRol = require('../helpers/verifyRol.js');
+const { updateVideogames } = require('../controllers/Videogames/updateVideogame.js');
+
 
 const getVideoGamesHandler = async (req, res) => {
+  
   const { name, genre, platforms } = req.query
   try {
     const allVideoGames = await findGameName(name, genre, platforms)
+    
     res.status(200).json(allVideoGames)
   } catch (error) {
 
@@ -17,9 +20,10 @@ const getVideoGamesHandler = async (req, res) => {
 
 }
 
+
 const getVideoGameByIdHandler = async (req, res) => {
   const { id } = req.params;
-
+  
   try {
     const videoGame = await findGameById(id);
     if (videoGame) {
@@ -43,22 +47,12 @@ const getVideoGameByIdHandler = async (req, res) => {
 //   throw new Error('No tienes permiso para crear un juego');
 // }
 const createVideoGamesHandler = async (req, res) => {
-  const { name, released, genres, rating, platforms, description, image, price, gameLink, user } = req.body
-  const email = user?.email
-  if (!email) return res.status(400).send('debes estar logeado')
-  const role = await verifyRol(email)
-  console.log(role);
-  if (role !== 'admin' && role !== 'seller') {
-    return res.status(403).send('No tienes los permisos necesarios');
-
-  }
-
+  const { name, released, genres, rating, platforms, description, image, price, gameLink} = req.body
+  
   try {
-    if (!name || !released || genres.length === 0 || !platforms || !description || !image || !price || !gameLink) {
-      throw new Error('Faltan parametros para crear un juego')
-    }
+    if (!name || !released || genres.length === 0 || !platforms || !description || !image || !price || !gameLink) throw new Error('Faltan parametros para crear un juego')
 
-    const newGame = await createNewGame({ name, released, genres, rating, platforms, description, image, price, gameLink })
+    const newGame = await createNewGame({ sub, name, released, genres, rating, platforms, description, image, price, gameLink })
 
     return res.status(201).json(newGame)
   }
@@ -82,10 +76,42 @@ const deleteVideoGameLogicallyHandler = async (req, res) => {
 
 }
 
+const addComentarioVideogame = async (req,res) =>{
+  const {sub, idVideogame, comentario} = req.body
+  try {
+    const response = await insertComentarioV(sub, idVideogame, comentario)
+    res.status(200).json(response)
+  } catch (error) {
+    res.status(400).json({Error:error.message})
+  }
+}
+
+const deleteComentario = async (req,res) =>{
+  const {id} = req.body
+  try {
+    res.status(200).json(deleteComentarioV(id))
+  } catch (error) {
+    res.status(200).json('no se pudo eliminar el comentario')
+  }
+}
+
+const updateGameHandler = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const game = await updateVideogames(id, req.body);
+    res.status(200).json(game);
+  } catch (error) {
+    res.status(400).json({error: error.message});
+  }
+}
+
+
 module.exports = {
   getVideoGamesHandler,
   createVideoGamesHandler,
   getVideoGameByIdHandler,
-  deleteVideoGameLogicallyHandler
-
+  deleteVideoGameLogicallyHandler,
+  addComentarioVideogame,
+  deleteComentario,
+  updateGameHandler
 }

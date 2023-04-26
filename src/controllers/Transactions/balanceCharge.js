@@ -11,6 +11,7 @@ const balanceCharge= async (idUser, amount) => {
 
         return 'se cargo saldo correctamente'
         }
+        
     throw new Error('no se pudo cargar el saldo')
     }
 

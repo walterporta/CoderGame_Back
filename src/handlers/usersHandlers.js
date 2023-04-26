@@ -2,25 +2,49 @@ const { createNewUser } = require('../controllers/Users/usersControllers')
 const { addFavorite } = require('../controllers/Users/addFavorites')
 const { deleteFavorite } = require('../controllers/Users/deleteFavorites')
 const { getAllFavorites } = require('../controllers/Users/getAllFavoritesId')
+const { upditeProfile } = require('../controllers/Users/upditeProfile')
+const { getProfileBySub } = require('../controllers/Users/getUProfileBySub')
 
 
 const getUsersHandlers = async (req, res) => {
-    const { emal, nickName } = req.query
+    
     try {
-
+        
     } catch (error) {
 
     }
 
 }
 
+const getProfileUsers = async (req,res)=>{
+    const {sub} = req.params
+    try {
+        const response = await getProfileBySub(sub)
+        res.status(200).json(response)
+    } catch (error) {
+        res.status(400).json(error.message)
+    }
+}
+
+const upditeProfilehandler = async (req,res) =>{
+    const {sub, image, coverImage, linkYoutube, description } = req.body
+    console.log(req.body)
+    try {
+        const updite = await upditeProfile(sub, {image, coverImage, linkYoutube, description})
+        res.status(200).json(updite)
+        
+    } catch (error) {
+            res.status(400).json( {error: error.message} )
+    }
+}
 
 const createUserHandler = async (req, res) => {
     const { sub, name, email, user } = req.body
     console.log(`login ${user}`);
     try {
+        // if (!name || !email || !password || !username || !lastname || !gender)
+        //     throw new Error('Incomplete data')
        
-
 
         const newUser = await createNewUser({ sub, name, email })
         return res.status(201).json(newUser)
@@ -42,6 +66,8 @@ const addFavoriteHandler = async (req, res) => {
         res.status(400).json({ Error: error.message })
     }
 }
+
+
 
 const deleteFavoriteHandler = async (req, res) => {
     const { idUser, idVideogame } = req.body
@@ -88,6 +114,14 @@ const getVideogamesBuy = async (req, res) => {
     }
 }
 
+
 module.exports = {
-    addFavoriteHandler, createUserHandler, getUsersHandlers, deleteFavoriteHandler, getFavoriteHandler, getVideogamesBuy
+    addFavoriteHandler,
+    createUserHandler,
+    getUsersHandlers,
+    deleteFavoriteHandler,
+    getFavoriteHandler,
+    getVideogamesBuy,
+    upditeProfilehandler,
+    getProfileUsers
 }

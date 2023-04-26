@@ -1,4 +1,4 @@
-const { Videogames, Genregames, Platforms } = require('../../db')
+const { Videogames, Genregames, Platforms, ComentariosV } = require('../../db')
 const { Op, where } = require('sequelize')
 const {searchApi } = require('../ApyAndDb/getApiData')
 
@@ -18,6 +18,7 @@ const findGameName = async (name, genre, platforms) => {
               attributes: ['id', 'name'],
               where: {
                 name: genre ? genre : { [Op.ne]: null }
+                 
               },
               through: {
                 attributes: []
@@ -36,6 +37,8 @@ const findGameName = async (name, genre, platforms) => {
             }
           ]
     })    
+
+    
     return findGame
 }
 
