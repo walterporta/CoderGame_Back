@@ -12,11 +12,11 @@ module.exports = (sequelize) => {
                 
             },
             image: {
-                type: DataTypes.DATE,
-                defaultValue: ()=>new Date,
-            },
-            protada: {
-                type: DataTypes.DECIMAL,
+                type: DataTypes.STRING,
+                
+            },            
+            coverImage: {
+                type: DataTypes.STRING,
                 
             },
             linkYoutube:{

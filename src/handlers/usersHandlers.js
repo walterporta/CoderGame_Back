@@ -2,6 +2,7 @@ const { createNewUser } = require('../controllers/Users/usersControllers')
 const { addFavorite } = require('../controllers/Users/addFavorites')
 const { deleteFavorite } = require('../controllers/Users/deleteFavorites')
 const { getAllFavorites } = require('../controllers/Users/getAllFavoritesId')
+const { upditeProfile } = require('../controllers/Users/upditeProfile')
 
 const getUsersHandlers = async (req, res) => {
     const { emal, nickName } = req.query
@@ -13,6 +14,17 @@ const getUsersHandlers = async (req, res) => {
 
 }
 
+const upditeProfilehandler = async (req,res) =>{
+    const {sub, image, coverImage, linkYoutube, description } = req.body
+    console.log(req.body)
+    try {
+        const updite = await upditeProfile(sub, {image, coverImage, linkYoutube, description})
+        res.status(200).json(updite)
+        
+    } catch (error) {
+            res.status(400).json( {error: error.message} )
+    }
+}
 
 const createUserHandler = async (req, res) => {
     const { sub, name, email } = req.body
@@ -41,6 +53,8 @@ const addFavoriteHandler = async (req, res) => {
         res.status(400).json({ Error: error.message })
     }
 }
+
+
 
 const deleteFavoriteHandler = async (req, res) => {
     const { idUser, idVideogame } = req.body
@@ -89,5 +103,11 @@ const getVideogamesBuy = async (req,res)=>{
 
 
 module.exports = {
-    addFavoriteHandler, createUserHandler, getUsersHandlers, deleteFavoriteHandler, getFavoriteHandler, getVideogamesBuy
+    addFavoriteHandler,
+    createUserHandler,
+    getUsersHandlers,
+    deleteFavoriteHandler,
+    getFavoriteHandler,
+    getVideogamesBuy,
+    upditeProfilehandler
 }

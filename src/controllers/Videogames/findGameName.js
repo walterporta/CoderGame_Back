@@ -18,6 +18,7 @@ const findGameName = async (name, genre, platforms) => {
               attributes: ['id', 'name'],
               where: {
                 name: genre ? genre : { [Op.ne]: null }
+                
               },
               through: {
                 attributes: []
