@@ -38,6 +38,7 @@ const findGameName = async (name, genre, platforms) => {
           ]
     })    
 
+    
     return findGame
 }
 

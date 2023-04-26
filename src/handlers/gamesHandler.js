@@ -2,12 +2,15 @@ const { createNewGame } = require('../controllers/Videogames/createNewGame.js')
 const { findGameName } = require('../controllers/Videogames/findGameName.js');
 const { findGameById } = require('../controllers/Videogames/findGameById.js');
 const { deleteLogical } = require('../controllers/Videogames/deleteLogical.js');
+const { updateVideogames } = require('../controllers/Videogames/updateVideogame.js');
 
 
 const getVideoGamesHandler = async (req, res) => {
+  
   const { name, genre, platforms } = req.query
   try {
     const allVideoGames = await findGameName(name, genre, platforms)
+    
     res.status(200).json(allVideoGames)
   } catch (error) {
 
@@ -19,7 +22,7 @@ const getVideoGamesHandler = async (req, res) => {
 
 const getVideoGameByIdHandler = async (req, res) => {
   const { id } = req.params;
-  console.log('handler id')
+  
   try {
     const videoGame = await findGameById(id);
     if (videoGame) {
@@ -91,11 +94,23 @@ const deleteComentario = async (req,res) =>{
   }
 }
 
+const updateGameHandler = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const game = await updateVideogames(id, req.body);
+    res.status(200).json(game);
+  } catch (error) {
+    res.status(400).json({error: error.message});
+  }
+}
+
+
 module.exports = {
   getVideoGamesHandler,
   createVideoGamesHandler,
   getVideoGameByIdHandler,
   deleteVideoGameLogicallyHandler,
   addComentarioVideogame,
-  deleteComentario
+  deleteComentario,
+  updateGameHandler
 }
