@@ -2,15 +2,14 @@ const { createNewGame } = require('../controllers/Videogames/createNewGame.js')
 const { findGameName } = require('../controllers/Videogames/findGameName.js');
 const { findGameById } = require('../controllers/Videogames/findGameById.js');
 const { deleteLogical } = require('../controllers/Videogames/deleteLogical.js');
-const { insertComentarioV } =require('../controllers/Videogames/InsertComentariosVideogames')
-const { deleteComentarioV } = require('../controllers/Videogames/deleteComentariosVideogames.js')
+
 
 const getVideoGamesHandler = async (req, res) => {
-    const { name, genre, platforms } = req.query
-    try {
-        const allVideoGames = await findGameName(name, genre, platforms)
-        res.status(200).json(allVideoGames)
-    } catch (error) {
+  const { name, genre, platforms } = req.query
+  try {
+    const allVideoGames = await findGameName(name, genre, platforms)
+    res.status(200).json(allVideoGames)
+  } catch (error) {
 
     res.status(400).json({ error: error.message })
 
@@ -34,21 +33,32 @@ const getVideoGameByIdHandler = async (req, res) => {
 };
 
 
+// console.log(user.email);
+// if (!user.email) throw new Error('Debes estar logeado');
+// const email = user?.email
+// const rol = await verifyRol(email)
+
+// if (!rol.includes('admin') || !rol.includes('seller')) {
+
+//   throw new Error('No tienes permiso para crear un juego');
+// }
 const createVideoGamesHandler = async (req, res) => {
-  const { sub, name, released, genres, rating, platforms, description, image, price, gameLink} = req.body
+  const { name, released, genres, rating, platforms, description, image, price, gameLink} = req.body
   
   try {
-    if (!sub || !name || !released || genres.length === 0 || !platforms || !description || !image || !price || !gameLink) throw new Error('Faltan parametros para crear un juego')
+    if (!name || !released || genres.length === 0 || !platforms || !description || !image || !price || !gameLink) throw new Error('Faltan parametros para crear un juego')
 
     const newGame = await createNewGame({ sub, name, released, genres, rating, platforms, description, image, price, gameLink })
 
     return res.status(201).json(newGame)
-  } catch (error) {
-    res.status(400).send(error.message)
-
   }
-
+  catch (error) {
+    res.status(400).send(error.message)
+  }
 }
+
+
+
 const deleteVideoGameLogicallyHandler = async (req, res) => {
   const { id } = req.params
   if (!id) throw new Error('Ingresar un id valido')

@@ -6,7 +6,7 @@ require("dotenv").config();
 const { CLIENT_ID, DOMAIN, CLIENT_SECRET, BASE_URL } = process.env;
 // Middlewares
 const app = express();
-const { auth } = require("express-openid-connect");
+// const { auth } = require("express-openid-connect");
 
 // const config = {
 //   authRequired: false, 
@@ -28,5 +28,5 @@ app.use(morgan("dev"));
 
 app.use("/", router);
 app.use(errorHandler);
-
+ 
 module.exports = app;

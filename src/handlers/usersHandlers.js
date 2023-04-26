@@ -7,7 +7,7 @@ const { upditeProfile } = require('../controllers/Users/upditeProfile')
 const getUsersHandlers = async (req, res) => {
     const { emal, nickName } = req.query
     try {
-        
+
     } catch (error) {
 
     }
@@ -27,17 +27,18 @@ const upditeProfilehandler = async (req,res) =>{
 }
 
 const createUserHandler = async (req, res) => {
-    const { sub, name, email } = req.body
-
+    const { sub, name, email, user } = req.body
+    console.log(`login ${user}`);
     try {
         // if (!name || !email || !password || !username || !lastname || !gender)
         //     throw new Error('Incomplete data')
        
+
         const newUser = await createNewUser({ sub, name, email })
         return res.status(201).json(newUser)
     } catch (error) {
         res.status(400).send({ Error: error.message })
- 
+
     }
 
 }
@@ -91,7 +92,7 @@ const loginHandler = async (req, res) => {
     }
 }
 
-const getVideogamesBuy = async (req,res)=>{
+const getVideogamesBuy = async (req, res) => {
     const { id } = req.params
 
     try {
