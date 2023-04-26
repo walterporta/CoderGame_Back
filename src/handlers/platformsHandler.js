@@ -1,6 +1,7 @@
 const { Platforms } = require('../db')
 const { getAllPlatforms } = require('../controllers/ApyAndDb/getPlatforms')
 const {genrePlatformsFilter} = require('../controllers/Videogames/getGenrefilter')
+
 const allPlatforms = async (req, res) => {
     try {
         await getAllPlatforms();
@@ -22,8 +23,6 @@ const platformsFilterHandler = async(req, res)=>{
 
     }
 }
-
-
 
 module.exports = {
     allPlatforms,

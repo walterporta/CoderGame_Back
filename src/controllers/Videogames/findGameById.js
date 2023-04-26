@@ -32,7 +32,8 @@ const findGameById = async (id) => {
           ],
           order: [
             ['date', 'DESC']
-          ]
+          ],
+          required: false
         }
     ],
   });

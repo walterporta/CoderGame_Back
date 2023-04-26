@@ -5,4 +5,6 @@ const platforms = Router()
 
 platforms.get('/', allPlatforms)
 platforms.get('/filter', platformsFilterHandler)
+
+
 module.exports = platforms; 

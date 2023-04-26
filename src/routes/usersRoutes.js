@@ -13,5 +13,6 @@ usersRoutes.get('/favorites/:id', getFavoriteHandler)
 usersRoutes.get('/videogames/:id', getVideogamesBuy)
 usersRoutes.put('/profile', upditeProfilehandler)
 
+
 module.exports = usersRoutes
 
