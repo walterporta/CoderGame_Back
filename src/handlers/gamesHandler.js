@@ -20,6 +20,7 @@ const getVideoGamesHandler = async (req, res) => {
 
 }
 
+
 const getVideoGameByIdHandler = async (req, res) => {
   const { id } = req.params;
   
