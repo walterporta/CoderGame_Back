@@ -41,5 +41,5 @@ const createNewUser = async ({ sub, name, email }) => {
 }
 
 
-
+}
 module.exports = { createNewUser }
