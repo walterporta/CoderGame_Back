@@ -3,7 +3,7 @@ const { addFavorite } = require('../controllers/Users/addFavorites')
 const { deleteFavorite } = require('../controllers/Users/deleteFavorites')
 const { getAllFavorites } = require('../controllers/Users/getAllFavoritesId')
 const { upditeProfile } = require('../controllers/Users/upditeProfile')
-
+const { getProfileBySub } = require('../controllers/Users/getUProfileBySub')
 
 
 const getUsersHandlers = async (req, res) => {
@@ -19,9 +19,10 @@ const getUsersHandlers = async (req, res) => {
 const getProfileUsers = async (req,res)=>{
     const {sub} = req.params
     try {
-        
+        const response = await getProfileBySub(sub)
+        res.status(200).json(response)
     } catch (error) {
-        
+        res.status(400).json(error.message)
     }
 }
 
@@ -121,5 +122,6 @@ module.exports = {
     deleteFavoriteHandler,
     getFavoriteHandler,
     getVideogamesBuy,
-    upditeProfilehandler
+    upditeProfilehandler,
+    getProfileUsers
 }

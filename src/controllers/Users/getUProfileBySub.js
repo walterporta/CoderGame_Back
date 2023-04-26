@@ -1,7 +1,7 @@
 const { Users, Profile } = require('../../db')
 
-const getUserBySub = async (sub) =>{
-
+const getProfileBySub = async (sub) =>{
+    console.log(sub)
     const userProfile = await Profile.findOne({where:{UserSub:sub}})
 
 
@@ -9,4 +9,4 @@ const getUserBySub = async (sub) =>{
 
 }
 
-module.exports = {getUserBySub}
+module.exports = {getProfileBySub}
