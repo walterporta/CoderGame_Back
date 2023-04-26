@@ -3,7 +3,8 @@ const genresRoutes = require('./genresRoutes');
 const videoGamesRoutes = require('./videoGamesRoutes');
 const platformsRoutes = require('./platformsRoutes')
 const usersRoutes = require('./usersRoutes.js')
-const { requirseAuth } = require('express-openid-connect')
+const profileRoutes = require('./profileRoutes.js')
+
 
 const dbLoad = require('./dbLoad')
 const checkout = require('./coRoute');
@@ -16,6 +17,7 @@ router.use('/platforms', platformsRoutes);
 router.use('/cargadb', dbLoad)
 router.use('/user', usersRoutes);
 router.use('/checkout', checkout)
+router.use('profile', profileRoutes)
 
 
 module.exports = router;
