@@ -2,7 +2,6 @@ const { postDiscountGame } = require('../controllers/Videogames/postDiscountGame
 const {getFivePromotions} = require('../controllers/Videogames/getFivePromotions.js')
 
 
-
 const postPromotionsHandler = async (req,res)=>{
     const {idVideogame, dueDate,discount } = req.body
   
