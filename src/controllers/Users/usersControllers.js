@@ -29,7 +29,7 @@ const createNewUser = async ({ sub, name, email }) => {
         where: {
             sub: sub
         },
-        defaults: objuser
+        objuser
     })
 
     const findWallets = await Wallets.findOne({ where: { UserSub: sub }})
