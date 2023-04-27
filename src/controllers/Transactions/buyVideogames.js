@@ -1,7 +1,11 @@
 const {Transactions, Wallets, Videogames, Users, Favorites} = require('../../db')
-
+const{validateRole} = require('../validateRole')
 
 const buyVideogames = async (idVideogame, idUser) =>{
+  role = await validateRole(idUser)
+
+  if(role === 'seller'|| role==='admin') throw new Error('only customers can buy a game')
+
     const saldo = await Wallets.findOne({
         include: {
             model: Users,
