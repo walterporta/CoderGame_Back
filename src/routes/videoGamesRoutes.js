@@ -3,26 +3,29 @@ const {
     getVideoGamesHandler,
     createVideoGamesHandler,
     getVideoGameByIdHandler,
-    deleteVideoGameLogicallyHandler
+    deleteVideoGameLogicallyHandler,
+    addComentarioVideogame,
+    deleteComentario,
+    updateGameHandler,
+    postPromotionsHandler
 } = require('../handlers/gamesHandler.js');
-const { requiresAuth } = require('express-openid-connect');
-const videoGames = Router(); 
 
-const isAdmin = (req, res, next) => {
-    const { sub } = req.oidc.user;
-    const { roles } = req.oidc.idToken.payload;
-    console.log(`User ${sub} has roles ${roles}`);
-    if (roles.includes('admin')) {
-        next();
-    } else {
-        res.status(403).send('Forbidden');
-    }
-};
+const videoGames = Router();
+
+
 
 videoGames.get('/', getVideoGamesHandler);
 videoGames.post('/', createVideoGamesHandler);
 videoGames.get('/:id', getVideoGameByIdHandler);
-videoGames.put('/:id', deleteVideoGameLogicallyHandler);
+videoGames.delete('/:id', deleteVideoGameLogicallyHandler);
+videoGames.post('/comentario', addComentarioVideogame);
+videoGames.delete('/comentario',deleteComentario );
+videoGames.put('/:id', updateGameHandler);
+videoGames.post('/promotions',postPromotionsHandler)
+
+
+
+// videoGames.delete('/comentario', deleteComentarioVideogame)
 // videoGames.get('/', requiresAuth(), getVideoGamesHandler);
 // videoGames.post('/', requiresAuth(), isAdmin, createVideoGamesHandler);
 // videoGames.get('/:id', requiresAuth(), getVideoGameByIdHandler);

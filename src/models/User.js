@@ -4,7 +4,7 @@ module.exports = (sequelize) => {
   sequelize.define(
     'Users',
     {
-      sub: { 
+      sub: {
         type: DataTypes.TEXT,
         primaryKey: true,
       },
@@ -17,6 +17,16 @@ module.exports = (sequelize) => {
         // allowNull: false,
         unique: true,
       },
+      rol: {
+        type: DataTypes.ENUM('admin', 'client', 'seller'),
+        defaultValue: 'client',
+        allowNull: false
+
+      },
+      banned: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
+      }
     },
     {
       timestamps: false,

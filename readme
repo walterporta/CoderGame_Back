@@ -1,63 +1,35 @@
 Crear una bas de datos en PostgreSQL llamada codergame 
 
-Rutas
 
-Ruta Videogames
+rutas:
 
-Post = localhost:3001/videogames
+get */genres* (lista de generos)
+get */genres/filter* (generos sin videojuegos asociados)
 
-crea un juego con los siguientes datos: 
+get */platforms* (lista de plataformas)
+get */platforms* (plataformas sin videojuegos asociados)
 
-{
-    "name": "Lol", (string)
-    "released": "1958-01-01", (Date, entre 1958 y la fecha actual)
-    "rating": 5, (no puede superar el valor 5 ni ser menor a 1)
-    "platforms": ["PC"], (array con string)
-    "description": " " (string entre 50 y 500 caracteres)
-    "genres": ["Action"], (array de string)
-    "image": "cualquiera" (string)
-}
+get */videogames* (trae todos los videojuegos, filtro convinado por query name, genres, platforms)
+post */videogames* (crea un juego, enviar sub para asociarlo)
+get */videogames/:id* (detalle del juego)
+put */videogames/:id* (modificaciones del videojuego)
+post */videogames/comentario* (agrega comentario al videojuego, hay que enviar idVidoegame, sub, comentaro)
+delete */videogames/comentario* (borrado logico del comentario, mandar id comentario)
 
-Get =  localhost:3001/videogames
-
-trae lista completa de videojuegos, con la siguiente informacion:
-
-"id": 4200,
-		"name": "Portal 2",
-		"released": "2011-04-18",
-		"rating": 4.62,
-		"platforms": [
-			"Xbox 360",
-			"Linux",
-			"macOS",
-			"PlayStation 3",
-			"PC",
-			"Xbox One"
-		],
-		"description": null,
-		"image": "https://media.rawg.io/media/games/328/3283617cb7d75d67257fc58339188742.jpg",
-		"deleted": false,
-		"Genregames": [
-			{
-				"id": 7,
-				"name": "Puzzle"
-			}
-		]
-
-Recibe informacion por Query para realizar filtros que pueden ser convinados. La informacion que puede recibir es name y genero
+post */user/register* (loguin y creacion de usuario, con billetera y perfil)
+post */user/favorites* (agrega a la lista de favoritos)
+delete */user/favorites* (saca del favorites el videojuego asociado)
+get */user/favorites/:id* ( trae los videogames de la lista de favoritos, mandar en params el sub del usuario)
+get */user/videogames/:id* (trae los videogames comprados por el usuario, mandar por params el sub del usuario)
+put */user/sub (modificaciones del user (name, rol, banned...)
+put */user/profile* (modidficaciones del profile del usuario, mandar sub del usuario y modificaciones)
 
 
-Get localhost:3001/videogames/:id 
+post */checkout* (compra)
+post */checkout/cargacoins* (insert del saldo en la wallets,mandar user, input)
+post */checkout/buy* (compra de videojuegos, mandar sub y idVidoegame)
 
-get de videogame por id
-
-delete localhost:3001/videogames/:id
-
-Borrado logico del videogame en la base de datos
-
-Get localhost:3001/genres 
-
-get de las listas de generos que hay en la base de datos
+get */empresa/videogames* (juegos creados por la empresa, enviar sub de empresa)
 
 
 
