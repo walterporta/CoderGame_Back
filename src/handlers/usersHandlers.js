@@ -5,6 +5,8 @@ const { getAllFavorites } = require('../controllers/Users/getAllFavoritesId')
 const { upditeProfile } = require('../controllers/Users/upditeProfile')
 const { getProfileBySub } = require('../controllers/Users/getUProfileBySub')
 const { updateUsers } = require('../controllers/Users/updateUsers')
+const { getProfileByBalance } = require('../controllers/Users/getProfileByBalance')
+
 
 const getUsersHandlers = async (req, res) => {
     
@@ -124,6 +126,20 @@ const updateUserHandler = async (req, res) => {
     }
   }
 
+const profileByBalanceHandler = async (req, res) => {
+    const { sub } = req.params
+  
+    try {
+      const result = await getProfileByBalance(sub)
+      if (result) {
+        res.status(200).json(result)
+      } else {
+        res.status(404).json({ error: `User with sub ${sub} not found` })
+      }
+    } catch (error) {
+      res.status(500).json({ error: error.message })
+    }
+  }
 
 
 module.exports = {
@@ -135,5 +151,6 @@ module.exports = {
     getVideogamesBuy,
     upditeProfilehandler,
     getProfileUsers,
-    updateUserHandler
+    updateUserHandler,
+    profileByBalanceHandler
 }
