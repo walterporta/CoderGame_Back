@@ -20,7 +20,6 @@ const updateVideogames = async (id, { name, released, genres,  platforms, descri
 
   if (released) { videoGame.released = released }
 
-  
   if (description) { videoGame.description = description }
 
   if (image) { videoGame.image = image }
