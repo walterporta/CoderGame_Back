@@ -32,6 +32,7 @@ const updateUsers = async (sub, { name, rol, banned }) => {
       user.banned = banned;
     }
   
+    //cpmtrolar esto !!! 
     
     const updatedUser = await user.save();
   
