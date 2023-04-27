@@ -21,12 +21,3 @@ const postDiscountGame = async (idVideogame, dueDate, discount)=>{
 
 
 module.exports = { postDiscountGame }
-    // const listDiscount = await Promotions.findAll({
-    //     where: {
-    //       expiration_date: {
-    //         [Op.gt]: currentDate 
-    //       }
-    //     },
-    //     order: [['expiration_date', 'ASC']], 
-    //     limit: 5 
-    //   });
