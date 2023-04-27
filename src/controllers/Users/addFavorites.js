@@ -1,11 +1,9 @@
 const{Users, Videogames, Favorites} = require('../../db')
-const {validateRole} = require('../validateRole')
 
 const addFavorite= async (idUser, idVideogames)=>{
 
- const role= await validateRole(idUser)
 
-if(role === 'seller') throw new Error('only customers can add a game to cart')
+
     const existe = await Favorites.findOne({
       where:{VideogameId:idVideogames,UserSub:idUser }
         })

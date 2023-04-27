@@ -22,14 +22,14 @@ const createNewUser = async ({ sub, name, email }) => {
     if (objuser.email === 'roderickrodriguez706@gmail.com') {
     if (objuser.email === USER_ADMIN) {
         objuser.rol = 'admin'
-    }
+    }}
 
 
     const [newUser, created] = await Users.findOrCreate({
         where: {
             sub: sub
         },
-        defaults: objuser
+        objuser
     })
 
     const findWallets = await Wallets.findOne({ where: { UserSub: sub }})
@@ -39,7 +39,7 @@ const createNewUser = async ({ sub, name, email }) => {
     
     return newUser
 }
-}
+
 
 
 module.exports = { createNewUser }
