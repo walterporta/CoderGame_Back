@@ -6,7 +6,8 @@ const {
     deleteVideoGameLogicallyHandler,
     addComentarioVideogame,
     deleteComentario,
-    updateGameHandler
+    updateGameHandler,
+    postPromotionsHandler
 } = require('../handlers/gamesHandler.js');
 
 const videoGames = Router();
@@ -20,6 +21,7 @@ videoGames.delete('/:id', deleteVideoGameLogicallyHandler);
 videoGames.post('/comentario', addComentarioVideogame);
 videoGames.delete('/comentario',deleteComentario );
 videoGames.put('/:id', updateGameHandler);
+videoGames.post('/promotions',postPromotionsHandler)
 
 
 
