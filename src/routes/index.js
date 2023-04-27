@@ -5,6 +5,7 @@ const platformsRoutes = require('./platformsRoutes.js')
 const usersRoutes = require('./usersRoutes.js')
 const empresaRoutes = require('./empresa.js')
 const adminRoutes = require('./adminRoutes.js')
+const promotionsRoute =require('./promotionsRoute.js')
 const { requirseAuth } = require('express-openid-connect')
 
 const dbLoad = require('./dbLoad')
@@ -20,6 +21,6 @@ router.use('/user', usersRoutes);
 router.use('/checkout', checkout)
 router.use('/empresa', empresaRoutes)
 router.use('/admin', adminRoutes)
-
+router.use('/promotions', promotionsRoute)
 
 module.exports = router;

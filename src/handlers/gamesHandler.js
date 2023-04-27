@@ -3,7 +3,7 @@ const { findGameName } = require('../controllers/Videogames/findGameName.js');
 const { findGameById } = require('../controllers/Videogames/findGameById.js');
 const { deleteLogical } = require('../controllers/Videogames/deleteLogical.js');
 const { updateVideogames } = require('../controllers/Videogames/updateVideogame.js');
-const { postDiscountGame } = require('../controllers/Videogames/postDiscountGame.js')
+
 
 const getVideoGamesHandler = async (req, res) => {
   
@@ -105,17 +105,6 @@ const updateGameHandler = async (req, res) => {
   }
 }
 
-const postPromotionsHandler = async (req,res)=>{
-  const {idVideogame, dueDate,discount } = req.body
-
-  try {
-    const response = await postDiscountGame(idVideogame, dueDate, discount)
-    res.status(200).json(response)
-  } catch (error) {
-    res.status(400).json(error.message) 
-  }
-}
-
 
 
 
@@ -127,5 +116,5 @@ module.exports = {
   addComentarioVideogame,
   deleteComentario,
   updateGameHandler,
-  postPromotionsHandler
+
 }
