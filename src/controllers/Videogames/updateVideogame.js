@@ -6,36 +6,28 @@ const updateVideogames = async (id, { name, released, genres,  platforms, descri
     throw new Error('Debe proporcionar un ID válido');
   }
 
+  if (!name && !released && !genres && !platforms && !description && !image && !price && !gameLink) {
+    throw new Error('Debe proporcionar al menos un parámetro para modificar el videojuego');
+  }
+  
   const videoGame = await Videogames.findByPk(id)
 
   if (!videoGame) {
     throw new Error(`El videojuego con ID ${id} no existe`)
   }
 
-  if (name) {
-    videoGame.name = name
-  }
+  if (name) { videoGame.name = name }
 
-  if (released) {
-    videoGame.released = released
-  }
+  if (released) { videoGame.released = released }
 
   
-  if (description) {
-    videoGame.description = description
-  }
+  if (description) { videoGame.description = description }
 
-  if (image) {
-    videoGame.image = image
-  }
+  if (image) { videoGame.image = image }
 
-  if (price) {
-    videoGame.price = price
-  }
+  if (price) { videoGame.price = price }
 
-  if (gameLink) {
-    videoGame.gameLink = gameLink
-  }
+  if (gameLink) { videoGame.gameLink = gameLink }
 
   if (genres) {
     const objGenres = []
