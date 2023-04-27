@@ -7,7 +7,7 @@ const {
     addComentarioVideogame,
     deleteComentario,
     updateGameHandler,
-    postPromotionsHandler
+
 } = require('../handlers/gamesHandler.js');
 
 const videoGames = Router();
@@ -21,8 +21,8 @@ videoGames.delete('/:id', deleteVideoGameLogicallyHandler);
 videoGames.post('/comentario', addComentarioVideogame);
 videoGames.delete('/comentario',deleteComentario );
 videoGames.put('/:id', updateGameHandler);
-videoGames.post('/promotions',postPromotionsHandler)
 
+//crear una ruta promotions, no puedo usar 2 gets, me lo toma por id
 
 
 // videoGames.delete('/comentario', deleteComentarioVideogame)
