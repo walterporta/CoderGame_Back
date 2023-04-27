@@ -35,7 +35,7 @@ const buyVideogames = async (idVideogame, idUser) =>{
       }
       
       if(saldo.balance-total<0) throw new Error('el saldo es insuficiente')
-
+ 
       for (const game of idVideogame) {
         const videogame = await Videogames.findOne({where: {id: game}});
         const buy = await Transactions.create({VideogameId: game, WalletId: saldo.id, amount: videogame.price, VideogameId:game});
