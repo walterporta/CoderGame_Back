@@ -1,4 +1,4 @@
-const { Promotions } = require('../../db')
+const { Promotions, Videogames } = require('../../db')
 const {Op} = require('sequelize')
 
 const getFivePromotions = async ()=>{
@@ -9,6 +9,10 @@ const getFivePromotions = async ()=>{
             dueDate: {
             [Op.gt]: currentDate 
           }
+        },
+        include: {
+          model: Videogames,
+          attributes: ['image']
         },
         order: [['dueDate', 'ASC']], 
         limit: 5
