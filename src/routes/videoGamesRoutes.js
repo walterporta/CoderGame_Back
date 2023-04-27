@@ -8,7 +8,7 @@ const {
     deleteComentario,
     updateGameHandler
 } = require('../handlers/gamesHandler.js');
-
+const requireLogin = require('../middlewares/requireLogin.js')
 const videoGames = Router();
 
 
@@ -18,16 +18,11 @@ videoGames.post('/', createVideoGamesHandler);
 videoGames.get('/:id', getVideoGameByIdHandler);
 videoGames.delete('/:id', deleteVideoGameLogicallyHandler);
 videoGames.post('/comentario', addComentarioVideogame);
-videoGames.delete('/comentario',deleteComentario );
+videoGames.delete('/comentario', deleteComentario);
 videoGames.put('/:id', updateGameHandler);
 
 
 
-// videoGames.delete('/comentario', deleteComentarioVideogame)
-// videoGames.get('/', requiresAuth(), getVideoGamesHandler);
-// videoGames.post('/', requiresAuth(), isAdmin, createVideoGamesHandler);
-// videoGames.get('/:id', requiresAuth(), getVideoGameByIdHandler);
-// videoGames.put('/:id', requiresAuth(), isAdmin, deleteVideoGameLogicallyHandler);
 
 module.exports = videoGames;
 
