@@ -1,13 +1,13 @@
 const { Videogames, Genregames, Platforms } = require('../../db')
 
-const createNewGame = async ({ name, released, genres, rating, platforms, description, image, price, gameLink }) => {
+const createNewGame = async ({sub, name, released, genres, rating, platforms, description, image, price, gameLink }) => {
     const existName = await Videogames.findOne({
         where: {
             name: name
         }
     })
     if (existName) throw new Error('ya existe un juego con ese nombre')
-    const newVideoGame = await Videogames.create({ name, released, genres, rating, platforms, description, image, price, gameLink })
+    const newVideoGame = await Videogames.create({UserSub:sub, name, released, genres, rating, platforms, description, image, price, gameLink })
     const objGenres = []
     const objPlatforms = []
     for (const genre of genres) {
