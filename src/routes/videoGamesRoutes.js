@@ -8,7 +8,6 @@ const {
     deleteComentario,
     updateGameHandler
 } = require('../handlers/gamesHandler.js');
-const requireLogin = require('../middlewares/requireLogin.js')
 const videoGames = Router();
 
 

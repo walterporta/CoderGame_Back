@@ -4,7 +4,7 @@ const videoGamesRoutes = require('./videoGamesRoutes');
 const platformsRoutes = require('./platformsRoutes')
 const usersRoutes = require('./usersRoutes.js')
 const empresaRoutes = require('./empresa')
-const requireLogin = require('../middlewares/requireLogin.js')
+
 
 const dbLoad = require('./dbLoad')
 const checkout = require('./coRoute');

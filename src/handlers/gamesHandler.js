@@ -38,7 +38,7 @@ const getVideoGameByIdHandler = async (req, res) => {
 
 
 // console.log(user.email);
-// if (!user.email) throw new Error('Debes estar logeado');
+// if (!user.sub) throw new Error('Debes estar logeado');
 // const email = user?.email
 // const rol = await verifyRol(email)
 
@@ -47,10 +47,10 @@ const getVideoGameByIdHandler = async (req, res) => {
 //   throw new Error('No tienes permiso para crear un juego');
 // }
 const createVideoGamesHandler = async (req, res) => {
-  const { name, released, genres, rating, platforms, description, image, price, gameLink} = req.body
+  const { sub, name, released, genres, rating, platforms, description, image, price, gameLink} = req.body
   
   try {
-    if (!name || !released || genres.length === 0 || !platforms || !description || !image || !price || !gameLink) throw new Error('Faltan parametros para crear un juego')
+    if (!name || !released || genres.length === 0 || !platforms || !description || !image || !price || !gameLink || !sub) throw new Error('Faltan parametros para crear un juego')
 
     const newGame = await createNewGame({ sub, name, released, genres, rating, platforms, description, image, price, gameLink })
 
