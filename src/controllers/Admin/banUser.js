@@ -1,13 +1,12 @@
 const {Users}=require('../../db')
 
-const banUser = async (subUser, subAdmin) =>{
+const banUser = async (subUser, subAdmin, banDelet) =>{
     let ban
     const findUser = await Users.findOne({where:{sub:subUser}})
-    console.log(findUser)
     
-    findUser.banned? ban=false: ban=true
+    findUser[banDelet]? ban=false: ban=true
     
-    const user = await Users.update({banned:ban},{where:{sub:subUser}})
+    const user = await Users.update({[banDelet]:ban},{where:{sub:subUser}})
 
     return user
 }
