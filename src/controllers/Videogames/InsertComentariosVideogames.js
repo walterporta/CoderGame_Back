@@ -7,7 +7,7 @@ const insertComentarioV = async (sub, idVideogame, comentario) =>{
     if(!sub||!idVideogame||!comentario) throw new Error('missing parameters.')
     
 
-    const coment = await ComentariosV.findOne({where:{ UserSub:sub, eliminate:false,  }})
+    const coment = await ComentariosV.findOne({where:{ UserSub:sub, deleted:false, VideogameId:idVideogame }})
     if(coment) throw new Error('You can only leave one message per game.')
 
 
