@@ -1,10 +1,11 @@
-const { Videogames, Genregames, Platforms, ComentariosV } = require('../../db')
-const { Op, where } = require('sequelize')
+const { Videogames, Genregames, Platforms, ComentariosV, Promotions } = require('../../db')
+const { Op } = require('sequelize')
 const {searchApi } = require('../ApyAndDb/getApiData')
 
 
 const findGameName = async (name, genre, platforms) => {
     let findGame = []
+    const currentDate = new Date()
 
      findGame = await Videogames.findAll({
         where:{
@@ -34,11 +35,17 @@ const findGameName = async (name, genre, platforms) => {
                 attributes: []
               },
               required: true
+            },
+            {
+              model: Promotions,
+              attributes:['discountPorcentage'
+            ],
+              where:{dueDate:{[Op.gt]: currentDate}},
+              required: false
             }
           ]
-    })    
+    })
 
-    
     return findGame
 }
 
