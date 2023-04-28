@@ -106,6 +106,8 @@ const updateGameHandler = async (req, res) => {
 }
 
 
+
+
 module.exports = {
   getVideoGamesHandler,
   createVideoGamesHandler,
@@ -113,5 +115,6 @@ module.exports = {
   deleteVideoGameLogicallyHandler,
   addComentarioVideogame,
   deleteComentario,
-  updateGameHandler
+  updateGameHandler,
+
 }

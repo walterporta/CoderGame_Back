@@ -4,7 +4,7 @@ const { deleteFavorite } = require('../controllers/Users/deleteFavorites')
 const { getAllFavorites } = require('../controllers/Users/getAllFavoritesId')
 const { upditeProfile } = require('../controllers/Users/upditeProfile')
 const { getProfileBySub } = require('../controllers/Users/getUProfileBySub')
-
+const { updateUsers } = require('../controllers/Users/updateUsers')
 
 const getUsersHandlers = async (req, res) => {
     
@@ -26,6 +26,7 @@ const getProfileUsers = async (req,res)=>{
     }
 }
 
+
 const upditeProfilehandler = async (req,res) =>{
     const {sub, image, coverImage, linkYoutube, description } = req.body
     console.log(req.body)
@@ -38,21 +39,20 @@ const upditeProfilehandler = async (req,res) =>{
     }
 }
 
+
 const createUserHandler = async (req, res) => {
     const { sub, name, email, user } = req.body
     console.log(`login ${user}`);
     try {
         // if (!name || !email || !password || !username || !lastname || !gender)
         //     throw new Error('Incomplete data')
-       
-
+    
         const newUser = await createNewUser({ sub, name, email })
         return res.status(201).json(newUser)
     } catch (error) {
         res.status(400).send({ Error: error.message })
 
     }
-
 }
 
 const addFavoriteHandler = async (req, res) => {
@@ -114,6 +114,17 @@ const getVideogamesBuy = async (req, res) => {
     }
 }
 
+const updateUserHandler = async (req, res) => {
+    try {
+      const { sub } = req.params;
+      const user = await updateUsers(sub, req.body);
+      res.status(200).json(user);
+    } catch (error) {
+      res.status(400).json({error: error.message});
+    }
+  }
+
+
 
 module.exports = {
     addFavoriteHandler,
@@ -123,5 +134,6 @@ module.exports = {
     getFavoriteHandler,
     getVideogamesBuy,
     upditeProfilehandler,
-    getProfileUsers
+    getProfileUsers,
+    updateUserHandler
 }
