@@ -7,9 +7,9 @@ const { updateVideogames } = require('../controllers/Videogames/updateVideogame.
 
 const getVideoGamesHandler = async (req, res) => {
   
-  const { name, genre, platforms } = req.query
+  const { name, genre, platforms, promotion } = req.query
   try {
-    const allVideoGames = await findGameName(name, genre, platforms)
+    const allVideoGames = await findGameName(name, genre, platforms, promotion)
     
     res.status(200).json(allVideoGames)
   } catch (error) {

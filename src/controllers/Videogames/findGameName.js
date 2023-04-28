@@ -3,7 +3,7 @@ const { Op } = require('sequelize')
 const {searchApi } = require('../ApyAndDb/getApiData')
 
 
-const findGameName = async (name, genre, platforms) => {
+const findGameName = async (name, genre, platforms, promotion) => {
     let findGame = []
     const currentDate = new Date()
 
@@ -19,7 +19,7 @@ const findGameName = async (name, genre, platforms) => {
               attributes: ['id', 'name'],
               where: {
                 name: genre ? genre : { [Op.ne]: null }
-                 
+
               },
               through: {
                 attributes: []
@@ -41,7 +41,7 @@ const findGameName = async (name, genre, platforms) => {
               attributes:['discountPorcentage'
             ],
               where:{dueDate:{[Op.gt]: currentDate}},
-              required: false
+              required:promotion?true: false
             }
           ]
     })
