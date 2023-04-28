@@ -1,5 +1,5 @@
 const { Videogames, Genregames, Platforms, ComentariosV, Promotions } = require('../../db')
-const { Op, where, Sequelize } = require('sequelize')
+const { Op } = require('sequelize')
 const {searchApi } = require('../ApyAndDb/getApiData')
 
 
