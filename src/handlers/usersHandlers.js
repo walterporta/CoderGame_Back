@@ -134,7 +134,7 @@ const profileByBalanceHandler = async (req, res) => {
       if (result) {
         res.status(200).json(result)
       } else {
-        res.status(404).json({ error: `User with sub ${sub} not found` })
+        res.status(404).json({ error: `Usuario con sub ${sub} no encontrado` })
       }
     } catch (error) {
       res.status(500).json({ error: error.message })
