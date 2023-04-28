@@ -5,6 +5,8 @@ const { getAllFavorites } = require('../controllers/Users/getAllFavoritesId')
 const { upditeProfile } = require('../controllers/Users/upditeProfile')
 const { getProfileBySub } = require('../controllers/Users/getUProfileBySub')
 const { updateUsers } = require('../controllers/Users/updateUsers')
+const { getProfileByBalance } = require('../controllers/Users/getProfileByBalance')
+const {getUserByTransaction} = require('../controllers/Users/getUserByTransactions')
 
 const getUsersHandlers = async (req, res) => {
     
@@ -124,7 +126,33 @@ const updateUserHandler = async (req, res) => {
     }
   }
 
+const profileByBalanceHandler = async (req, res) => {
+    const { sub } = req.params
+  
+    try {
+      const result = await getProfileByBalance(sub)
+      if (result) {
+        res.status(200).json(result)
+      } else {
+        res.status(404).json({ error: `Usuario con sub ${sub} no encontrado` })
+      }
+    } catch (error) {
+      res.status(500).json({ error: error.message })
+    }
+  }
 
+  const getUserByTransactionHandler = async (req, res) => {
+    try {
+      const user = await getUserByTransaction(req.params.sub);
+      if (!user) {
+        return res.status(404).send('User not found');
+      }
+      return res.send(user);
+    } catch (error) {
+      return res.status(500).send(`Error al obtener el usuario y sus transacciones: ${error.message}`);
+    }
+  };
+  
 
 module.exports = {
     addFavoriteHandler,
@@ -135,5 +163,7 @@ module.exports = {
     getVideogamesBuy,
     upditeProfilehandler,
     getProfileUsers,
-    updateUserHandler
+    updateUserHandler,
+    profileByBalanceHandler,
+    getUserByTransactionHandler
 }
