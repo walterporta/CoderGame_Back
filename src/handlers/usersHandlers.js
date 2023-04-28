@@ -6,7 +6,7 @@ const { upditeProfile } = require('../controllers/Users/upditeProfile')
 const { getProfileBySub } = require('../controllers/Users/getUProfileBySub')
 const { updateUsers } = require('../controllers/Users/updateUsers')
 const { getProfileByBalance } = require('../controllers/Users/getProfileByBalance')
-
+const {getUserByTransaction} = require('../controllers/Users/getUserByTransactions')
 
 const getUsersHandlers = async (req, res) => {
     
@@ -141,6 +141,18 @@ const profileByBalanceHandler = async (req, res) => {
     }
   }
 
+  const getUserByTransactionHandler = async (req, res) => {
+    try {
+      const user = await getUserByTransaction(req.params.sub);
+      if (!user) {
+        return res.status(404).send('User not found');
+      }
+      return res.send(user);
+    } catch (error) {
+      return res.status(500).send(`Error al obtener el usuario y sus transacciones: ${error.message}`);
+    }
+  };
+  
 
 module.exports = {
     addFavoriteHandler,
@@ -152,5 +164,6 @@ module.exports = {
     upditeProfilehandler,
     getProfileUsers,
     updateUserHandler,
-    profileByBalanceHandler
+    profileByBalanceHandler,
+    getUserByTransactionHandler
 }
