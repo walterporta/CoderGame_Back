@@ -3,7 +3,7 @@ const {Op} = require('sequelize')
 
 const postDiscountGame = async (idVideogame, dueDate, discount)=>{
     console.log(idVideogame,dueDate,discount)
-    const currentDate = new Date()
+    const currentDate = new Date() 
     const newDueDate = new Date (dueDate)
     if(newDueDate<currentDate) throw new Error('expiration date has to be after today')
     const findVideogame = await Promotions.findOne({where:{dueDate:{
