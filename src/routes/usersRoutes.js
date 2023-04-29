@@ -3,6 +3,7 @@ const { upditeProfilehandler, deleteFavoriteHandler, createUserHandler,
     addFavoriteHandler, getFavoriteHandler, getProfileUsers,
     getVideogamesBuy, updateUserHandler } = require('../handlers/usersHandlers')
 
+
 const usersRoutes = Router()
 
 // usersRoutes.get('/', getUserHandler) 
@@ -15,13 +16,12 @@ usersRoutes.post('/favorites', addFavoriteHandler)
 usersRoutes.delete('/favorites', deleteFavoriteHandler)
 usersRoutes.get('/favorites/:id', getFavoriteHandler)
 usersRoutes.get('/videogames/:id', getVideogamesBuy)
-usersRoutes.put('/profile', upditeProfilehandler)
-
-usersRoutes.get('/profile/:sub', getProfileUsers)
-
-
 usersRoutes.get('/profile/:sub',getProfileUsers)
+usersRoutes.get('/profile/bybalance/:sub', profileByBalanceHandler)
+usersRoutes.put('/profile', upditeProfilehandler)
 usersRoutes.put('/:sub', updateUserHandler)
-
+usersRoutes.get('/bytransaction/:sub', getUserByTransactionHandler)
+usersRoutes.get('/buyer/:sub', getBuyerUserHandler)
 module.exports = usersRoutes
+
 

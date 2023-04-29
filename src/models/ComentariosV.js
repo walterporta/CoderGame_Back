@@ -17,7 +17,7 @@ module.exports = (sequelize) => {
         defaultValue: ()=>new Date,
         allowNull: false,
     },
-    eliminate:{
+    deleted:{
       type: DataTypes.BOOLEAN,
       defaultValue: false
     }
