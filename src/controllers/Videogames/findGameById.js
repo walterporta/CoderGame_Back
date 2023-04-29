@@ -1,7 +1,8 @@
-const { Videogames, Genregames, Platforms } = require('../../db');
+const { Videogames, Genregames, Platforms, ComentariosV, Users } = require('../../db');
 
 const findGameById = async (id) => {
-  const videoGame = await Videogames.findByPk(id, {
+
+  const videoGame = await Videogames.findByPk( id, {
     where: {
       deleted: false // Agregar esta condición para excluir videojuegos eliminados
     },
@@ -18,8 +19,22 @@ const findGameById = async (id) => {
         attributes: ['id', 'name'],
         through: {
           attributes: []
-        },
-      }
+        }}, 
+        {
+          model: ComentariosV,
+          attributes: ['id', 'message', 'date'],
+          where:{deleted:false},
+          include: [
+            {
+              model: Users,
+              attributes: ['sub', 'name'],
+            }
+          ],
+          order: [
+            ['date', 'DESC']
+          ],
+          required: false
+        }
     ],
   });
 

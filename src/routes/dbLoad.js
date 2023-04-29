@@ -7,7 +7,8 @@ const {getAllPlatforms} = require('../controllers/ApyAndDb/getPlatforms')
 const db= Router()
 
 db.get('/', (req,res)=>{
-    try {
+    try {  
+        console.log('estoy aca')
         getAllGenres()
         getAllPlatforms()
         insertGamesDb()

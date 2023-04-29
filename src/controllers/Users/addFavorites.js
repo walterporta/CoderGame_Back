@@ -1,26 +1,18 @@
-const{Users, Videogames} = require('../../db')
+const{Users, Videogames, Favorites} = require('../../db')
 
 const addFavorite= async (idUser, idVideogames)=>{
-    const existe = await Users.findOne({
-        include: {
-              model: Videogames,
-              attributes: ['id'],
-              where: {
-                id:idVideogames
-              },
-              through: {
-                attributes: []
-              }
-            }
+
+
+
+    const existe = await Favorites.findOne({
+      where:{VideogameId:idVideogames,UserSub:idUser }
         })
-    if(existe.length !== 0) throw new Error('ya tienes este videogame en favorites')
-    const user = await Users.findOne({where: {id: idUser}})
 
-    const videoGame = await Videogames.findOne({where:{id: idVideogames}})
+    if (existe) throw new Error(`this game is already found` )
+    
+    await Favorites.create({VideogameId:idVideogames, UserSub:idUser})
 
-    await user.addVideogames(videoGame)
-
-    return `se agrego a la lista de favoritos el videogame ${videoGame.id}`
+    return 'the game was added to the cart'
 }
 
 module.exports= {addFavorite}

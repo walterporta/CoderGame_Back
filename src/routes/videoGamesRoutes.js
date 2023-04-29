@@ -1,19 +1,30 @@
-const { Router } = require('express')
+const { Router } = require('express');
 const {
     getVideoGamesHandler,
     createVideoGamesHandler,
     getVideoGameByIdHandler,
-    deleteVideoGameLogicallyHandler
-} = require('../handlers/gamesHandler.js')
+    deleteVideoGameLogicallyHandler,
+    addComentarioVideogame,
+    deleteComentario,
+    updateGameHandler,
+
+} = require('../handlers/gamesHandler.js');
+const videoGames = Router();
 
 
-const videoGames = Router()
+
+videoGames.get('/', getVideoGamesHandler);
+videoGames.post('/', createVideoGamesHandler);
+videoGames.get('/:id', getVideoGameByIdHandler);
+videoGames.delete('/:id', deleteVideoGameLogicallyHandler);
+videoGames.post('/comentario', addComentarioVideogame);
+videoGames.delete('/comentario',deleteComentario);
+videoGames.put('/:id', updateGameHandler);
+
+//crear una ruta promotions, no puedo usar 2 gets, me lo toma por id
 
 
-videoGames.get('/', getVideoGamesHandler)
-videoGames.post('/', createVideoGamesHandler)
-videoGames.get('/:id', getVideoGameByIdHandler)
-videoGames.put('/:id', deleteVideoGameLogicallyHandler)
+
+module.exports = videoGames;
 
 
-module.exports = videoGames

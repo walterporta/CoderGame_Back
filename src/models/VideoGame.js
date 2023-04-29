@@ -12,30 +12,30 @@ module.exports = (sequelize) => {
       name: {
         type: DataTypes.STRING,
         allowNull: false,
-        validate: {
-          customValidator(value) {
-            if (value.length > 40) {
-              throw new Error("el tititulo del juego no puede superar los 40 caracteres")
-            }
+
+        validate:{
+          customValidator(value){
+              if (value.length > 39)
+               throw new Error("Can not be longer than 40 characters ") ;
+           }
           }
         }
       },
       released: {
         type: DataTypes.DATEONLY,
-        // validate: {
-          // customValidator(value) {
-          //   const currentDate = new Date();
-          //   const releaseDate = new Date(value);
-          //   const minDate = new Date("1958-01-01");
-          //   if (releaseDate < minDate || releaseDate > currentDate) {
-          //     throw new Error("la fecha de lanzamiento debe estar entre el año 1958 y la fecha actual");
-          //   }
-          // },
-        // },
+         validate: {
+          customValidator(value) {
+            const currentDate = new Date();
+            const releaseDate = new Date(value);
+            const minDate = new Date("1958-01-01");
+            if (releaseDate < minDate || releaseDate > currentDate) {
+              throw new Error("the release date must be between the year 1958 and the current date");
+            }
+          },
+        },
       },
       rating: {
         type: DataTypes.FLOAT,
-<<<<<<< HEAD
         validate: {
           customValidator(value) {
             if (value > 5) {
@@ -44,43 +44,21 @@ module.exports = (sequelize) => {
           }
         }
       },
-      platforms: {
-        type: DataTypes.ARRAY(DataTypes.STRING),
-=======
-        // validate:{
-        //   customValidator(value){
-        //     if(value>5){
-        //      throw new Error("el rating no puede ser mayor a 5")
-        //     }
-        //    }
-        //   }
->>>>>>> ded4bae6b4d80f39cdd934f96432ab0c7d5a43fe
+
       },
-      // platforms: {
-      //   type: DataTypes.ARRAY(DataTypes.STRING),
-      // },
       description: {
         type: DataTypes.TEXT,
-<<<<<<< HEAD
-        validate: {
-          customValidator(value) {
-            if (value.length < 1 || value.length > 50) {
-              throw new Error("La descripcion debe contener entre 1 y 50 caracteres")
+
+         validate:{
+           customValidator(value){
+           if( value.length>500){
+              throw new Error("can not have more than 500 characters")
             }
+           }
           }
-        }
-=======
-        // validate:{
-        //   customValidator(value){
-        //     if(value.length<50 || value.length>500){
-        //     //  throw new Error("La descripcion debe contener entre 50 y 500 caracteres")
-        //     }
-        //    }
-        //   }
->>>>>>> ded4bae6b4d80f39cdd934f96432ab0c7d5a43fe
       },
       image: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
       },
       deleted: {
         type: DataTypes.BOOLEAN,
@@ -90,6 +68,16 @@ module.exports = (sequelize) => {
       price:{
         type: DataTypes.INTEGER,
         allowNull: false,
+        validate:{
+          customValidator(value){
+            if (value <= 0)
+              errors.price = "price has to be greater than 0";
+           }
+          }
+         },
+      gameLink:{
+        type: DataTypes.STRING,
+
       }
     },
     {

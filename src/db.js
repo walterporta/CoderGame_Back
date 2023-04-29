@@ -1,15 +1,22 @@
-const { Sequelize, Op } = require('sequelize');
+const { Sequelize, Op, DataTypes } = require('sequelize');
 require('dotenv').config();
 const {
-   DB_USER, DB_PASSWORD, DB_HOST, DB_NAME
+   DB_USER, DB_PASSWORD, DB_HOST, DB_NAME, PORT_DB
 } = process.env;
+
 const modelVideoGames = require('./models/VideoGame.js')
 const modelGenreGames = require('./models/GenreGame.js')
-const modelUsers = require('./models/User.js')
-const modelPlatforms = require('./models/platforms.js')
+const modelUsers = require('./models/User.js');
+const modelPlatforms = require('./models/Platforms.js')
+const modelWallets = require('./models/Wallet');
+const modelTransactions = require('./models/Transactions.js');
+const modelFavorites = require('./models/Favorites.js')
+const modelComentariosV = require('./models/ComentariosV.js')
+const modelProfile = require('./models/Profile.js')
+const modelPromotions = require('./models/Promotions.js')
 
 const db = new Sequelize(
-   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`,
+   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${PORT_DB}/${DB_NAME}`,
    {
       logging: false,
    }
@@ -19,9 +26,15 @@ modelVideoGames(db);
 modelGenreGames(db);
 modelUsers(db);
 modelPlatforms(db);
-modelUsers(db)
+modelWallets(db);
+modelTransactions(db)
+modelFavorites(db)
+modelComentariosV(db)
+modelProfile(db)
+modelPromotions(db)
 
-const { Videogames, Genregames, Platforms, Users } = db.models
+const { Videogames, Genregames, Promotions, Platforms, Wallets, Users, Transactions, Favorites, ComentariosV, Profile } = db.models
+
 
 Videogames.belongsToMany(Genregames, { through: 'GameGenre' }); // muchos a muchos, tabla intermedia
 Genregames.belongsToMany(Videogames, { through: 'GameGenre' }); // tiene que tener el mismo nombre
@@ -29,10 +42,42 @@ Genregames.belongsToMany(Videogames, { through: 'GameGenre' }); // tiene que ten
 Videogames.belongsToMany(Platforms, { through: 'GamePlatform' });
 Platforms.belongsToMany(Videogames, { through: 'GamePlatform' });
 
-Videogames.belongsToMany(Users, { through: 'Favorites' });
-Users.belongsToMany(Videogames, { through: 'Favorites' });
+Users.hasOne(Wallets); // Un usuario tiene una sola billetera
+Wallets.belongsTo(Users); // Una billetera pertenece a un solo usuario
+
+Wallets.hasMany(Transactions)
+Transactions.belongsTo(Wallets)
+
+Videogames.hasMany(Transactions)
+Transactions.belongsTo(Videogames)
+
+Users.hasMany(Transactions)
+Transactions.belongsTo(Users)
+
+Videogames.hasMany(Transactions);
 
 
+
+Videogames.hasMany(Favorites);
+Favorites.belongsTo(Videogames);
+
+Users.hasMany(Favorites);
+Favorites.belongsTo(Users);
+
+Users.hasMany(Videogames);
+Videogames.belongsTo(Users);
+
+Users.hasMany(ComentariosV)
+ComentariosV.belongsTo(Users)
+
+Videogames.hasMany(ComentariosV)
+ComentariosV.belongsTo(Videogames)
+
+Users.hasOne(Profile);
+Profile.belongsTo(Users);
+
+Videogames.hasMany(Promotions)
+Promotions.belongsTo(Videogames)
 
 module.exports = {
    ...db.models,
