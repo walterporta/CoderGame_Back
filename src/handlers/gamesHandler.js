@@ -41,7 +41,7 @@ const getVideoGameByIdHandler = async (req, res) => {
 
 
 // console.log(user.email);
-// if (!user.email) throw new Error('Debes estar logeado');
+// if (!user.sub) throw new Error('Debes estar logeado');
 // const email = user?.email
 // const rol = await verifyRol(email)
 
