@@ -19,6 +19,7 @@ usersRoutes.put('/profile', upditeProfilehandler)
 usersRoutes.put('/:sub', updateUserHandler)
 usersRoutes.get('/bytransaction/:sub', getUserByTransactionHandler)
 usersRoutes.get('/buyer/:sub', getBuyerUserHandler)
+
 module.exports = usersRoutes
 
 
