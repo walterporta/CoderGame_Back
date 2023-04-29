@@ -1,6 +1,7 @@
 const { Videogames, Genregames, Platforms } = require('../../db')
 
 const createNewGame = async ({sub, name, released, genres, rating, platforms, description, image, price, gameLink }) => {
+    
     const existName = await Videogames.findOne({
         where: {
             name: name
