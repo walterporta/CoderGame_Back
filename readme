@@ -23,9 +23,9 @@ get */user/favorites/:id* ( trae los videogames de la lista de favoritos, mandar
 get */user/videogames/:id* (trae los videogames comprados por el usuario, mandar por params el sub del usuario)
 put */user/sub* (modificaciones del user (name, rol, banned...)
 put */user/profile* (modidficaciones del profile del usuario, mandar sub del usuario y modificaciones)
-get */user/profile/bybalance/sub* (trae profile + balance de wallets)
-get */user/bytransaction/:sub* (tra user + transactions)
-get */user/buyer/:sub (juegos comprados,detalle y link de descarga,  review por el usuario y balance)
+get */user/profile/bybalance/sub* (trae profile + balance de wallets) Ces
+get */user/bytransaction/:sub* (trae user + transactions)  Ces
+get */user/buyer/:sub (juegos comprados,detalle y link de descarga,  review por el usuario y balance) Fer
 
 post */checkout* (compra)
 post */checkout/cargacoins* (insert del saldo en la wallets,mandar user, input)
