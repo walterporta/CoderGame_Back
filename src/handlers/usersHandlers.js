@@ -7,7 +7,7 @@ const { getProfileBySub } = require('../controllers/Users/getUProfileBySub')
 const { updateUsers } = require('../controllers/Users/updateUsers')
 const { getProfileByBalance } = require('../controllers/Users/getProfileByBalance')
 const {getUserByTransaction} = require('../controllers/Users/getUserByTransactions')
-const {getUserPurchases} = require('../controllers/Users/getUserPurchases')
+const {getBuyerUser} = require('../controllers/Users/getBuyerUser')
 
 const getUsersHandlers = async (req, res) => {
     
@@ -155,10 +155,10 @@ const profileByBalanceHandler = async (req, res) => {
   };
   
   
-  const getUserPurchasesHandler = async (req, res) => {
+  const getBuyerUserHandler = async (req, res) => {
     const sub = req.params.sub;
   
-    const data = await getUserPurchases(sub);
+    const data = await getBuyerUser(sub);
   
     if (data.message) {
       return res.status(500).json(data);
@@ -180,5 +180,5 @@ module.exports = {
     updateUserHandler,
     profileByBalanceHandler,
     getUserByTransactionHandler,
-    getUserPurchasesHandler
+    getBuyerUserHandler
 }

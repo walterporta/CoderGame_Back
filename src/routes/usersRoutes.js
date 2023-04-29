@@ -1,7 +1,7 @@
 const { Router } = require('express')
 const { upditeProfilehandler, deleteFavoriteHandler, createUserHandler, 
     addFavoriteHandler, getFavoriteHandler, getProfileUsers,
-    getVideogamesBuy, updateUserHandler, profileByBalanceHandler, getUserByTransactionHandler, getUserPurchasesHandler  } = require('../handlers/usersHandlers')
+    getVideogamesBuy, updateUserHandler, profileByBalanceHandler, getUserByTransactionHandler, getBuyerUserHandler  } = require('../handlers/usersHandlers')
 
 
 const usersRoutes = Router()
@@ -18,8 +18,7 @@ usersRoutes.get('/profile/bybalance/:sub', profileByBalanceHandler)
 usersRoutes.put('/profile', upditeProfilehandler)
 usersRoutes.put('/:sub', updateUserHandler)
 usersRoutes.get('/bytransaction/:sub', getUserByTransactionHandler)
-
-usersRoutes.get('/fer/:sub', getUserPurchasesHandler)
+usersRoutes.get('/buyer/:sub', getBuyerUserHandler)
 module.exports = usersRoutes
 
 

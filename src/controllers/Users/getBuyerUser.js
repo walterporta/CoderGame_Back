@@ -1,6 +1,6 @@
 const { Favorites, Videogames, ComentariosV, Wallets, Users } = require('../../db');
 
-const getUserPurchases = async (sub) => {
+const getBuyerUser= async (sub) => {
   try {
     console.log(sub)
     const favorites = await Favorites.findAll({
@@ -42,4 +42,4 @@ const getUserPurchases = async (sub) => {
 };
 
 
-module.exports = { getUserPurchases }
+module.exports = { getBuyerUser }
