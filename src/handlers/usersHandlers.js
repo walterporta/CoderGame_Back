@@ -7,6 +7,7 @@ const { getProfileBySub } = require('../controllers/Users/getUProfileBySub')
 const { updateUsers } = require('../controllers/Users/updateUsers')
 const { getProfileByBalance } = require('../controllers/Users/getProfileByBalance')
 const {getUserByTransaction} = require('../controllers/Users/getUserByTransactions')
+const {getBuyerUser} = require('../controllers/Users/getBuyerUser')
 
 const getUsersHandlers = async (req, res) => {
     
@@ -153,6 +154,19 @@ const profileByBalanceHandler = async (req, res) => {
     }
   };
   
+  
+  const getBuyerUserHandler = async (req, res) => {
+    const sub = req.params.sub;
+  
+    const data = await getBuyerUser(sub);
+  
+    if (data.message) {
+      return res.status(500).json(data);
+    }
+  
+    return res.status(200).json(data);
+  };
+  
 
 module.exports = {
     addFavoriteHandler,
@@ -165,5 +179,6 @@ module.exports = {
     getProfileUsers,
     updateUserHandler,
     profileByBalanceHandler,
-    getUserByTransactionHandler
+    getUserByTransactionHandler,
+    getBuyerUserHandler
 }

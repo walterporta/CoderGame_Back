@@ -4,6 +4,8 @@ const { findGameById } = require('../controllers/Videogames/findGameById.js');
 const { deleteLogical } = require('../controllers/Videogames/deleteLogical.js');
 const { updateVideogames } = require('../controllers/Videogames/updateVideogame.js');
 const {deleteComentarioV} = require('../controllers/Videogames/deleteComentariosVideogames.js')
+const {insertComentarioV} = require('../controllers/Videogames/InsertComentariosVideogames.js')
+
 
 const getVideoGamesHandler = async (req, res) => {
   

@@ -10,9 +10,6 @@ const createTrans = async () =>{
           user: "ramirosanchezsolano@gmail.com",
           pass: 'nvcbwryvuiiarixw'
         },
-        // tls: {
-        //     ciphers: 'SSLv3',
-        //   },
       });
       return transport
 }
