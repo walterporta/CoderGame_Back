@@ -32,6 +32,7 @@ post */checkout/cargacoins* (insert del saldo en la wallets,mandar user, input)
 post */checkout/buy* (compra de videojuegos, mandar sub y idVidoegame)
 
 get */empresa/videogames* (juegos creados por la empresa, enviar sub de empresa)
+get */empresa/ventas/:sub* (dashboard de los usuarios empresas espera el sub(id) de la empresa). Cesar
 
 
 
