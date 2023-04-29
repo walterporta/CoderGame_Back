@@ -1,11 +1,54 @@
-const { Users, Videogames, Favorites } = require('../../db.js')
-const infoVentasEmpresa = async (id) => {
-    const listGames = await Users.findByPk(id, {
-        include: [{ model: Videogames }]
-    })
+const { Users, Videogames, Favorites, Transactions, Wallets } = require('../../db.js');
+const searchUserByWallet = require('../../helpers/searchUserByWallet.js');
 
-    return listGames
+const infoVentasEmpresa = async (sub) => {
+    const listGames = await Videogames.findAll({
+        where: {
+            UserSub: sub
+        },
+        include: {
+            model: Transactions,
+            attributes: ['id', 'date', 'amount', 'WalletId'],
+            include: [
+                {
+                    model: Wallets,
+                    attributes: []
+                },
+                {
+                    model: Users,
+                    attributes: ['name']
+                }
+            ]
+        }
+    });
 
-}
+    const promises = listGames.map(async (el) => {
+        const transactions = el.Transactions.map(async (transaction) => {
+            const user = await searchUserByWallet(transaction.WalletId);
+            return {
+                id: transaction.id,
+                date: transaction.date,
+                amount: transaction.amount,
+                user: user
+            };
+        });
+        const resolvedTransactions = await Promise.all(transactions);
+        return {
+            name: el.name,
+            released: el.released,
+            rating: el.rating,
+            description: el.description,
+            image: el.image,
+            delete: el.delete,
+            price: el.price,
+            gamelink: el.gamelink,
+            Transactions: resolvedTransactions
+        };
+    });
+
+    const arrayClean = await Promise.all(promises);
+    console.log(arrayClean);
+    return arrayClean;
+};
 
 module.exports = { infoVentasEmpresa }
