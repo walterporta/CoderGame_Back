@@ -42,15 +42,16 @@ const upditeProfilehandler = async (req,res) =>{
     }
 }
 
-
 const createUserHandler = async (req, res) => {
     const { sub, name, email, user } = req.body
     console.log(`login ${user}`);
     try {
+
         // if (!name || !email || !password || !username || !lastname || !gender)
         //     throw new Error('Incomplete data')
     
         const newUser = await createNewUser({ sub, name, email })
+
         return res.status(201).json(newUser)
     } catch (error) {
         res.status(400).send({ Error: error.message })
@@ -182,3 +183,4 @@ module.exports = {
     getUserByTransactionHandler,
     getBuyerUserHandler
 }
+
