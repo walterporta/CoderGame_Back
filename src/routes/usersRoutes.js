@@ -6,7 +6,7 @@ const { upditeProfilehandler, deleteFavoriteHandler, createUserHandler,
 
 const { getUserHandler, getUserByIdHandler } = require('../handlers/usersHandlers.js')
 const usersRoutes = Router()
-
+ 
 
 // usersRoutes.get('/', getUserHandler) 
 // usersRoutes.get('/:id', getUserByIdHandler)
