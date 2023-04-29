@@ -1,7 +1,7 @@
 const { Router } = require('express')
-const { upditeProfilehandler, deleteFavoriteHandler, createUserHandler,
+const { upditeProfilehandler, deleteFavoriteHandler, createUserHandler, 
     addFavoriteHandler, getFavoriteHandler, getProfileUsers,
-    getVideogamesBuy, updateUserHandler } = require('../handlers/usersHandlers')
+    getVideogamesBuy, updateUserHandler, profileByBalanceHandler, getUserByTransactionHandler, getBuyerUserHandler  } = require('../handlers/usersHandlers')
 
 
 const usersRoutes = Router()

@@ -28,8 +28,6 @@ const message = async (email, name) =>{
     } catch (error) {
         
     }
-    
-
 }
 
-module.exports = {message}
+module.exports = {message, createTrans}
