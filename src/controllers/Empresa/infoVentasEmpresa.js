@@ -33,6 +33,16 @@ const infoVentasEmpresa = async (sub) => {
             };
         });
         const resolvedTransactions = await Promise.all(transactions);
+        // const totalGananciasPorJuego = listGames[0].Transactions.map(el => {
+        //     let totalGananciaPorJuego = 0
+        //     return totalGananciaPorJuego = el.amount + totalGananciaPorJuego
+        // })
+
+        let totalGanancia = 0
+        const ganancias = resolvedTransactions.forEach(el => {
+            return totalGanancia = parseFloat(el.amount) + totalGanancia
+        })
+        console.log(ganancias);
         return {
             name: el.name,
             released: el.released,
@@ -42,12 +52,14 @@ const infoVentasEmpresa = async (sub) => {
             delete: el.delete,
             price: el.price,
             gamelink: el.gamelink,
-            Transactions: resolvedTransactions
+            Transactions: resolvedTransactions,
+            ventasRealizadas: resolvedTransactions.length,
+            ganancias: totalGanancia
         };
     });
 
     const arrayClean = await Promise.all(promises);
-    console.log(arrayClean);
+
     return arrayClean;
 };
 
