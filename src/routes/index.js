@@ -5,7 +5,7 @@ const platformsRoutes = require('./platformsRoutes.js')
 const usersRoutes = require('./usersRoutes.js')
 const empresaRoutes = require('./empresa')
 const adminRoutes = require('./adminRoutes.js')
-const promotionsRoute =require('./promotionsRoute.js')
+const promotionsRoute = require('./promotionsRoute.js')
 const comentRoute = require('./comments.js')
 const emailRoute = require('./emailRoute.js')
 
@@ -23,7 +23,7 @@ router.use('/checkout', checkout)
 router.use('/empresa', empresaRoutes)
 router.use('/admin', adminRoutes)
 router.use('/promotions', promotionsRoute)
-router.use ('/comment',comentRoute)
+router.use('/comment', comentRoute)
 router.use('/email', emailRoute)
 
 module.exports = router;
