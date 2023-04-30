@@ -21,6 +21,7 @@ const getClientInfo = async (users) => {
   const clientData = await Promise.all(clients);
 
   return clientData;
+  
 };
 
 module.exports = { getClientInfo };
