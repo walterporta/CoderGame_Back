@@ -8,7 +8,7 @@ const { updateUsers } = require('../controllers/Users/updateUsers')
 const { getProfileByBalance } = require('../controllers/Users/getProfileByBalance')
 const {getUserByTransaction} = require('../controllers/Users/getUserByTransactions')
 const {getBuyerUser} = require('../controllers/Users/getBuyerUser')
-const {verifyRol} = require('../helpers/verifyRol')
+const verifyRol = require('../helpers/verifyRol')
 
 const getUsersHandlers = async (req, res) => {
     
