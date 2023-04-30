@@ -5,8 +5,8 @@ const {getAllUsersHandler, getAllVideogamesHandler, banUserHandler, deleteUserHa
 adminRoute.get('/allusers/:sub', getAllUsersHandler)
 adminRoute.put('/banned', banUserHandler)
 adminRoute.delete('/delete', deleteUserHandler )
-adminRoute.get('/allvideogames', getAllVideogamesHandler)
-adminRoute.get('/balance', getAllBalanceHandler)
+adminRoute.get('/allvideogames/:sub', getAllVideogamesHandler)
+adminRoute.get('/balance/:sub', getAllBalanceHandler)
 
 
 module.exports = adminRoute

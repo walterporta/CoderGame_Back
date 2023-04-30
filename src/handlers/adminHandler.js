@@ -34,7 +34,7 @@ const deleteUserHandler = async (req,res) =>{
 }
 
 const getAllVideogamesHandler = async(req,res) =>{
-    const {sub} = req.body
+    const {sub} = req.params
     try {
         const response = await getAllVideogames(sub)
         res.status(200).json(response)
@@ -46,7 +46,9 @@ const getAllVideogamesHandler = async(req,res) =>{
 }
 
 const getAllBalanceHandler = async (req,res) =>{
-    const {startDate, finalDate, sub} = req.body
+    const {sub} = req.params
+    const {startDate, finalDate}= req.query
+
     try {
         response = await getAllBalance(startDate, finalDate, sub)
         res.status(200).json(response)
