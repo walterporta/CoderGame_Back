@@ -10,12 +10,12 @@ const getClientInfo = async (users) => {
   clients = clients.map(async (client) => {
     const favoriteGames = await Favorites.findAll({ where: { UserSub: client.sub, buy: true } });
     const totalBuy = favoriteGames.length;
-    let totalSpent = await favoriteGames.reduce(async (accumulatorPromise, game) => {
+    let totalBalance = await favoriteGames.reduce(async (accumulatorPromise, game) => {
       const accumulator = await accumulatorPromise;
       const selGame = await Videogames.findOne({ where: { id: game.VideogameId } });
       return accumulator + selGame.price;
     }, Promise.resolve(0));
-    return { ...client, totalBuy, totalSpent };
+    return { ...client, totalBuy, totalBalance};
   });
 
   const clientData = await Promise.all(clients);
