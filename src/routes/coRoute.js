@@ -28,9 +28,10 @@ checkout.post('/', async (req, res) => {
 
 checkout.post('/cargacoins', async (req, res) =>{
   const { user, input } = req.body;
+
   try {
-    await balanceCharge(user.sub, input)
-    console.log('exito')
+   let response = await balanceCharge(user.sub, input)
+    res.status(200).json(response)
   } catch (error) {
     res.status(400).json(error.message)
   }

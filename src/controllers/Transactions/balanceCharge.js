@@ -13,7 +13,7 @@ const balanceCharge= async (idUser, amount) => {
 
         await Transactions.create({WalletId: walletUser.id, amount: amount});
 
-        return 'se cargo saldo correctamente'
+        return `charged ${amount} to his wallet`
         }
         
     throw new Error('no se pudo cargar el saldo')
