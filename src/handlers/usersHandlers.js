@@ -8,6 +8,7 @@ const { updateUsers } = require('../controllers/Users/updateUsers')
 const { getProfileByBalance } = require('../controllers/Users/getProfileByBalance')
 const {getUserByTransaction} = require('../controllers/Users/getUserByTransactions')
 const {getBuyerUser} = require('../controllers/Users/getBuyerUser')
+const {verifyRol} = require('../helpers/verifyRol')
 
 const getUsersHandlers = async (req, res) => {
     
@@ -167,6 +168,20 @@ const profileByBalanceHandler = async (req, res) => {
   
     return res.status(200).json(data);
   };
+
+
+  const getRolHandler = async (req, res) => {
+    try {
+      const sub = req.params.sub;
+      const rol = await verifyRol(sub);
+      res.json({ rol });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Server error' });
+    }
+  };
+  
+
   
 
 module.exports = {
@@ -181,6 +196,7 @@ module.exports = {
     updateUserHandler,
     profileByBalanceHandler,
     getUserByTransactionHandler,
-    getBuyerUserHandler
+    getBuyerUserHandler,
+    getRolHandler
 }
 
