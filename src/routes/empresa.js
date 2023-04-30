@@ -4,7 +4,7 @@ const { getVentaHandler } = require('../handlers/getVentaHandler.js')
 
 const empresaRoutes = Router()
 
-empresaRoutes.get('/videogames', getAllVideogames)
+empresaRoutes.get('/videogames/:sub', getAllVideogames)
 empresaRoutes.get('/ventas/:sub', getVentaHandler)
 
 
