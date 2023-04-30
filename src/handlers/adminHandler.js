@@ -3,8 +3,7 @@ const{banDelUser} = require('../controllers/Admin/banDelUser')
 const {getAllVideogames} = require('../controllers/Admin/getAllVideogames')
 const { getAllBalance } = require('../controllers/Admin/getAllBalance')
 const getAllUsersHandler = async (req,res)=>{
-    const {sub} = req.body
-  
+    const {sub} = req.params
     try { 
         const response = await getAllUsers(sub)
         res.status(200).json(response)
