@@ -54,9 +54,6 @@ Transactions.belongsTo(Videogames)
 Users.hasMany(Transactions)
 Transactions.belongsTo(Users)
 
-Videogames.hasMany(Transactions);
-
-
 
 Videogames.hasMany(Favorites);
 Favorites.belongsTo(Videogames);

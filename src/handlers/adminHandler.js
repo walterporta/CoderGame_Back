@@ -1,7 +1,8 @@
 
 const{getAllUsers} = require('../controllers/Admin/getAllUsers')
-const{banUser} = require('../controllers/Admin/banUser')
+const{banDelUser} = require('../controllers/Admin/banDelUser')
 const { response } = require('express')
+
 const getAllUsersHandler = async (req,res)=>{
     const {sub} = req.body
   
@@ -17,7 +18,7 @@ const getAllUsersHandler = async (req,res)=>{
 const banUserHandler = async (req,res) =>{
     const {subUser, subAdmin} = req.body
     try {
-        const response = await banUser(subUser, subAdmin, 'banned')
+        const response = await banDelUser(subUser, subAdmin, 'banned')
         res.status(200).json(response)
     } catch (error) {
         res.status(400).json(error.message)
@@ -27,7 +28,7 @@ const banUserHandler = async (req,res) =>{
 const deleteUserHandler = async (req,res) =>{
     const {subUser, subAdmin} = req.body
     try {
-        const response = await banUser(subUser, subAdmin, 'deleted')
+        const response = await banDelUser(subUser, subAdmin, 'deleted')
         res.status(200).json(response)
     } catch (error) {
         res.status(200).json(error.message)
