@@ -1,8 +1,7 @@
 const { getVideogamesEmpresa } = require('../controllers/Empresa/getVideogamesEmpresa')
 
 const getAllVideogames = async (req,res)=>{
-    console.log(req.body) 
-    const { sub } = req.body
+    const { sub } = req.params
     
     try {
         res.status(200).json(await getVideogamesEmpresa(sub))
