@@ -14,6 +14,7 @@ const getAllUsers = async (sub)=>{
         },
         required: false
     })
+    
     const sellers = await getSellerInfo(users)
     
     return {sellers}
