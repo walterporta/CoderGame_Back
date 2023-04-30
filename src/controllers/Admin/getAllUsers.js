@@ -13,7 +13,6 @@ const getAllUsers = async (sub)=>{
             attributes:['balance'],
         },
         required: false
-
     })
     const sellers = await getSellerInfo(users)
     
