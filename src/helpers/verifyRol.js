@@ -16,4 +16,4 @@ const verifyRol = async (sub) => {
     return response.rol
 }
 
-module.exports = {verifyRol}
+module.exports = verifyRol
