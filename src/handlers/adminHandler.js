@@ -1,7 +1,6 @@
-
 const{getAllUsers} = require('../controllers/Admin/getAllUsers')
 const{banDelUser} = require('../controllers/Admin/banDelUser')
-const { response } = require('express')
+const {getAllVideogames} = require('../controllers/Admin/getAllVideogames')
 
 const getAllUsersHandler = async (req,res)=>{
     const {sub} = req.body
@@ -35,4 +34,16 @@ const deleteUserHandler = async (req,res) =>{
     }
 }
 
-module.exports = {getAllUsersHandler, banUserHandler, deleteUserHandler}
+const getAllVideogamesHandler = async(req,res) =>{
+    const {sub} = req.body
+    try {
+        const response = await getAllVideogames(sub)
+        res.status(200).json(response)
+    } catch (error) {
+        res.status(400).json(error.message)
+    }
+
+
+}
+
+module.exports = {getAllVideogamesHandler,getAllUsersHandler, banUserHandler, deleteUserHandler}
