@@ -19,7 +19,7 @@ videoGames.get('/:id', getVideoGameByIdHandler);
 videoGames.delete('/:id', deleteVideoGameLogicallyHandler);
 videoGames.post('/comentario', addComentarioVideogame);
 videoGames.delete('/comentario',deleteComentario);
-videoGames.put('/:id', updateGameHandler);
+videoGames.put('/:id', updateGameHandler); 
 
 //crear una ruta promotions, no puedo usar 2 gets, me lo toma por id
 

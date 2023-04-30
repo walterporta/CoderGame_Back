@@ -3,7 +3,8 @@ const verifyRol = async (sub) => {
     
     const response = await Users.findOne({
         where: {
-            sub: sub
+            sub: sub,
+            
         }
     
     })
@@ -15,4 +16,4 @@ const verifyRol = async (sub) => {
     return response.rol
 }
 
-module.exports = verifyRol
+module.exports = {verifyRol}
