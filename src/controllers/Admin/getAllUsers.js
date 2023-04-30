@@ -1,5 +1,6 @@
 const { Users, Wallets } = require('../../db')
 const verifyRol= require('../../helpers/verifyRol')
+const {getSellerInfo} = require('./getSellerUser')
 
 const getAllUsers = async (sub)=>{
     const rol = await verifyRol(sub)
@@ -14,8 +15,9 @@ const getAllUsers = async (sub)=>{
         required: false
 
     })
-
-    return users
+    const sellers = await getSellerInfo(users)
+    
+    return {sellers}
 }
 
 module.exports = {getAllUsers}
