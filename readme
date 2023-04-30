@@ -26,6 +26,7 @@ put */user/profile* (modidficaciones del profile del usuario, mandar sub del usu
 get */user/profile/bybalance/sub* (trae profile + balance de wallets) Ces
 get */user/bytransaction/:sub* (trae user + transactions)  Ces
 get */user/buyer/:sub (juegos comprados,detalle y link de descarga,  review por el usuario y balance) Fer
+get */user/rol/:sub (trae que rol)
 
 post */checkout* (compra)
 post */checkout/cargacoins* (insert del saldo en la wallets,mandar user, input)
