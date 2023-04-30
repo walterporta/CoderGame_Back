@@ -3,7 +3,7 @@ require('dotenv').config();
 const {
    DB_USER, DB_PASSWORD, DB_HOST, DB_NAME, PORT_DB
 } = process.env;
-
+ 
 const modelVideoGames = require('./models/VideoGame.js')
 const modelGenreGames = require('./models/GenreGame.js')
 const modelUsers = require('./models/User.js');
@@ -53,9 +53,6 @@ Transactions.belongsTo(Videogames)
 
 Users.hasMany(Transactions)
 Transactions.belongsTo(Users)
-
-Videogames.hasMany(Transactions);
-
 
 
 Videogames.hasMany(Favorites);

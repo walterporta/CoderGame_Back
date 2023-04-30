@@ -28,9 +28,17 @@ const getBuyerUser= async (sub) => {
       attributes: ['balance']
     });
 
+    const comments = await ComentariosV.findAll({
+      include:{
+        model:Videogames,
+        attributes: ['name']
+      },
+      where:{UserSub:sub, deleted:false}})
+
     return {
       favorites: favorites,
-      balance: wallet.balance
+      balance: wallet.balance,
+      comments
     };
 
   } catch (error) {
