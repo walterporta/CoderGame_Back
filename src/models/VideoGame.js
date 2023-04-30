@@ -1,4 +1,5 @@
 const { DataTypes } = require("sequelize");
+
 module.exports = (sequelize) => {
   sequelize.define(
     "Videogames",
@@ -7,54 +8,50 @@ module.exports = (sequelize) => {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         allowNull: false,
-        primaryKey: true, 
+        primaryKey: true,
       },
       name: {
         type: DataTypes.STRING,
         allowNull: false,
-        validate:{
-          customValidator(value){
-            if(value.length>40){
-             throw new Error("el tititulo del juego no puede superar los 40 caracteres")
-            }
-           }
+        validate: {
+          customValidator(value) {
+            if (value.length > 39)
+              throw new Error("Can not be longer than 40 characters ");
           }
-        },
+        }
+      },
       released: {
         type: DataTypes.DATEONLY,
-        // validate: {
-          // customValidator(value) {
-          //   const currentDate = new Date();
-          //   const releaseDate = new Date(value);
-          //   const minDate = new Date("1958-01-01");
-          //   if (releaseDate < minDate || releaseDate > currentDate) {
-          //     throw new Error("la fecha de lanzamiento debe estar entre el año 1958 y la fecha actual");
-          //   }
-          // },
-        // },
+        validate: {
+          customValidator(value) {
+            const currentDate = new Date();
+            const releaseDate = new Date(value);
+            const minDate = new Date("1958-01-01");
+            if (releaseDate < minDate || releaseDate > currentDate) {
+              throw new Error("the release date must be between the year 1958 and the current date");
+            }
+          },
+        },
       },
       rating: {
         type: DataTypes.FLOAT,
-        // validate:{
-        //   customValidator(value){
-        //     if(value>5){
-        //      throw new Error("el rating no puede ser mayor a 5")
-        //     }
-        //    }
-        //   }
+        validate: {
+          customValidator(value) {
+            if (value > 5) {
+              throw new Error("el rating no puede ser mayor a 5")
+            }
+          }
+        }
       },
-      // platforms: {
-      //   type: DataTypes.ARRAY(DataTypes.STRING),
-      // },
       description: {
         type: DataTypes.TEXT,
-        // validate:{
-        //   customValidator(value){
-        //     if(value.length<50 || value.length>500){
-        //     //  throw new Error("La descripcion debe contener entre 50 y 500 caracteres")
-        //     }
-        //    }
-        //   }
+        validate: {
+          customValidator(value) {
+            if (value.length > 500) {
+              throw new Error("can not have more than 500 characters")
+            }
+          }
+        }
       },
       image: {
         type: DataTypes.TEXT,
@@ -64,13 +61,18 @@ module.exports = (sequelize) => {
         allowNull: false,
         defaultValue: false,
       },
-      price:{
+      price: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        validate: {
+          customValidator(value) {
+            if (value <= 0)
+              errors.price = "price has to be greater than 0";
+          }
+        }
       },
-      gameLink:{
+      gameLink: {
         type: DataTypes.STRING,
-
       }
     },
     {

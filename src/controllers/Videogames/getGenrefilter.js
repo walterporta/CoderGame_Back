@@ -1,23 +1,35 @@
-const { Videogames, Genregames } = require('../../db')
-const genreFilter = async ()=>{
-    
-    let genres =await Genregames.findAll(
+const { Videogames, Genregames, Platforms } = require('../../db')
+const genrePlatformsFilter = async (filtro)=>{  
+  let response 
+    if(filtro === 'Genregames'){
+       response =await Genregames.findAll(
         {
             include: [
                 {
                   model: Videogames,
-
                 }
               ],
-
             }
     )
-    genres= genres.filter((genre)=>genre.Videogames.length !== 0)
-    genres = genres.map((genre)=>{
-        return { id :genre.id, name: genre.name}
+    }
+    if(filtro === 'Platforms'){
+      response =await Platforms.findAll(
+      {
+          include: [
+              {
+                model: Videogames,
+              }
+            ],
+          })
+
+    }
+ 
+    response= response.filter((el)=>el.Videogames.length !== 0)
+    response = response.map((el)=>{
+        return { id :el.id, name: el.name}
     })
-    return genres
+    return response
 
 }
 
-module.exports = {genreFilter}
+module.exports = {genrePlatformsFilter}

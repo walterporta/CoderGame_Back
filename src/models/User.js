@@ -8,6 +8,7 @@ module.exports = (sequelize) => {
         type: DataTypes.TEXT,
         primaryKey: true,
       },
+
       name: {
         type: DataTypes.STRING,
         // allowNull: false
@@ -24,6 +25,11 @@ module.exports = (sequelize) => {
 
       },
       banned: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
+      },
+
+      deleted: {
         type: DataTypes.BOOLEAN,
         defaultValue: false
       }

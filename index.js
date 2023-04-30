@@ -17,4 +17,3 @@ conn.sync({ alter: true }).then(() => {
   });
 });
 
-//alter ///force
