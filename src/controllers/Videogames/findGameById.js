@@ -1,4 +1,5 @@
 const { Videogames, Genregames, Platforms, ComentariosV, Users } = require('../../db');
+const { col, fn} = require('sequelize')
 
 const findGameById = async (id) => {
 
@@ -22,7 +23,11 @@ const findGameById = async (id) => {
         }}, 
         {
           model: ComentariosV,
-          attributes: ['id', 'message', 'date'],
+          attributes: [
+            'id', 
+            'message',
+            [fn('to_char', col('ComentariosVs.date'), 'YYYY-MM-DD'), 'date']
+          ],
           where:{deleted:false},
           include: [
             {
