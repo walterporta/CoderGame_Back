@@ -11,7 +11,7 @@ checkout.post('/', async (req, res) => {
   try {    
     const paymentIntent = await stripe.paymentIntents.create({
       currency: "USD",
-      amount:  input * 100,
+      amount:  Number(input) * 100,
     });
     // Send publishable key and PaymentIntent details to client
     res.send({
