@@ -2,6 +2,7 @@ const{getAllUsers} = require('../controllers/Admin/getAllUsers')
 const{banDelUser} = require('../controllers/Admin/banDelUser')
 const {getAllVideogames} = require('../controllers/Admin/getAllVideogames')
 const { getAllBalance } = require('../controllers/Admin/getAllBalance')
+
 const getAllUsersHandler = async (req,res)=>{
     const {sub} = req.params
     try { 
@@ -41,8 +42,7 @@ const getAllVideogamesHandler = async(req,res) =>{
     } catch (error) {
         res.status(400).json(error.message)
     }
-
-
+    
 }
 
 const getAllBalanceHandler = async (req,res) =>{
