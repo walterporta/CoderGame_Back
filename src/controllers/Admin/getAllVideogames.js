@@ -14,10 +14,11 @@ const getAllVideogames = async(sub) =>{
         {
             model:Promotions,
             attributes:['discountPorcentage','dueDate'],
-            where: {dueDate:{[Op.gt]: currentDate}}
+            where: {dueDate:{[Op.gt]: currentDate}},
+            required: false
         }
     ]
-    })
+    }) 
 
     return allVideogame
 }
