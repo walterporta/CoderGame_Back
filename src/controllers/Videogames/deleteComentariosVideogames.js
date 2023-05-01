@@ -8,7 +8,7 @@ const deleteComentarioV = async (id, sub) => {
 
     if(rol !== 'admin' && coment.UserSub !== sub)throw new Error('You are not authorized to delete this comment')
 
-    const comentario = await ComentariosV.update({deleted:!true},{where:{id:id}})
+    const comentario = await ComentariosV.update({deleted: true},{where:{id:id}})
     console.log(comentario)
     return 'el comentario se elimino'
     
