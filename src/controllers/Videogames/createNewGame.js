@@ -1,10 +1,12 @@
 const { Videogames, Genregames, Platforms } = require('../../db')
 const verifyRol = require('../../helpers/verifyRol')
 
-const createNewGame = async ({sub, name, released, genres, rating, platforms, description, image, price, gameLink }) => {
-    const rol = verifyRol(sub)
-    if(rol==='client')throw new Error('you are not authorized to create games')
-    
+const createNewGame = async ({ sub, name, released, genres, rating, platforms, description, image, price, gameLink }) => {
+
+    const rol = await verifyRol(sub)
+
+    if (rol === 'client') return res.status(403).send('No tienes el rol autorizado')
+
     const existName = await Videogames.findOne({
         where: {
             name: name
