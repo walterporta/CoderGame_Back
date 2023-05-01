@@ -6,6 +6,7 @@ const emailReportUser = async (subReport, text, comentId)=>{
 
     const user = await Users.findOne({where:{sub:subReport}})
     const admin = await Users.findOne({where:{rol:"admin"}})
+    console.log(admin)
     try {
         let transporte = await createTrans()
         let info = await transporte.sendMail({
