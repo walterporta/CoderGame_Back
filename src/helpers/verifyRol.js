@@ -4,7 +4,6 @@ const verifyRol = async (sub) => {
     const response = await Users.findOne({
         where: {
             sub: sub,
-            
         }
     
     })
