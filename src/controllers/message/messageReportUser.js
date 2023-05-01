@@ -6,13 +6,12 @@ const emailReportUser = async (subReport, text, comentId)=>{
 
     const user = await Users.findOne({where:{sub:subReport}})
     const admin = await Users.findOne({where:{rol:"admin"}})
-    console.log(admin)
     try {
         let transporte = await createTrans()
         let info = await transporte.sendMail({
         from: `Request Seller" <ramirosanchezsolano@gmail.com>`, // sender address
         to: admin.email, // list of receivers
-        subject: `Request Seller sub :${sub}`, // Subject line
+        subject: `Report user sub :${subReport}`, // Subject line
         text: "report user", // plain text body
         html: `<b>$${text}</b>
         <br>

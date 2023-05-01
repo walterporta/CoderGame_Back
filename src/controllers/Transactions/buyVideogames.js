@@ -8,6 +8,7 @@ const buyVideogames = async (idVideogame, idUser) =>{
 
   if(role === 'seller'|| role==='admin') throw new Error('only customers can buy a game')
 
+    const currentDate = new Date()
     const saldo = await Wallets.findOne({
         include: {
             model: Users,
@@ -38,8 +39,11 @@ const buyVideogames = async (idVideogame, idUser) =>{
  
       for (const game of idVideogame) {
         const videogame = await Videogames.findOne({where: {id: game}});
-        const buy = await Transactions.create({VideogameId: game, WalletId: saldo.id, amount: videogame.price, VideogameId:game});
-        
+        const promo = await Promotions.findOne({where:{VideogameId:game, dueDate:{[Op.gt]: currentDate} }})
+        let amount = videogame.price
+        if(promo) amount =videogame.price * (1-promo.discountPorcentage/100)
+        const buy = await Transactions.create({VideogameId: game, WalletId: saldo.id, amount: amount, VideogameId:game});
+
         await Favorites.update({buy: true}, {where: {VideogameId: game, UserSub: idUser}});
       }
 
