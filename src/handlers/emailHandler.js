@@ -22,4 +22,4 @@ const emailReportUserHandler = async (req,res)=>{
     }
 }
 
-module.exports = {emailRequiestSellerHandler, emailReportUser}
+module.exports = {emailRequiestSellerHandler, emailReportUserHandler}
