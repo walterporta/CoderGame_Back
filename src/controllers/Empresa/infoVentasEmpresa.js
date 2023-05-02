@@ -28,12 +28,12 @@ const infoVentasEmpresa = async (sub) => {
             return {
                 id: transaction.id,
                 date: transaction.date,
-                amount: transaction.amount,
+                amount: parseInt(transaction.amount),
                 user: user
             };
         });
         const resolvedTransactions = await Promise.all(transactions);
-    
+
 
         let totalGanancia = 0
         resolvedTransactions.forEach(el => {
@@ -41,12 +41,13 @@ const infoVentasEmpresa = async (sub) => {
         })
 
         return {
+            id: el.id,
             name: el.name,
             released: el.released,
             rating: el.rating,
             description: el.description,
             image: el.image,
-            delete: el.delete,
+            deleted: el.deleted,
             price: el.price,
             gamelink: el.gamelink,
             Transactions: resolvedTransactions,
