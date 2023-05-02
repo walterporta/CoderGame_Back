@@ -32,10 +32,10 @@ const getProfileUsers = async (req,res)=>{
 
 
 const upditeProfilehandler = async (req,res) =>{
-    const {sub, image, coverImage, linkYoutube, description } = req.body
+    const {sub, image, coverImage, linkYoutube, description, nickname } = req.body
     console.log(req.body)
     try {
-        const updite = await upditeProfile(sub, {image, coverImage, linkYoutube, description})
+        const updite = await upditeProfile(sub, {image, coverImage, linkYoutube, description, nickname})
         res.status(200).json(updite)
         
     } catch (error) {

@@ -11,6 +11,10 @@ module.exports = (sequelize) => {
                 primaryKey: true,
                 
             },
+            nickname: {
+                type: DataTypes.STRING,
+                unique: true,
+            },
             image: {
                 type: DataTypes.STRING,
                 
