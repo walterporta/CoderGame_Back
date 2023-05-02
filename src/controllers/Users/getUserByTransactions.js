@@ -12,7 +12,7 @@ const getUserByTransaction = async (userId) => {
             include: {
               model: Transactions,
               attributes:[
-               [fn('to_char', col('Transactions.date'), 'YYYY-MM-DD'), 'date'],
+                [fn('to_char', col('date'), 'YYYY-MM-DD'), 'date'],
                 'amount',
                'VideogameId',
                ]
