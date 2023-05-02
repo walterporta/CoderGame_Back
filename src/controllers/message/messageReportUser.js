@@ -1,17 +1,20 @@
 const { createTrans } = require('./message')
-const {Users} = require('../../db')
+
+const {Users, ComentariosV} = require('../../db')
 
 
-const emailReportUser = async (subReport, text, comentId)=>{
+const emailReportUser = async (text, comentId)=>{
 
-    const user = await Users.findOne({where:{sub:subReport}})
+    let user = await ComentariosV.findOne({where:{id:comentId}})
+     user = await Users.findOne({where:{sub:user.UserSub}})
+    
     const admin = await Users.findOne({where:{rol:"admin"}})
     try {
         let transporte = await createTrans()
         let info = await transporte.sendMail({
         from: `Request Seller" <ramirosanchezsolano@gmail.com>`, // sender address
         to: admin.email, // list of receivers
-        subject: `Report user sub :${subReport}`, // Subject line
+        subject: `Report user email :${user.email}`, // Subject line
         text: "report user", // plain text body
         html: `<b>$${text}</b>
         <br>

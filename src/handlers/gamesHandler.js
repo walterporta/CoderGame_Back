@@ -9,9 +9,9 @@ const { insertComentarioV } = require('../controllers/Videogames/InsertComentari
 
 const getVideoGamesHandler = async (req, res) => {
 
-  const { name, genre, platforms, promotion } = req.query
+  const {sub, name, genre, platforms, promotion } = req.query
   try {
-    const allVideoGames = await findGameName(name, genre, platforms, promotion)
+    const allVideoGames = await findGameName(name, genre, platforms, promotion, sub)
 
     res.status(200).json(allVideoGames)
 

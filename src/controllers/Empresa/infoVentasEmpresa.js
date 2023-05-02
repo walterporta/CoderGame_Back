@@ -59,6 +59,7 @@ const infoVentasEmpresa = async (sub) => {
     const arrayClean = await Promise.all(promises);
 
     return arrayClean;
+    
 };
 
 module.exports = { infoVentasEmpresa }

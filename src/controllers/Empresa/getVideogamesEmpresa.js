@@ -2,7 +2,7 @@ const { Videogames } = require('../../db')
 
 const getVideogamesEmpresa = async (sub) =>{
 
-    if(!sub) throw new Error('ingresa el sub de la empresa')
+    if(!sub) throw new Error("enter the company's sub")
     
     const videogames = await Videogames.findAll({where:{UserSub:sub}})
 

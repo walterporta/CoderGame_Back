@@ -1,5 +1,5 @@
 const { Users, Wallets, Transactions } = require('../../db')
-
+const { col, fn} = require('sequelize')
 
 const getUserByTransaction = async (userId) => {
     try {
@@ -8,8 +8,14 @@ const getUserByTransaction = async (userId) => {
         include: [
           {
             model: Wallets,
+
             include: {
-              model: Transactions
+              model: Transactions,
+              attributes:[
+                [fn('to_char', col('date'), 'YYYY-MM-DD'), 'date'],
+                'amount',
+               'VideogameId',
+               ]
             }
           },
         ],

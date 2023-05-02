@@ -3,6 +3,7 @@ const{banDelUser} = require('../controllers/Admin/banDelUser')
 const {getAllVideogames} = require('../controllers/Admin/getAllVideogames')
 const { getAllBalance } = require('../controllers/Admin/getAllBalance')
 const {getAllTransactions} = require('../controllers/Admin/getAllTransactions')
+
 const getAllUsersHandler = async (req,res)=>{
     const {sub} = req.params
     try { 
@@ -47,8 +48,8 @@ const getAllVideogamesHandler = async(req,res) =>{
 
 const getAllBalanceHandler = async (req,res) =>{
     const {sub} = req.params
-    const {startDate, finalDate}= req.query
-
+    const {startDate, finalDate}= req.body
+ 
     try {
         response = await getAllBalance(startDate, finalDate, sub)
         res.status(200).json(response)

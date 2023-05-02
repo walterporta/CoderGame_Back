@@ -4,7 +4,7 @@ const {  addComentarioVideogame, deleteComentario } = require('../handlers/games
 
 
 comentRoute.post('/', addComentarioVideogame )
-comentRoute.delete('/', deleteComentario )
+comentRoute.put('/', deleteComentario )
 
 
 module.exports = comentRoute
