@@ -13,12 +13,13 @@ console.log(sub,text)
 }
 
 const emailReportUserHandler = async (req,res)=>{
-    const {sub, text,comment}= req.body
+    const { text, comment}= req.body
+    console.log(text, comment)
     try {
-        const response = await emailReportUser(sub, text, comment)
+        const response = await emailReportUser(text, comment)
         res.status(200).json(response)
-    } catch (error) {
-        
+    } catch (error) { 
+        res.status(400).json(error.message)
     }
 }
 
