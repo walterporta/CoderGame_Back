@@ -4,6 +4,7 @@ const {Op} = require('sequelize')
 
 const getAllVideogames = async(sub) =>{
     const rol = await verifyRol(sub)
+    if(rol !== 'admin') throw new Error('You are not authorized to access this information')
     const currentDate = new Date()
     const allVideogame = await Videogames.findAll({
         include:[

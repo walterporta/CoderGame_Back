@@ -1,7 +1,9 @@
 const {Favorites, Videogames, Transactions} = require('../../db')
 const {Op, col, fn} = require('sequelize')
-
-const getAllBalance = async (startDate, finalDate) =>{
+const veryfyRol = require('../../helpers/verifyRol')
+const getAllBalance = async (startDate, finalDate, sub) =>{
+    const rol = veryfyRol(sub)
+    if(rol !== 'admin') throw new Error('You are not authorized to access this information')
    finalDate? finalDate=finalDate:finalDate = new Date()
     startDate? startDate:startDate = new Date('2023-01-01')
     const allBuyVideogames = await Transactions.findAll({

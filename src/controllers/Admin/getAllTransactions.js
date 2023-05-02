@@ -1,5 +1,3 @@
-
-const { all } = require('axios')
 const {Transactions, Wallets, Videogames} = require('../../db')
 
 const getAllTransactions = async (sub) =>{
