@@ -78,11 +78,13 @@ const emailAllClient = async (game) =>{
       <script src="script.js"></script>
     </body>
     </html>`;
-    console.log(allUser[0].email)
+if(allUser.length !==0){
     allUser.map((user)=>{
-        emailNewGame(text, user.email)
+    emailNewGame(text, user.email)
 
-    })
+})
+}
+
     return 'send email Ok'
 }   
 

@@ -15,7 +15,6 @@ const createTrans = async () =>{
 }
 
 const message = async (email, name) =>{
-  console.log(email)
     try {
         let transporte = await createTrans()
     let info = await transporte.sendMail({
