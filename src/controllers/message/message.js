@@ -26,7 +26,7 @@ const message = async (email, name) => {
     const info = await transporter.sendMail({
       from: `"Bienvenido a CoderGame" <codergame2023@gmail.com>`,
       to: email,
-      subject: '¡Bienvenido a CoderGame!',
+      subject: '¡Welcome to CoderGame!',
       html: `
       <html>
       <head>
@@ -63,22 +63,22 @@ const message = async (email, name) => {
       </head>
       <body>
         <div class="header">
-          <h1>Bienvenido a CoderGame</h1>
+          <h1>Welcome to CoderGame</h1>
         </div>
         <div class="content">
-          <p>Hola.</p>
-          <p>¡Gracias por unirte a CoderGame! Esperamos que disfrutes de nuestra plataforma.</p>
-          <p>No dudes en contactarnos si necesitas ayuda o tienes alguna pregunta.</p>
-          <a href="https://coder-game.vercel.app/" class="button">Inicia sesión ahora</a>
+          <p>Hola ${email}.</p>
+          <p>¡Thanks for joining CoderGame! We hope you enjoy our platform.</p>
+          <p>Feel free to contact us if you need help or have any questions.</p>
+          <a href="https://coder-game.vercel.app/" class="button">Login Now</a>
         </div>
       </body>
     </html>
       `,
     });
 
-    console.log(`Correo electrónico enviado a ${email}: ${info.messageId}`);
+    console.log(`E-mail send ${email}: ${info.messageId}`);
   } catch (error) {
-    console.error(`Error al enviar el correo electrónico de bienvenida a ${email}:`, error);
+    console.error(`Failed to send welcome email to ${email}:`, error);
   }
 }
 
