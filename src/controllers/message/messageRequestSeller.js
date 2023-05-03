@@ -2,7 +2,7 @@ const { createTrans } = require('./message')
 const {Users} = require('../../db')
 
 
-const emailRequiestSeller = async (sub, text) =>{
+const emailRequiestSeller = async (sub) =>{
     const user = await Users.findOne({where:{sub:sub}})
     const admin = await Users.findOne({where:{rol:"admin"}})
     console.log(user.email, admin.email)
@@ -14,11 +14,11 @@ const emailRequiestSeller = async (sub, text) =>{
         to: admin.email, // list of receivers
         subject: `Request Seller sub :${sub}`, // Subject line
         text: "request seller", // plain text body
-        html: `<b>$${text}</b>
+        html: `<b>User: ${user.name} requests to be a seller </b>
         <br>
         <p>email User: ${user.email}</p>`, // html body
       });
-      return info
+      return 'the administration will be communicated soon'
     } catch (error) {
         return error.message
     }
