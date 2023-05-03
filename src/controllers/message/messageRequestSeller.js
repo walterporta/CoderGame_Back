@@ -18,6 +18,7 @@ const emailRequiestSeller = async (sub) =>{
         <br>
         <p>email User: ${user.email}</p>`, // html body
       });
+        await Users.update({requestSeller:true},{where:{sub:sub}})
       return 'the administration will be communicated soon'
     } catch (error) {
         return error.message

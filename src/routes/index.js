@@ -21,7 +21,7 @@ const router = Router();
 // Configurar los routers
 router.use('/genres', genresRoutes)
 router.use('/videogames', videoGamesRoutes)
-router.use('/platforms', platformsRoutes)
+router.use('/platforms', platformsRoutes) 
 router.use('/cargadb', dbLoad)
 
 router.use('/user', usersRoutes)
