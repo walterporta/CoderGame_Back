@@ -4,7 +4,7 @@ const {getAllTransactionsHandler, getAllUsersHandler, getAllVideogamesHandler, b
 
 adminRoute.get('/allusers/:sub', getAllUsersHandler)
 adminRoute.put('/banned', banUserHandler)
-adminRoute.delete('/delete', deleteUserHandler )
+adminRoute.put('/delete', deleteUserHandler )
 adminRoute.get('/allvideogames/:sub', getAllVideogamesHandler)
 adminRoute.put('/balance/:sub', getAllBalanceHandler)
 adminRoute.get('/transactions/:sub', getAllTransactionsHandler)
