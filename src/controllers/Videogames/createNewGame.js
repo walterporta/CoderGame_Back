@@ -1,5 +1,7 @@
 const { Videogames, Genregames, Platforms } = require('../../db')
 const verifyRol = require('../../helpers/verifyRol')
+const {emailAllClient} = require('../message/messageNewGame')
+
 
 const createNewGame = async ({ sub, name, released, genres, rating, platforms, description, image, price, gameLink }) => {
 
@@ -44,6 +46,7 @@ const createNewGame = async ({ sub, name, released, genres, rating, platforms, d
     }
     await newVideoGame.addGenregames(objGenres)
     await newVideoGame.addPlatforms(objPlatforms)
+        emailAllClient(newVideoGame)
     return newVideoGame
 }
 
