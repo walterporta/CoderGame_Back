@@ -78,7 +78,6 @@ const emailAllClient = async (game) =>{
       <script src="script.js"></script>
     </body>
     </html>`;
-    console.log(allUser[0].email)
     allUser.map((user)=>{
         emailNewGame(text, user.email)
 
