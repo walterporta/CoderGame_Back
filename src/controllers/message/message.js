@@ -7,8 +7,8 @@ const createTrans = async () =>{
         port: 465,
         secure:true,
         auth: {
-          user: "ramirosanchezsolano@gmail.com",
-          pass: 'nvcbwryvuiiarixw'
+          user: "codergame2023@gmail.com",
+          pass: MEILER_PASS
         },
       });
       return transport
@@ -24,7 +24,7 @@ const message = async (email, name) => {
     const transporter = await createTrans();
 
     const info = await transporter.sendMail({
-      from: `"Bienvenido a CoderGame" <ramirosanchezsolano@gmail.com>`,
+      from: `"Bienvenido a CoderGame" <codergame2023@gmail.com>`,
       to: email,
       subject: '¡Bienvenido a CoderGame!',
       html: `
