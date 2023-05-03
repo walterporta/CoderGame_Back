@@ -14,7 +14,7 @@ const createNewGame = async ({ sub, name, released, genres, rating, platforms, d
             name: name
         }
     })
-    if (existName) throw new Error('ya existe un juego con ese nombre')
+    if (existName) throw new Error('there is already a game with that name')
     const newVideoGame = await Videogames.create({ UserSub: sub, name, released, genres, rating, platforms, description, image, price, gameLink })
     const objGenres = []
     const objPlatforms = []
@@ -25,7 +25,7 @@ const createNewGame = async ({ sub, name, released, genres, rating, platforms, d
                 name: genre
             }
         })
-        if (genreObject.length === 0) throw new Error('debes agregar un genero que exista')
+        if (genreObject.length === 0) throw new Error('you must add a genre that exists')
 
         const [created] = genreObject
 
@@ -38,7 +38,7 @@ const createNewGame = async ({ sub, name, released, genres, rating, platforms, d
                 name: platform
             }
         })
-        if (platformObject.length === 0) throw new Error('debes agregar una plataforma que exista')
+        if (platformObject.length === 0) throw new Error('you must add a platform that exists')
 
         const [created] = platformObject
 

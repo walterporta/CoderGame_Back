@@ -35,7 +35,7 @@ const buyVideogames = async (idVideogame, idUser) =>{
         total=total+discount.toFixed(2)} else total = total + videogames.price
       }
       
-      if(saldo.balance-total<0) throw new Error('el saldo es insuficiente')
+      if(saldo.balance-total<0) throw new Error('the balance is insufficient')
  
       for (const game of idVideogame) {
         const videogame = await Videogames.findOne({where: {id: game}});
@@ -49,7 +49,7 @@ const buyVideogames = async (idVideogame, idUser) =>{
 
     await Wallets.update({ balance: saldo.balance - total}, { where: { id: saldo.id } })
 
-    return `Se realizo la compra de forma exitosa`
+    return `The purchase was made successfully`
 
 }
 

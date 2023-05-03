@@ -44,11 +44,11 @@ const findGameById = async (id) => {
   });
 
   if (!videoGame) {
-    throw new Error('El videojuego no existe');
+    throw new Error("The game doesn't exist");
   }
 
   if (videoGame.deleted) {
-    throw new Error('El videojuego ha sido eliminado');
+    throw new Error('The video game has been removed');
   }
 
   return videoGame;

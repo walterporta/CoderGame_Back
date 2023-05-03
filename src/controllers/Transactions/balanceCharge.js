@@ -16,7 +16,7 @@ const balanceCharge= async (idUser, amount) => {
         return `charged ${amount} to his wallet`
         }
         
-    throw new Error('no se pudo cargar el saldo')
+    throw new Error('could not load balance')
     }
 
 module.exports = {balanceCharge} 

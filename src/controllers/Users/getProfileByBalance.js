@@ -14,7 +14,7 @@ const getProfileByBalance = async (sub) => {
 
     return { profile: userProfile, balance: userBalance };
   } catch (error) {
-    throw new Error(`Error al cargar el perfil y saldo: ${error.message}`);
+    throw new Error(`Error loading profile and balance: ${error.message}`);
   }
 };
 

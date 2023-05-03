@@ -10,7 +10,7 @@ const deleteComentarioV = async (id, sub) => {
 
     const comentario = await ComentariosV.update({deleted: true},{where:{id:id}})
     console.log(comentario)
-    return 'el comentario se elimino'
+    return 'the comment was deleted'
     
 }
 

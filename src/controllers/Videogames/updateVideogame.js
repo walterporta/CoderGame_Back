@@ -3,17 +3,17 @@ const { Videogames, Genregames, Platforms } = require('../../db')
 const updateVideogames = async (id, { name, released, genres,  platforms, description, image, price, gameLink }) => {
 
   if (!id || isNaN(id)) {
-    throw new Error('Debe proporcionar un ID válido');
+    throw new Error('You must provide a valid ID');
   }
 
   if (!name && !released && !genres && !platforms && !description && !image && !price && !gameLink) {
-    throw new Error('Debe proporcionar al menos un parámetro para modificar el videojuego');
+    throw new Error('You must provide at least one parameter to modify the game');
   }
   
   const videoGame = await Videogames.findByPk(id)
 
   if (!videoGame) {
-    throw new Error(`El videojuego con ID ${id} no existe`)
+    throw new Error(`Game with ID ${id} does not exist`)
   }
 
   if (name) { videoGame.name = name }
@@ -37,7 +37,7 @@ const updateVideogames = async (id, { name, released, genres,  platforms, descri
         }
       })
       if (!genreObject) {
-        throw new Error(`El género ${genre} no existe`)
+        throw new Error(`The genre ${genre} does not exist`)
       }
       objGenres.push(genreObject)
     }
@@ -53,7 +53,7 @@ const updateVideogames = async (id, { name, released, genres,  platforms, descri
         }
       })
       if (!platformObject) {
-        throw new Error(`La plataforma ${platform} no existe`)
+        throw new Error(`Platform ${platform} does not exist`)
       }
       objPlatforms.push(platformObject)
     }

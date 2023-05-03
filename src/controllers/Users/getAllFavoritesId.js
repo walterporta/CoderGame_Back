@@ -20,7 +20,7 @@ const getAllFavorites = async (id, buy)=>{
         where:{UserSub:id}
     })
 
-    if(!listFavorites) throw new Error('No tiene juegos en favoritos')
+    if(!listFavorites) throw new Error('You have no favorite games')
     listFavorites = listFavorites.map(fav=> {
         return fav.Videogame
     })
