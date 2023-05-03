@@ -5,7 +5,6 @@ const veryfyRol = require('../../helpers/verifyRol')
 
 const getAllBalance = async (startDate, finalDate, sub) =>{
     const rol = await veryfyRol(sub)
-    console.log(rol)
     if(rol !== 'admin') throw new Error('You are not authorized to access this information')
    finalDate? finalDate=finalDate:finalDate = new Date()
     startDate? startDate:startDate = new Date('2023-01-01')

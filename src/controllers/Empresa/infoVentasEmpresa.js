@@ -2,7 +2,7 @@ const { Users, Videogames, Favorites, Transactions, Wallets } = require('../../d
 const searchUserByWallet = require('../../helpers/searchUserByWallet.js');
 const verifyRol = require('../../helpers/verifyRol.js')
 const infoVentasEmpresa = async (sub) => {
-    const rol = verifyRol(sub)
+    const rol = await verifyRol(sub)
     if(rol ==='client') throw new Error('You are not authorized to access this information')
 
     const listGames = await Videogames.findAll({
