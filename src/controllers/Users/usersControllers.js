@@ -8,6 +8,7 @@ const { USER_ADMIN } = process.env
 const createNewUser = async ({ sub, name, email }) => {
 
     const user = await Users.findOne({ where: { sub: sub } })
+     email = email.toLowerCase();
     if (!user) {
         message(email, name)
     }
@@ -39,6 +40,6 @@ const createNewUser = async ({ sub, name, email }) => {
 
     return newUser
 }
-
+ 
 
 module.exports = { createNewUser }
