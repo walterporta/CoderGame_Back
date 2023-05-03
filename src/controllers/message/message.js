@@ -24,7 +24,7 @@ const message = async (email, name) => {
     const transporter = await createTrans();
 
     const info = await transporter.sendMail({
-      from: `"Bienvenido a CoderGame" <codergame2023@gmail.com>`,
+      from: `"Welcome to CoderGame" <codergame2023@gmail.com>`,
       to: email,
       subject: '¡Welcome to CoderGame!',
       html: `
@@ -66,7 +66,7 @@ const message = async (email, name) => {
           <h1>Welcome to CoderGame</h1>
         </div>
         <div class="content">
-          <p>Hola ${email}.</p>
+          <p>Hello ${email}.</p>
           <p>¡Thanks for joining CoderGame! We hope you enjoy our platform.</p>
           <p>Feel free to contact us if you need help or have any questions.</p>
           <a href="https://coder-game.vercel.app/" class="button">Login Now</a>
