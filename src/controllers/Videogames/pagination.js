@@ -24,7 +24,6 @@ const pagination = async(name, genre, platforms, promotion, sub, page=1)=>{
             }
         });
         let pages = Object.keys(paginationObj)
-        console.log(pages)
 return {Videogames: paginationObj[page], pages: pages.length}
 
 }
