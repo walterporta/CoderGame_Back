@@ -5,13 +5,13 @@ const { deleteLogical } = require('../controllers/Videogames/deleteLogical.js');
 const { updateVideogames } = require('../controllers/Videogames/updateVideogame.js');
 const { deleteComentarioV } = require('../controllers/Videogames/deleteComentariosVideogames.js')
 const { insertComentarioV } = require('../controllers/Videogames/InsertComentariosVideogames.js')
-
+const {pagination} = require('../controllers/Videogames/pagination.js')
 
 const getVideoGamesHandler = async (req, res) => {
 
-  const {sub, name, genre, platforms, promotion } = req.query
+  const {sub, name, genre, platforms, promotion, page } = req.query
   try {
-    const allVideoGames = await findGameName(name, genre, platforms, promotion, sub)
+    const allVideoGames = await pagination(name, genre, platforms, promotion, sub, page)
 
     res.status(200).json(allVideoGames)
 
