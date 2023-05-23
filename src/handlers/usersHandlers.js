@@ -65,7 +65,6 @@ const addFavoriteHandler = async (req, res) => {
 
     try {
         const response = await addFavorite(idUser, idVideogame)
-        console.log(response)
         res.status(200).json(response)
     } catch (error) {
         res.status(400).json({ Error: error.message })
