@@ -15,7 +15,7 @@ const usersRoutes = Router()
 
 usersRoutes.post('/register', createUserHandler)
 usersRoutes.post('/favorites', addFavoriteHandler)
-usersRoutes.delete('/favorites', deleteFavoriteHandler)
+usersRoutes.put('/favorites', deleteFavoriteHandler)
 usersRoutes.get('/favorites/:id', getFavoriteHandler)
 usersRoutes.get('/videogames/:id', getVideogamesBuy)
 usersRoutes.get('/profile/:sub', getProfileUsers)

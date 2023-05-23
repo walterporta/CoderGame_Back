@@ -12,7 +12,7 @@ const getVideoGamesHandler = async (req, res) => {
   const {sub, name, genre, platforms, promotion, page } = req.query
   try {
     const allVideoGames = await pagination(name, genre, platforms, promotion, sub, page)
-
+    
     res.status(200).json(allVideoGames)
 
   } catch (error) {
