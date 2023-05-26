@@ -1,10 +1,10 @@
 const {findGameName} = require('./findGameName')
-
-const pagination = async(name, genre, platforms, promotion, sub, page=1)=>{
+const {orderBy} = require('./orderBy')
+const pagination = async(name, genre, platforms, promotion, sub, page=1, order="name", ascDesc="asc")=>{
     let allGames = []
     
     try {
-        allGames= await findGameName(name, genre, platforms, promotion, sub)
+        allGames= await findGameName(name, genre, platforms, promotion, sub, order, ascDesc)
     } catch (error) {
         return error.error
     }
@@ -25,7 +25,7 @@ const pagination = async(name, genre, platforms, promotion, sub, page=1)=>{
         });
 
         let pages = Object.keys(paginationObj)
-return {Videogames: paginationObj[page], pages: pages.length}
+return { Videogames: paginationObj[page], pages: pages.length }
 
 }
 

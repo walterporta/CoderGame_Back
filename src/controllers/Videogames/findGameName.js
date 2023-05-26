@@ -3,22 +3,17 @@ const { Op } = require('sequelize')
 const {searchApi } = require('../ApyAndDb/getApiData')
 
 
-const findGameName = async (name, genre, platforms, promotion, sub) => {
-    let findGame = []
+const findGameName = async (name, genre, platforms, promotion, sub, orderBy, ascDesc) => {
+  console.log(orderBy, ascDesc)  
+  let findGame = []
     const currentDate = new Date()
-    const findBuys ={
-      model: Favorites,
-      attributes:['buy'],
-      where: {UserSub:sub},
-      required:false
-    }
+  var option = [orderBy, ascDesc]
 
      findGame = await Videogames.findAll({
       attributes:['id','name', 'released', 'rating','description','image', 'deleted', 'price'],
         where:{
             [Op.and]:[name?{name: {[Op.iLike]: `%${name}%`}}:null ],
             deleted: false,
-        
         },
          include: [
             {
@@ -57,13 +52,13 @@ const findGameName = async (name, genre, platforms, promotion, sub) => {
             }
 
           ],
-          order: [['id', 'ASC']]
-    })
+          order:[option]
+          
+        })
     return findGame
 }
  
-
 module.exports = {
     findGameName
 }
-
+ 

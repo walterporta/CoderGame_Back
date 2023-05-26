@@ -9,9 +9,9 @@ const {pagination} = require('../controllers/Videogames/pagination.js')
 
 const getVideoGamesHandler = async (req, res) => {
 
-  const {sub, name, genre, platforms, promotion, page } = req.query
+  const {sub, name, genre, platforms, promotion, page, order, ascDesc } = req.query
   try {
-    const allVideoGames = await pagination(name, genre, platforms, promotion, sub, page)
+    const allVideoGames = await pagination(name, genre, platforms, promotion, sub, page, order, ascDesc)
     
     res.status(200).json(allVideoGames)
 
