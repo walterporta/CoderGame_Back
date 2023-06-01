@@ -2,7 +2,8 @@ const { Router } = require('express');
 const mercadopago = require('mercadopago');
 
 // IMPORTA LA FUNCION QUE NECESITAS AQUÍ
-const { balanceCharge } = require('../controllers/Transactions/balanceCharge')
+const { balanceCharge } = require('../controllers/Transactions/balanceCharge');
+const { buyVideogames } = require('../controllers/Transactions/buyVideogames');
 
 
 mercadopago.configure({access_token: process.env.ACCESS_TOKEN});
@@ -73,12 +74,23 @@ payment.post('/cargacoins', async (req, res) => {
   const { user, input } = req.body;
 
   try {
-    // AQUÍ LLAMAS A LA FUNCIÓN QUE AÚN DEBES IMPLEMENTAR
-    let response = await balanceCharge(user.sub, input)
+   let response = await balanceCharge(user.sub, input)
     res.status(200).json(response)
   } catch (error) {
     res.status(400).json(error.message)
   }
 });
 
+payment.post('/buy', async (req, res) =>{
+    const{idVideogame, idUser} = req.body;
+    try {
+      res.status(200).json(await buyVideogames(idVideogame, idUser));
+    } catch (error) {
+      res.status(400).json(error.message);
+    }
+  })
+
+
+
 module.exports = payment;
+
