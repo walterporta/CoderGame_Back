@@ -14,7 +14,7 @@ const balanceCharge= async (idUser, amount) => {
         await Transactions.create({WalletId: walletUser.id, amount: amount});
 
         return `charged ${amount} to his wallet`
-        }
+        } 
         
     throw new Error('could not load balance')
     }

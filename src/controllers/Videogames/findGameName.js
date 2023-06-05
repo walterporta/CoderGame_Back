@@ -14,7 +14,7 @@ const findGameName = async (name, genre, platforms, promotion, sub, orderBy, asc
         where:{
             [Op.and]:[name?{name: {[Op.iLike]: `%${name}%`}}:null ],
             deleted: false,
-        },
+        }, 
          include: [
             {
               model: Genregames,

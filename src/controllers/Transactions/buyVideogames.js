@@ -4,7 +4,7 @@ const {Op}=require('sequelize')
 
 const buyVideogames = async (idVideogame, idUser) =>{
   role = await verifyRol(idUser)
-  
+  console.log(idVideogame, idUser)
 
   if(role === 'seller'|| role==='admin') throw new Error('only customers can buy a game')
 
@@ -12,7 +12,7 @@ const buyVideogames = async (idVideogame, idUser) =>{
     const saldo = await Wallets.findOne({
         include: {
             model: Users,
-            where: {sub:idUser} 
+            where: {sub:idUser}
         }
     })
     let total = 0
