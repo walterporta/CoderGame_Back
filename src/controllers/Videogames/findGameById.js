@@ -1,7 +1,7 @@
-const { Videogames, Genregames, Platforms, ComentariosV, Users } = require('../../db');
+const { Videogames, Genregames, Platforms, Favorites, ComentariosV, Users } = require('../../db');
 const { col, fn} = require('sequelize')
 
-const findGameById = async (id) => {
+const findGameById = async (id, sub) => {
 
   const videoGame = await Videogames.findByPk( id, {
     where: {
@@ -39,6 +39,12 @@ const findGameById = async (id) => {
             ['date', 'DESC']
           ],
           required: false
+        },
+        {
+          model: Favorites,
+          attributes:['buy'],
+          where: {UserSub:sub?sub:null},
+          required:false
         }
     ],
   });

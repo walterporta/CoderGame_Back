@@ -15,7 +15,7 @@ const videoGames = Router();
 
 videoGames.get('/', getVideoGamesHandler);
 videoGames.post('/', createVideoGamesHandler);
-videoGames.get('/:id', getVideoGameByIdHandler);
+videoGames.put('/:id', getVideoGameByIdHandler);
 videoGames.put('/delete/:id', deleteVideoGameLogicallyHandler);
 videoGames.post('/comentario', addComentarioVideogame);
 videoGames.delete('/comentario',deleteComentario);

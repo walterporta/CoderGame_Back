@@ -26,9 +26,9 @@ const getVideoGamesHandler = async (req, res) => {
 
 const getVideoGameByIdHandler = async (req, res) => {
   const { id } = req.params;
-
+  const {sub} = req.body
   try {
-    const videoGame = await findGameById(id);
+    const videoGame = await findGameById(id,sub);
     if (videoGame) {
       res.status(200).json(videoGame);
     } else {
