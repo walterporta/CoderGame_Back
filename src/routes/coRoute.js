@@ -1,10 +1,10 @@
 const { Router } = require('express');
 const {S_KEY} = process.env;
-const Stripe = require('stripe');
+// const Stripe = require('stripe');
 const checkout = Router();
 const { balanceCharge } = require('../controllers/Transactions/balanceCharge')
 const { buyVideogames } = require('../controllers/Transactions/buyVideogames')
-const stripe = new Stripe(S_KEY);
+// const stripe = new Stripe(S_KEY);
 
 checkout.post('/', async (req, res) => {
   const { input } = req.body;

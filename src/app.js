@@ -4,7 +4,7 @@ const morgan = require("morgan");
 const router = require("./routes/index");
 
 require("dotenv").config();
-// Middlewares
+// Middlewares 
 const app = express(); 
 
 

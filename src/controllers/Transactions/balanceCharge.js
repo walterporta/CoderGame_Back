@@ -6,7 +6,7 @@ const balanceCharge= async (idUser, amount) => {
     role = await verifyRol(idUser)
     if(role === 'seller'|| role==='admin') throw new Error('only customers can buy a game')
 
-    const walletUser = await Wallets.findOne({where:{UserSub:idUser}})
+    const walletUser = await Wallets.findOne({where:{UserSub:idUser}})  
 
     if(walletUser){
         await Wallets.update({ balance:walletUser.balance+amount },{where:{id:walletUser.id}})
@@ -15,7 +15,7 @@ const balanceCharge= async (idUser, amount) => {
 
         return `charged ${amount} to his wallet`
         } 
-        
+         
     throw new Error('could not load balance')
     }
 
